@@ -36,7 +36,7 @@ export default function Footer() {
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/footer-backgroung.png"
+                    src="/Findme/footer-backgroung.png"
                     alt="Footer Background"
                     fill
                     className="object-cover opacity-60"
@@ -49,7 +49,7 @@ export default function Footer() {
                 <div className="flex flex-col md:flex-row items-center md:justify-between relative mb-8 md:mb-10">
                     {/* Logo */}
                     <Image
-                        src="/Footer-logo.png"
+                        src="/Findme/logo1.svg"
                         alt="Findme Logo"
                         width={140}
                         height={50}
@@ -93,7 +93,7 @@ export default function Footer() {
                                         <span className="leading-tight">{link}</span>
                                         {link === "Eco" && (
                                             <Image
-                                                src="/Vector.svg"
+                                                src="/Findme/Vector.svg"
                                                 alt="Eco"
                                                 width={12}
                                                 height={12}

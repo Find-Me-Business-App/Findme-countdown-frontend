@@ -49,14 +49,14 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/section-background.png"
+                    src="/Findme/section-background.png"
                     alt="Business Background"
                     fill
                     className="object-cover"
                     priority
                 />
                 <Image
-                    src="/overlay2.png"
+                    src="/Findme/overlay2.png"
                     alt="Overlay"
                     fill
                     className="object-cover opacity-100 mix-blend-screen"
@@ -66,7 +66,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
             {/* Large BUSINESS background text */}
             <div className="absolute top-[25%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full px-4 flex justify-center pointer-events-none opacity-100">
                 <Image
-                    src="/BUSINESS.png"
+                    src="/Findme/BUSINESS.png"
                     alt="BUSINESS"
                     width={800}
                     height={400}

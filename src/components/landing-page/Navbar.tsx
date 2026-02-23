@@ -32,7 +32,7 @@ export default function Navbar({ activeSection, onOpenModal }: NavbarProps) {
                 {/* Logo */}
                 <div className="flex-none flex items-center">
                     <Image
-                        src="/logo1.svg"
+                        src="/Findme/logo1.svg"
                         alt="Findme Logo"
                         width={100}
                         height={32}

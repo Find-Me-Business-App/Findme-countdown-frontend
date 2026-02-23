@@ -40,7 +40,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             {/* ... (rest of the background and fireworks) */}
             <div className="absolute inset-0 z-0">
                 <Image
-                    src="/section3-background.png"
+                    src="/Findme/section3-background.png"
                     alt="Festival Background"
                     fill
                     className="object-cover opacity-80"
@@ -51,13 +51,13 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
 
             {/* Fireworks */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] z-1 opacity-60">
-                <Image src="/kisspng-fireworks.png" alt="Fireworks" fill className="object-contain" />
+                <Image src="/Findme/kisspng-fireworks.png" alt="Fireworks" fill className="object-contain" />
             </div>
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] z-0 opacity-40">
-                <Image src="/kisspng-fireworks-diwali.png" alt="Fireworks" fill className="object-contain" />
+                <Image src="/Findme/kisspng-fireworks-diwali.png" alt="Fireworks" fill className="object-contain" />
             </div>
             <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] md:w-[400px] md:h-[400px] z-1 opacity-40 rotate-45">
-                <Image src="/kisspng-fireworks.png" alt="Fireworks" fill className="object-contain" />
+                <Image src="/Findme/kisspng-fireworks.png" alt="Fireworks" fill className="object-contain" />
             </div>
 
             {/* Central Content */}
