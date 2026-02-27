@@ -1,39 +1,22 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
 import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
+import { useFestivalPlayer } from "@/hooks/useFestivalPlayer";
 import Waitlist from "./Waitlist";
 
 interface FestivalSectionProps {
     onOpenWaitlist?: () => void;
 }
 
-const SONGS = [
-    { title: "Shootah", artist: "Sayfar feat. Chley" },
-    { title: "Afrika", artist: "Mzuk Maen feat. Mazet SA" },
-    { title: "Fiya Blaza", artist: "DVBBS FT Chris Marshall" },
-    { title: "Intando Yakhe", artist: "Soa Mattrix" },
-    { title: "Addicted", artist: "Raino" },
-];
-
 export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps) {
-    const [currentSongIndex, setCurrentSongIndex] = useState(1); // Default to Afrika
-    const [isPlaying, setIsPlaying] = useState(false);
-
-    const currentSong = SONGS[currentSongIndex];
-
-    const handleNext = () => {
-        setCurrentSongIndex((prev) => (prev + 1) % SONGS.length);
-    };
-
-    const handleBack = () => {
-        setCurrentSongIndex((prev) => (prev - 1 + SONGS.length) % SONGS.length);
-    };
-
-    const togglePlay = () => {
-        setIsPlaying(!isPlaying);
-    };
+    const {
+        currentSong,
+        isPlaying,
+        togglePlay,
+        handleNext,
+        handleBack
+    } = useFestivalPlayer();
 
     return (
         <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
