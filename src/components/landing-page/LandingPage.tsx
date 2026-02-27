@@ -31,7 +31,7 @@ export default function LandingPage() {
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image
-                        src="/Findme/Rectangle 3329.png"
+                        src="/Rectangle 3329.png"
                         alt="Background"
                         fill
                         className="object-cover opacity-80"

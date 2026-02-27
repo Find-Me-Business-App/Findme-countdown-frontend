@@ -81,7 +81,7 @@ export default function RegistrationModal() {
                             <div className="flex flex-col items-center text-center">
                                 <div className="w-16 h-16 md:w-22 md:h-22 bg-white/5 rounded-2xl md:rounded-3xl flex items-center justify-center mb-3 md:mb-4 border border-white/10 group-hover:border-white/20 transition-colors shadow-inner">
                                     <Image
-                                        src="/Findme/register.svg"
+                                        src="/register.svg"
                                         alt="Sign up using AI"
                                         width={44}
                                         height={44}

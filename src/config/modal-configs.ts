@@ -64,7 +64,7 @@ export const WAITLIST_CONFIGS: Record<SectionType, WaitlistSectionConfig> = {
     home: {
         title: "Join The Waitlist",
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
-        svgPath: "/Findme/waitlist1.svg",
+        svgPath: "/waitlist1.svg",
         buttonGradient: "from-[#1e293b] to-[#334155]"
     },
     business: {
@@ -72,7 +72,7 @@ export const WAITLIST_CONFIGS: Record<SectionType, WaitlistSectionConfig> = {
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
         actionLabel: "Register your business",
         actionLink: "#",
-        svgPath: "/Findme/waitlist2.svg",
+        svgPath: "/waitlist2.svg",
         buttonGradient: "from-[#1e1b4b] to-[#312e81]"
     },
     festival: {
@@ -80,7 +80,7 @@ export const WAITLIST_CONFIGS: Record<SectionType, WaitlistSectionConfig> = {
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
         actionLabel: "Participate",
         actionLink: "#",
-        svgPath: "/Findme/waitlist3.svg",
+        svgPath: "/waitlist3.svg",
         buttonGradient: "from-[#450a0a] to-[#7f1d1d]"
     }
 };
@@ -90,14 +90,14 @@ export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
         title: "About FindMe",
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
         subDescription: "Create, manage and automate all astacking.",
-        imagePath: "/Findme/more-info1.png",
+        imagePath: "/more-info1.png",
         accentColor: "bg-white",
     },
     business: {
         title: "FindMe For Business",
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
         subDescription: "Create, manage and automate all astacking.",
-        imagePath: "/Findme/more-info2.png",
+        imagePath: "/more-info2.png",
         accentColor: "bg-[#1e3a8a]",
         titleColor: "text-[#1e3a8a]"
     },
@@ -105,7 +105,7 @@ export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
         title: "About Launch Festival",
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
         subDescription: "Create, manage and automate all astacking.",
-        imagePath: "/Findme/more-info3.png",
+        imagePath: "/more-info3.png",
         accentColor: "bg-[#1e3a8a]",
     }
 };

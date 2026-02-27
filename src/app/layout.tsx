@@ -16,8 +16,8 @@ export const metadata: Metadata = {
   title: "FindMe",
   description: "FindMe - Limitless Possibilities",
   icons: {
-    icon: "/Findme/logo1.svg",
-    apple: "/Findme/logo1.svg",
+    icon: "/logo1.svg",
+    apple: "/logo1.svg",
   },
 };
 
