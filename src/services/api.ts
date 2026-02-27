@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://findme-api-vqkj.onrender.com/api/v1";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 /**
  * Standardized API request helper to handle fetch boilerplate and error parsing.

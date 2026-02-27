@@ -25,7 +25,7 @@ export default function WaitlistForm({ section }: WaitlistFormProps) {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="obinnaegbule@yahoo.com"
+                    placeholder="email@example.com"
                     className="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-3.5 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/20 text-center md:text-left"
                 />
                 <button
