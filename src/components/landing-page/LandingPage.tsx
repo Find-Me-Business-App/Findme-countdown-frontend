@@ -1,6 +1,5 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
@@ -13,43 +12,18 @@ import ContactModal from "./ContactModal";
 import WaitlistModal from "./WaitlistModal";
 import InfoModal from "./InfoModal";
 import RegistrationModal from "./RegistrationModal";
-import { SectionType } from "@/config/modal-configs";
+import { useModalStore } from "@/store/useModalStore";
+import { useSectionObserver } from "@/hooks/useSectionObserver";
 
 export default function LandingPage() {
-    const [activeSection, setActiveSection] = useState<SectionType>("home");
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
-    const [isInfoModalOpen, setIsInfoModalOpen] = useState(false);
-    const [isRegistrationModalOpen, setIsRegistrationModalOpen] = useState(false);
-
-    useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5,
-        };
-
-        const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id as SectionType);
-                }
-            });
-        };
-
-        const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-        const sections = document.querySelectorAll('section[id]');
-        sections.forEach((section) => observer.observe(section));
-
-        return () => observer.disconnect();
-    }, []);
+    const activeSection = useSectionObserver();
+    const { openModal } = useModalStore();
 
     return (
         <div className="relative w-full bg-black scroll-smooth">
             <Navbar
                 activeSection={activeSection}
-                onOpenModal={() => setIsModalOpen(true)}
+                onOpenModal={() => openModal("contact", activeSection)}
             />
 
             {/* Hero Section */}
@@ -72,7 +46,7 @@ export default function LandingPage() {
                     <Countdown />
                 </main>
 
-                <Waitlist onJoin={() => setIsWaitlistModalOpen(true)} />
+                <Waitlist onJoin={() => openModal("waitlist", activeSection)} />
 
                 {/* Decorative center ring if visible in image - actually seems like a circular light/area */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] border border-white/5 rounded-full pointer-events-none" />
@@ -80,50 +54,22 @@ export default function LandingPage() {
 
             {/* Business Section */}
             <section id="business">
-                <BusinessSection onOpenWaitlist={() => setIsWaitlistModalOpen(true)} />
+                <BusinessSection onOpenWaitlist={() => openModal("waitlist", "business")} />
             </section>
 
             {/* Festival Section */}
             <section id="festival">
-                <FestivalSection onOpenWaitlist={() => setIsWaitlistModalOpen(true)} />
+                <FestivalSection onOpenWaitlist={() => openModal("waitlist", "festival")} />
             </section>
 
             {/* Footer Section */}
             <Footer />
 
-            <ContactModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                section={activeSection}
-            />
-
-            <WaitlistModal
-                isOpen={isWaitlistModalOpen}
-                onClose={() => setIsWaitlistModalOpen(false)}
-                onMoreInfo={() => {
-                    setIsWaitlistModalOpen(false);
-                    // Short delay to allow smooth transition
-                    setTimeout(() => setIsInfoModalOpen(true), 100);
-                }}
-                onRegister={() => {
-                    setIsWaitlistModalOpen(false);
-                    // Short delay to allow smooth transition
-                    setTimeout(() => setIsRegistrationModalOpen(true), 100);
-                }}
-                section={activeSection}
-            />
-
-            <InfoModal
-                isOpen={isInfoModalOpen}
-                onClose={() => setIsInfoModalOpen(false)}
-                section={activeSection}
-            />
-
-            <RegistrationModal
-                isOpen={isRegistrationModalOpen}
-                onClose={() => setIsRegistrationModalOpen(false)}
-                section={activeSection}
-            />
+            {/* Modals are globally managed */}
+            <ContactModal />
+            <WaitlistModal />
+            <InfoModal />
+            <RegistrationModal />
         </div>
     );
 }

@@ -2,21 +2,19 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { SectionType, REGISTRATION_CONFIGS } from "@/config/modal-configs";
+import { REGISTRATION_CONFIGS } from "@/config/modal-configs";
 import Image from "next/image";
 import { useEffect } from "react";
+import { useModalStore } from "@/store/useModalStore";
+import RegistrationForm from "./RegistrationForm";
 
-interface RegistrationModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    section: SectionType;
-}
-
-export default function RegistrationModal({ isOpen, onClose, section }: RegistrationModalProps) {
+export default function RegistrationModal() {
+    const { isOpen, type, section, closeModal } = useModalStore();
+    const isModalVisible = isOpen && type === "registration";
     const config = REGISTRATION_CONFIGS[section as keyof typeof REGISTRATION_CONFIGS];
 
     useEffect(() => {
-        if (isOpen) {
+        if (isModalVisible) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
@@ -24,13 +22,13 @@ export default function RegistrationModal({ isOpen, onClose, section }: Registra
         return () => {
             document.body.style.overflow = "unset";
         };
-    }, [isOpen]);
+    }, [isModalVisible]);
 
     if (!config) return null;
 
     return (
         <AnimatePresence>
-            {isOpen && (
+            {isModalVisible && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                     {/* Backdrop */}
                     <motion.div
@@ -38,7 +36,7 @@ export default function RegistrationModal({ isOpen, onClose, section }: Registra
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        onClick={onClose}
+                        onClick={closeModal}
                         className="absolute inset-0 bg-black/70 md:bg-black/40 md:backdrop-blur-xl"
                     />
 
@@ -53,7 +51,7 @@ export default function RegistrationModal({ isOpen, onClose, section }: Registra
                     >
                         {/* Close Button */}
                         <button
-                            onClick={onClose}
+                            onClick={closeModal}
                             className="absolute top-4 right-4 md:top-7 md:right-7 z-30 text-white/40 hover:text-white transition-colors"
                         >
                             <X className="w-6 h-6 md:w-7 md:h-7" />
@@ -69,57 +67,7 @@ export default function RegistrationModal({ isOpen, onClose, section }: Registra
                                 </p>
                             </div>
 
-                            <form className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3 mb-2">
-                                <div className="md:col-span-2 flex flex-col gap-1.5">
-                                    <label className="text-white/40 text-[10px] md:text-[10px] font-semibold px-1 uppercase tracking-wider">Name</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Enter your name"
-                                        className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-3.5 py-2 md:py-2.5 text-white text-sm md:text-sm focus:outline-none focus:border-white/30 transition-colors placeholder:text-white/10"
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-1.5">
-                                    <label className="text-white/40 text-[10px] md:text-[10px] font-semibold px-1 uppercase tracking-wider">Email</label>
-                                    <input
-                                        type="email"
-                                        placeholder="email@example.com"
-                                        className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-3.5 py-2 md:py-2.5 text-white text-sm md:text-sm focus:outline-none focus:border-white/30 transition-colors placeholder:text-white/10"
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-1.5">
-                                    <label className="text-white/40 text-[10px] md:text-[10px] font-semibold px-1 uppercase tracking-wider">Password</label>
-                                    <input
-                                        type="password"
-                                        placeholder="••••••••"
-                                        className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-3.5 py-2 md:py-2.5 text-white text-sm md:text-sm focus:outline-none focus:border-white/30 transition-colors placeholder:text-white/10"
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-1.5">
-                                    <label className="text-white/40 text-[10px] md:text-[10px] font-semibold px-1 uppercase tracking-wider">Phone</label>
-                                    <input
-                                        type="tel"
-                                        placeholder="+1 (555) 000-0000"
-                                        className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-3.5 py-2 md:py-2.5 text-white text-sm md:text-sm focus:outline-none focus:border-white/30 transition-colors placeholder:text-white/10"
-                                    />
-                                </div>
-                                <div className="flex flex-col gap-1.5">
-                                    <label className="text-white/40 text-[10px] md:text-[10px] font-semibold px-1 uppercase tracking-wider">Referral (Optional)</label>
-                                    <input
-                                        type="text"
-                                        placeholder="Code"
-                                        className="bg-white/5 border border-white/10 rounded-xl md:rounded-2xl px-3.5 py-2 md:py-2.5 text-white text-sm md:text-sm focus:outline-none focus:border-white/30 transition-colors placeholder:text-white/10"
-                                    />
-                                </div>
-
-                                <div className="md:col-span-2 mt-2 md:mt-3 flex justify-center">
-                                    <button
-                                        type="button"
-                                        className="text-white font-bold text-xs md:text-sm hover:underline transition-all opacity-80 hover:opacity-100"
-                                    >
-                                        Continue with form
-                                    </button>
-                                </div>
-                            </form>
+                            <RegistrationForm section={section} />
                         </div>
 
                         {/* Divider for mobile */}
@@ -144,11 +92,7 @@ export default function RegistrationModal({ isOpen, onClose, section }: Registra
                                 <p className="text-white/40 text-[9px] md:text-[10px] mt-0.5 md:mt-1 uppercase tracking-widest font-bold">Fast registration</p>
                             </div>
                         </div>
-
-
-
                     </motion.div>
-
                 </div>
             )}
         </AnimatePresence>

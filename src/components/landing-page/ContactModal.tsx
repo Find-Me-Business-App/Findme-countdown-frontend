@@ -1,21 +1,19 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Phone, Mail, Send, MessageCircle } from "lucide-react";
-import { SectionType, MODAL_CONFIGS } from "@/config/modal-configs";
+import { X, Phone, Mail, MessageCircle } from "lucide-react";
+import { MODAL_CONFIGS } from "@/config/modal-configs";
 import { useEffect } from "react";
+import { useModalStore } from "@/store/useModalStore";
+import ContactForm from "./ContactForm";
 
-interface ContactModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    section: SectionType;
-}
-
-export default function ContactModal({ isOpen, onClose, section }: ContactModalProps) {
+export default function ContactModal() {
+    const { isOpen, type, section, closeModal } = useModalStore();
+    const isModalVisible = isOpen && type === "contact";
     const config = MODAL_CONFIGS[section];
 
     useEffect(() => {
-        if (isOpen) {
+        if (isModalVisible) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
@@ -23,11 +21,13 @@ export default function ContactModal({ isOpen, onClose, section }: ContactModalP
         return () => {
             document.body.style.overflow = "unset";
         };
-    }, [isOpen]);
+    }, [isModalVisible]);
+
+    if (!config) return null;
 
     return (
         <AnimatePresence>
-            {isOpen && (
+            {isModalVisible && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                     {/* Backdrop */}
                     <motion.div
@@ -35,7 +35,7 @@ export default function ContactModal({ isOpen, onClose, section }: ContactModalP
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        onClick={onClose}
+                        onClick={closeModal}
                         className="absolute inset-0 bg-black/70 md:bg-black/40 md:backdrop-blur-xl"
                     />
 
@@ -50,7 +50,7 @@ export default function ContactModal({ isOpen, onClose, section }: ContactModalP
                     >
                         {/* Close Button */}
                         <button
-                            onClick={onClose}
+                            onClick={closeModal}
                             className="absolute top-4 right-4 md:top-5 md:right-5 z-30 hidden md:flex h-9 w-9 items-center justify-center rounded-full border border-white/20 bg-black/30 text-white/60 hover:text-white hover:border-white/40 backdrop-blur-sm transition-colors"
                         >
                             <X className="w-5 h-5 md:w-5 md:h-5" />
@@ -122,48 +122,8 @@ export default function ContactModal({ isOpen, onClose, section }: ContactModalP
                                 </div>
                             </div>
 
-                            {/* Form Area */}
-                            <div className="flex-grow flex flex-col pt-1 md:pt-4 px-1 md:px-0 pb-2 md:pb-0">
-                                <h3 className="text-lg md:text-xl font-semibold text-[#f9fafb] mb-3 md:mb-6 px-1">
-                                    Send a message
-                                </h3>
-
-                                <div className="space-y-3 md:space-y-5">
-                                    <div className="flex flex-col gap-1 md:gap-2">
-                                        <label className="text-white/50 text-[10px] md:text-xs font-medium px-1">Name</label>
-                                        <input
-                                            type="text"
-                                            placeholder="Type here"
-                                            className="bg-[#4f4f4f] border border-white/15 rounded-[16px] px-4 md:px-5 py-2.5 md:py-3.5 text-white text-sm md:text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/40"
-                                        />
-                                    </div>
-                                    <div className="flex flex-col gap-1 md:gap-2">
-                                        <label className="text-white/50 text-[10px] md:text-xs font-medium px-1">Email</label>
-                                        <input
-                                            type="email"
-                                            placeholder="Type here"
-                                            className="bg-[#4f4f4f] border border-white/15 rounded-[16px] px-4 md:px-5 py-2.5 md:py-3.5 text-white text-sm md:text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/40"
-                                        />
-                                    </div>
-                                    <div className="flex flex-col gap-1 md:gap-2">
-                                        <label className="text-white/50 text-[10px] md:text-xs font-medium px-1">Message</label>
-                                        <div className="bg-[#5a5a5a] border border-white/15 rounded-[26px] p-2.5 flex items-start gap-3 md:gap-4">
-                                            <div className="flex-grow bg-[#d4d4d4] rounded-[20px] md:rounded-[22px] min-h-[80px] md:min-h-[100px] relative">
-                                                <textarea
-                                                    placeholder="Type here"
-                                                    rows={3}
-                                                    className="w-full h-full bg-transparent border-none rounded-[20px] md:rounded-[22px] px-4 py-3 md:py-4 text-[#1f2937] text-sm md:text-base placeholder:text-[#6b7280] focus:outline-none resize-none"
-                                                />
-                                            </div>
-                                            <button className="mt-1 md:mt-2 mr-1 md:mr-2 flex h-10 w-10 md:h-12 md:w-12 items-center justify-center rounded-[18px] bg-[#d4d4d4] shadow-md group">
-                                                <Send
-                                                    className="w-6 h-6 md:w-7 md:h-7 text-[#1e1b4b] group-hover:translate-x-0.5 group-hover:-rotate-6 transition-all drop-shadow-sm"
-                                                />
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {/* Form Area extracted to ContactForm */}
+                            <ContactForm section={section} />
                         </div>
                     </motion.div>
                 </div>

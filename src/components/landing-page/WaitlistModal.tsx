@@ -2,23 +2,19 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowUpRight, ArrowRight } from "lucide-react";
-import { SectionType, WAITLIST_CONFIGS } from "@/config/modal-configs";
+import { WAITLIST_CONFIGS } from "@/config/modal-configs";
 import Image from "next/image";
 import { useEffect } from "react";
+import { useModalStore } from "@/store/useModalStore";
+import WaitlistForm from "./WaitlistForm";
 
-interface WaitlistModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    onMoreInfo?: () => void;
-    onRegister?: () => void;
-    section: SectionType;
-}
-
-export default function WaitlistModal({ isOpen, onClose, onMoreInfo, onRegister, section }: WaitlistModalProps) {
+export default function WaitlistModal() {
+    const { isOpen, type, section, closeModal, openModal } = useModalStore();
+    const isModalVisible = isOpen && type === "waitlist";
     const config = WAITLIST_CONFIGS[section];
 
     useEffect(() => {
-        if (isOpen) {
+        if (isModalVisible) {
             document.body.style.overflow = "hidden";
         } else {
             document.body.style.overflow = "unset";
@@ -26,11 +22,13 @@ export default function WaitlistModal({ isOpen, onClose, onMoreInfo, onRegister,
         return () => {
             document.body.style.overflow = "unset";
         };
-    }, [isOpen]);
+    }, [isModalVisible]);
+
+    if (!config) return null;
 
     return (
         <AnimatePresence>
-            {isOpen && (
+            {isModalVisible && (
                 <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
                     {/* Backdrop */}
                     <motion.div
@@ -38,7 +36,7 @@ export default function WaitlistModal({ isOpen, onClose, onMoreInfo, onRegister,
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        onClick={onClose}
+                        onClick={closeModal}
                         className="absolute inset-0 bg-black/70 md:bg-black/40 md:backdrop-blur-xl"
                     />
 
@@ -64,7 +62,7 @@ export default function WaitlistModal({ isOpen, onClose, onMoreInfo, onRegister,
 
                         {/* Close Button */}
                         <button
-                            onClick={onClose}
+                            onClick={closeModal}
                             className="absolute top-6 right-6 z-30 text-white/40 hover:text-white transition-colors"
                         >
                             <X className="w-8 h-8" />
@@ -82,7 +80,7 @@ export default function WaitlistModal({ isOpen, onClose, onMoreInfo, onRegister,
                                     href={config.actionLink}
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        onRegister?.();
+                                        openModal("registration", section);
                                     }}
                                     className="flex items-center gap-1.5 text-[#3b82f6] text-sm font-medium hover:underline mb-8 group"
                                 >
@@ -91,26 +89,14 @@ export default function WaitlistModal({ isOpen, onClose, onMoreInfo, onRegister,
                                 </a>
                             )}
 
-                            {/* Email Input Area */}
-                            <div className="flex flex-col gap-3 mb-12 w-full max-w-[320px] md:max-w-[440px] items-center md:items-start">
-                                <label className="text-white/40 text-xs md:text-sm font-medium px-1">Enter your email</label>
-                                <div className="flex flex-col md:flex-row gap-3 w-full">
-                                    <input
-                                        type="email"
-                                        placeholder="obinnaegbule@yahoo.com"
-                                        className="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-3.5 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/20 text-center md:text-left"
-                                    />
-                                    <button className="bg-[#2c375b] text-white px-8 py-3.5 rounded-xl font-bold text-sm tracking-widest hover:brightness-110 transition-all shadow-xl w-full md:w-auto">
-                                        SEND
-                                    </button>
-                                </div>
-                            </div>
+                            {/* Email Input Area extracted to WaitlistForm */}
+                            <WaitlistForm section={section} />
 
                             <a
                                 href="#"
                                 onClick={(e) => {
                                     e.preventDefault();
-                                    onMoreInfo?.();
+                                    openModal("info", section);
                                 }}
                                 className="flex items-center gap-1.5 text-[#4ea1ff] text-sm font-medium hover:underline group mt-auto self-start md:self-auto"
                             >
