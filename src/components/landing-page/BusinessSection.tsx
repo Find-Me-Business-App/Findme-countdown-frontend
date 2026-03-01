@@ -103,7 +103,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
     }, []);
 
     return (
-        <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-white">
+        <section className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden bg-white">
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image

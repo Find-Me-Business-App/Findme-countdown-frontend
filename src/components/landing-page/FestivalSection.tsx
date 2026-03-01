@@ -44,13 +44,13 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             transition: {
                 duration: 4 + (i % 3),
                 repeat: Infinity,
-                ease: "easeInOut"
+                ease: "easeInOut" as const
             }
         })
     };
 
     return (
-        <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        <section className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image

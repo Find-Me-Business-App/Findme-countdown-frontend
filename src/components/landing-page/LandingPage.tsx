@@ -12,6 +12,7 @@ import ContactModal from "./ContactModal";
 import WaitlistModal from "./WaitlistModal";
 import InfoModal from "./InfoModal";
 import RegistrationModal from "./RegistrationModal";
+import StickyScrollSection from "./StickyScrollSection";
 import { useModalStore } from "@/store/useModalStore";
 import { useSectionObserver } from "@/hooks/useSectionObserver";
 
@@ -26,46 +27,58 @@ export default function LandingPage() {
                 onOpenModal={() => openModal("contact", activeSection)}
             />
 
-            {/* Hero Section */}
-            <section id="home" className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
-                {/* Background Image */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/Rectangle 3329.png"
-                        alt="Background"
-                        fill
-                        className="object-cover opacity-80"
-                        priority
-                    />
-                    {/* Overlay for better readability */}
-                    <div className="absolute inset-0 bg-black/40" />
-                </div>
+            {/* Hero Section — z-30, peels away first */}
+            <div className="relative z-30">
+                <StickyScrollSection>
+                    <section id="home" className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden">
+                        {/* Background Image */}
+                        <div className="absolute inset-0 z-0">
+                            <Image
+                                src="/Rectangle 3329.png"
+                                alt="Background"
+                                fill
+                                className="object-cover opacity-80"
+                                priority
+                            />
+                            <div className="absolute inset-0 bg-black/40" />
+                        </div>
 
-                <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8 ">
-                    <Hero />
-                    <Countdown />
-                </main>
+                        <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8">
+                            <Hero />
+                            <Countdown />
+                        </main>
 
-                <Waitlist onJoin={() => openModal("waitlist", activeSection)} />
+                        <Waitlist onJoin={() => openModal("waitlist", activeSection)} />
 
-                {/* Decorative center ring if visible in image - actually seems like a circular light/area */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] border border-white/5 rounded-full pointer-events-none" />
-            </section>
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] border border-white/5 rounded-full pointer-events-none" />
+                    </section>
+                </StickyScrollSection>
+            </div>
 
-            {/* Business Section */}
-            <section id="business">
-                <BusinessSection onOpenWaitlist={() => openModal("waitlist", "business")} />
-            </section>
+            {/* Business Section — z-20, reveals under Hero */}
+            <div className="relative z-20">
+                <StickyScrollSection>
+                    <section id="business" className="h-full">
+                        <BusinessSection onOpenWaitlist={() => openModal("waitlist", "business")} />
+                    </section>
+                </StickyScrollSection>
+            </div>
 
-            {/* Festival Section */}
-            <section id="festival">
-                <FestivalSection onOpenWaitlist={() => openModal("waitlist", "festival")} />
-            </section>
+            {/* Festival Section — z-10, reveals under Business */}
+            <div className="relative z-10">
+                <StickyScrollSection>
+                    <section id="festival" className="h-full">
+                        <FestivalSection onOpenWaitlist={() => openModal("waitlist", "festival")} />
+                    </section>
+                </StickyScrollSection>
+            </div>
 
-            {/* Footer Section */}
-            <Footer />
+            {/* Footer — scrolls in naturally */}
+            <div className="relative z-[5]">
+                <Footer />
+            </div>
 
-            {/* Modals are globally managed */}
+            {/* Modals */}
             <ContactModal />
             <WaitlistModal />
             <InfoModal />
@@ -73,3 +86,4 @@ export default function LandingPage() {
         </div>
     );
 }
+
