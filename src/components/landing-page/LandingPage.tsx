@@ -25,7 +25,7 @@ export default function LandingPage() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full bg-black snap-y snap-mandatory h-svh overflow-y-auto overflow-x-hidden"
+            className="relative w-full bg-black snap-y snap-mandatory h-[100dvh] overflow-y-auto overflow-x-clip overscroll-behavior-y-none"
         >
             <Navbar
                 activeSection={activeSection}
@@ -100,11 +100,11 @@ function StickySection({ children, id, zIndex }: { children: React.ReactNode; id
         <section
             id={id}
             ref={ref}
-            className={`sticky top-0 h-svh w-full overflow-hidden ${zIndex} snap-start snap-always`}
+            className={`sticky top-0 h-[100dvh] w-full overflow-hidden ${zIndex} snap-start snap-always`}
         >
             <motion.div
                 style={{ scale, opacity, filter }}
-                className="h-full w-full"
+                className="h-full w-full transform-gpu"
             >
                 {children}
             </motion.div>
