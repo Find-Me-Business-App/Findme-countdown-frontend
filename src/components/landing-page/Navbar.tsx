@@ -18,7 +18,7 @@ export default function Navbar({ activeSection, onOpenModal }: NavbarProps) {
 
     return (
         <>
-            <nav className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 py-6 md:px-16 lg:px-24 backdrop-blur-sm bg-black/5">
+            <nav className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 py-6 md:px-16 lg:px-24">
                 {/* Mobile Menu Trigger (Mobile only) */}
                 <div className="md:hidden flex-1">
                     <div
