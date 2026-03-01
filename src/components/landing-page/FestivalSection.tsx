@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useFestivalPlayer } from "@/hooks/useFestivalPlayer";
 import Waitlist from "./Waitlist";
 
@@ -20,7 +20,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
     } = useFestivalPlayer();
 
     const letterVariants = {
-        hidden: { y: 100, opacity: 0, scale: 0.2, rotate: -20, filter: "blur(10px)" },
+        hidden: { y: 40, opacity: 0, scale: 0.5, rotate: -5, filter: "blur(4px)" },
         visible: (i: number) => ({
             y: 0,
             opacity: 1,
@@ -30,19 +30,19 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             transition: {
                 type: "spring" as const,
                 damping: 12,
-                stiffness: 100,
-                delay: i * 0.05,
+                stiffness: 150,
+                delay: i * 0.025,
             }
         })
     };
 
     const floatingVariants = {
         animate: (i: number) => ({
-            y: [0, -15, 0],
-            x: [0, i % 2 === 0 ? 10 : -10, 0],
-            rotate: [0, i % 2 === 0 ? 5 : -5, 0],
+            y: [0, -8, 0],
+            x: [0, i % 2 === 0 ? 6 : -6, 0],
+            rotate: [0, i % 2 === 0 ? 2 : -2, 0],
             transition: {
-                duration: 4 + (i % 3),
+                duration: 6 + (i % 3),
                 repeat: Infinity,
                 ease: "easeInOut" as const
             }
@@ -50,7 +50,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
     };
 
     return (
-        <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        <section className="relative min-h-svh w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -78,11 +78,11 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 animate="animate"
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] z-0 opacity-40 pointer-events-none"
             >
-                <Image src="/Findme/kisspng-fireworks-diwali.png" alt="Fireworks" fill className="object-contain" />
+                <Image src="/kisspng-fireworks-diwali.png" alt="Fireworks" fill className="object-contain" />
             </motion.div>
 
             {/* Central Content */}
-            <div className="relative z-10 flex flex-col items-center text-center drop-shadow-[0_4px_4px_rgba(0,0,0,0.8)] px-4">
+            <div className="relative z-10 flex flex-col items-center text-center px-4">
                 {/* Decorative drifting shapes */}
                 <div className="absolute inset-0 -m-6 md:-m-10 pointer-events-none overflow-hidden">
                     {[
@@ -101,11 +101,11 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     ))}
                 </div>
 
-                <div className="text-4xl md:text-7xl font-black tracking-tight mb-6 md:mb-8 drop-shadow-2xl">
+                <div className="text-4xl md:text-7xl font-black tracking-tight mb-6 md:mb-8 drop-shadow-lg">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, margin: "-20px" }}
                         className="flex flex-wrap gap-x-[0.1em] gap-y-2 justify-center mb-2"
                     >
                         {"FINDME".split("").map((letter, i) => (
@@ -121,7 +121,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                         <motion.span
                             initial={{ opacity: 0 }}
                             whileInView={{ opacity: 0.8 }}
-                            transition={{ delay: 0.5 }}
+                            transition={{ delay: 0.3 }}
                             className="mx-1 md:mx-2 text-white/80"
                         >•</motion.span>
                         {"LAUNCH".split("").map((letter, i) => (
@@ -138,7 +138,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        viewport={{ once: true, margin: "-20px" }}
                         className="flex gap-[0.1em] justify-center"
                     >
                         {"FESTIVAL".split("").map((letter, i) => (
@@ -155,23 +155,23 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 </div>
 
                 <motion.div
-                    initial={{ opacity: 0, letterSpacing: "-0.5em", filter: "blur(10px)" }}
-                    whileInView={{ opacity: 0.9, letterSpacing: "0.3em", filter: "blur(0px)" }}
-                    transition={{ duration: 1.5, delay: 1, ease: "easeOut" }}
+                    initial={{ opacity: 0, letterSpacing: "-0.2em", filter: "blur(4px)" }}
+                    whileInView={{ opacity: 0.9, letterSpacing: "0.2em", filter: "blur(0px)" }}
+                    transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
                 >
-                    <p className="text-white text-sm md:text-2xl font-bold flex items-center gap-2 md:gap-4 drop-shadow-lg uppercase">
+                    <p className="text-white text-[10px] md:text-2xl font-bold flex items-center gap-2 md:gap-4 drop-shadow-lg uppercase">
                         DANCE <span className="text-white/40">•</span> MUSIC <span className="text-white/40">•</span> TECHNOLOGY
                     </p>
                 </motion.div>
             </div>
 
-            {/* Bottom Left: Location with Spring Slide */}
+            {/* Bottom Left: Location */}
             <motion.div
-                initial={{ x: -100, opacity: 0, rotate: -10 }}
+                initial={{ x: -50, opacity: 0, rotate: -10 }}
                 whileInView={{ x: 0, opacity: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.8 }}
-                className="absolute bottom-32 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center"
+                transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.6 }}
+                className="absolute bottom-16 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center"
             >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-white mb-2 shadow-xl">
                     <div className="w-full flex h-full">
@@ -183,16 +183,16 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 <span className="text-white text-[8px] md:text-[10px] font-bold tracking-[0.4em] uppercase">UYO</span>
             </motion.div>
 
-            {/* Bottom Right: Music Player with Spring Slide */}
+            {/* Bottom Right: Music Player */}
             <motion.div
-                initial={{ x: 100, opacity: 0, rotate: 10 }}
+                initial={{ x: 50, opacity: 0, rotate: 10 }}
                 whileInView={{ x: 0, opacity: 1, rotate: 0 }}
                 viewport={{ once: true }}
-                transition={{ type: "spring", damping: 15, stiffness: 100, delay: 1 }}
-                className="absolute bottom-48 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
+                transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.7 }}
+                className="absolute bottom-32 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
             >
                 <p className="text-white/60 text-[8px] md:text-[10px] font-medium mb-2 md:mb-3">Theme sounds :</p>
-                <div className="flex items-center gap-3 md:gap-4 bg-black/60 md:bg-black/40 md:backdrop-blur-md p-2 md:p-3 rounded-2xl border border-white/10 max-w-[280px] md:max-w-none shadow-2xl transition-all group hover:border-white/30">
+                <div className="flex items-center gap-3 md:gap-4 bg-black/80 md:bg-black/40 md:backdrop-blur-md p-2 md:p-3 rounded-2xl border border-white/10 max-w-[280px] md:max-w-none shadow-2xl transition-all group hover:border-white/30">
                     <motion.div
                         animate={isPlaying ? { rotate: 360 } : {}}
                         transition={{ duration: 8, repeat: Infinity, ease: "linear" }}

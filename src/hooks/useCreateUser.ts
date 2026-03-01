@@ -4,10 +4,10 @@ import { createUser, CreateUserRequest, CreateUserResponse } from "@/services/ap
 export const useCreateUser = () => {
   return useMutation<CreateUserResponse, Error, CreateUserRequest>({
     mutationFn: createUser,
-    onSuccess: (data) => {
+    onSuccess: () => {
       // Success logic can be added here (e.g., analytics)
     },
-    onError: (error) => {
+    onError: () => {
       // Error handling logic can be added here
     },
   });

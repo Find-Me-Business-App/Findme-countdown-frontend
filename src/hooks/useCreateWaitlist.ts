@@ -4,10 +4,10 @@ import { createWaitlist, CreateWaitlistRequest, CreateUserResponse } from "@/ser
 export const useCreateWaitlist = () => {
   return useMutation<CreateUserResponse, Error, CreateWaitlistRequest>({
     mutationFn: createWaitlist,
-    onSuccess: (data) => {
+    onSuccess: () => {
       // Success logic
     },
-    onError: (error) => {
+    onError: () => {
       // Error logic
     },
   });

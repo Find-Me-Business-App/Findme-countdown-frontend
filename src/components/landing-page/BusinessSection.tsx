@@ -48,11 +48,11 @@ function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) 
                 hidden: { opacity: 0 },
                 visible: {
                     opacity: 1,
-                    transition: { staggerChildren: 0.03, delayChildren: delay }
+                    transition: { staggerChildren: 0.02, delayChildren: delay }
                 },
                 exit: {
                     opacity: 0,
-                    transition: { staggerChildren: 0.02, staggerDirection: -1 }
+                    transition: { staggerChildren: 0.015, staggerDirection: -1 }
                 }
             }}
             className={className}
@@ -63,9 +63,9 @@ function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) 
                     <motion.span
                         key={i}
                         variants={{
-                            hidden: { opacity: 0, filter: "blur(10px)", y: 20 },
-                            visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] } },
-                            exit: { opacity: 0, filter: "blur(5px)", y: -10, transition: { duration: 0.4 } }
+                            hidden: { opacity: 0, filter: "blur(4px)", y: 10 },
+                            visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] } },
+                            exit: { opacity: 0, filter: "blur(2px)", y: -5, transition: { duration: 0.3 } }
                         }}
                         className="inline-block mr-[0.2em]"
                     >
@@ -75,9 +75,9 @@ function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) 
             ) : (
                 <motion.span
                     variants={{
-                        hidden: { opacity: 0, filter: "blur(10px)", y: 20 },
-                        visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.8, ease: [0.2, 0.65, 0.3, 0.9] } },
-                        exit: { opacity: 0, filter: "blur(5px)", y: -10, transition: { duration: 0.4 } }
+                        hidden: { opacity: 0, filter: "blur(4px)", y: 10 },
+                        visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] } },
+                        exit: { opacity: 0, filter: "blur(2px)", y: -5, transition: { duration: 0.3 } }
                     }}
                     className="inline-block"
                 >
@@ -123,10 +123,10 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
 
             {/* Large BUSINESS background text */}
             <motion.div
-                initial={{ scale: 1.1, opacity: 0, filter: "blur(10px)" }}
+                initial={{ scale: 1.05, opacity: 0, filter: "blur(8px)" }}
                 whileInView={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.8, ease: [0.2, 0.65, 0.3, 0.9] }}
+                transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
                 className="absolute top-[25%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full px-4 flex justify-center pointer-events-none"
             >
                 <Image
@@ -144,7 +144,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                         <RevealMorph className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 md:whitespace-nowrap">
                             {BUSINESS_STEPS[currentIndex].titleStyled}
                         </RevealMorph>
-                        <RevealMorph delay={0.4} className="text-gray-700 text-sm md:text-lg font-medium max-w-2xl leading-relaxed opacity-90 px-4">
+                        <RevealMorph delay={0.3} className="text-gray-700 text-sm md:text-lg font-medium max-w-2xl leading-relaxed opacity-90 px-4">
                             {BUSINESS_STEPS[currentIndex].description}
                         </RevealMorph>
                     </div>
@@ -153,10 +153,10 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
 
             {/* Bottom Footer Text (Desktop) */}
             <motion.div
-                initial={{ opacity: 0, x: -50, filter: "blur(5px)" }}
+                initial={{ opacity: 0, x: -30, filter: "blur(4px)" }}
                 whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
                 className="absolute bottom-12 left-8 md:left-16 z-20 hidden md:block"
             >
                 <p className="text-gray-500 text-xs font-bold tracking-[0.2em] uppercase">
@@ -166,11 +166,11 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
 
             {/* Early Bird CTA */}
             <motion.div
-                initial={{ opacity: 0, x: 50, filter: "blur(5px)" }}
+                initial={{ opacity: 0, x: 30, filter: "blur(4px)" }}
                 whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                 viewport={{ once: true }}
-                transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-                className="absolute bottom-40 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
+                transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+                className="absolute bottom-32 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
             >
                 <div className="bg-[#1d294d]/95 md:bg-[#1d294d]/90 md:backdrop-blur-md p-1 px-1 rounded-2xl border border-white/10 shadow-xl">
                     <button className="bg-[#1d294d] text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform active:scale-95">

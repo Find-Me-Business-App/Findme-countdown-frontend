@@ -27,7 +27,7 @@ export default function LandingPage() {
             />
 
             {/* Hero Section */}
-            <section id="home" className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden">
+            <section id="home" className="relative min-h-svh w-full flex flex-col items-center justify-center overflow-hidden">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
                     <Image

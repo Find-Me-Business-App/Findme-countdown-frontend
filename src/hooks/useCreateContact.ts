@@ -4,10 +4,10 @@ import { createContact, CreateContactRequest, CreateUserResponse } from "@/servi
 export const useCreateContact = () => {
   return useMutation<CreateUserResponse, Error, CreateContactRequest>({
     mutationFn: createContact,
-    onSuccess: (data) => {
+    onSuccess: () => {
       // Success logic
     },
-    onError: (error) => {
+    onError: () => {
       // Error logic
     },
   });

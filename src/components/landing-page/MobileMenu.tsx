@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { X } from "lucide-react";
+
 import Link from "next/link";
 import { SectionType } from "@/config/modal-configs";
 

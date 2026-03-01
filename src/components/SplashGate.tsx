@@ -7,7 +7,7 @@ export default function SplashGate({ children }: { children: React.ReactNode }) 
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setReady(true), 1200);
+    const timer = setTimeout(() => setReady(true), 600);
     return () => clearTimeout(timer);
   }, []);
 

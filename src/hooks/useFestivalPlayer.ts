@@ -26,7 +26,7 @@ export function useFestivalPlayer() {
             audio.pause();
             audioRef.current = null;
         };
-    }, []);
+    }, [currentSong.src]);
 
     // Effect to handle song source changes
     useEffect(() => {
@@ -42,7 +42,7 @@ export function useFestivalPlayer() {
                 }
             }
         }
-    }, [currentSongIndex]);
+    }, [currentSong.src, isPlaying]);
 
     // Effect to handle play/pause
     useEffect(() => {

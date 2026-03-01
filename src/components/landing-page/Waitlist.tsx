@@ -16,11 +16,11 @@ export default function Waitlist({ variant = "dark", onJoin }: WaitlistProps) {
             initial={{ opacity: 0, y: 40, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{
-                duration: 1.2,
-                delay: 2.2,
+                duration: 1.0,
+                delay: 0.8,
                 ease: [0.2, 0.65, 0.3, 0.9],
             }}
-            className="absolute bottom-1 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
+            className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
         >
             <div className="relative w-24 h-24 md:w-28 md:h-28 flex items-center justify-center">
                 {/* Circular text SVG placeholder */}

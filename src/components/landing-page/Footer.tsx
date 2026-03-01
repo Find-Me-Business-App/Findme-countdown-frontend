@@ -37,8 +37,8 @@ export default function Footer() {
         visible: {
             opacity: 1,
             transition: {
-                staggerChildren: 0.1,
-                delayChildren: 0.2
+                staggerChildren: 0.08,
+                delayChildren: 0.1
             }
         }
     };
@@ -48,7 +48,7 @@ export default function Footer() {
         visible: {
             y: 0,
             opacity: 1,
-            transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] as const }
+            transition: { duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] as const }
         }
     };
 
@@ -56,9 +56,9 @@ export default function Footer() {
         <footer className="relative w-full overflow-hidden bg-white">
             {/* Background Image & Overlay */}
             <motion.div
-                initial={{ opacity: 0, scale: 1.1 }}
+                initial={{ opacity: 0, scale: 1.05 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1.5, ease: "easeOut" }}
+                transition={{ duration: 1.0, ease: "easeOut" }}
                 className="absolute inset-0 z-0"
             >
                 <Image
@@ -119,7 +119,7 @@ export default function Footer() {
                 <motion.div
                     initial={{ scaleX: 0, opacity: 0 }}
                     whileInView={{ scaleX: 1, opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.5 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
                     className="w-full h-px bg-black/5 mb-10 origin-left"
                 />
 
@@ -160,9 +160,9 @@ export default function Footer() {
 
                 {/* App Store Buttons - Visible only on mobile */}
                 <motion.div
-                    initial={{ y: 50, opacity: 0 }}
+                    initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
-                    transition={{ type: "spring", damping: 15, stiffness: 100, delay: 0.8 }}
+                    transition={{ type: "spring", damping: 12, stiffness: 120, delay: 0.5 }}
                     className="flex flex-row items-center justify-center gap-3 md:gap-4 mb-10 scale-[0.8] sm:scale-100 origin-center md:hidden"
                 >
                     {/* Play Store Button */}
@@ -199,7 +199,7 @@ export default function Footer() {
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 1 }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
                     className="flex justify-center items-center text-gray-400 text-[10px] md:text-[12px] pt-8 border-t border-black/5"
                 >
                     <p className="flex items-center gap-2 opacity-80 text-center">
