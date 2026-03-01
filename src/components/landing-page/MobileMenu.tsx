@@ -18,7 +18,7 @@ const containerVariants = {
         opacity: 1,
         y: 0,
         transition: {
-            type: "spring",
+            type: "spring" as const,
             damping: 25,
             stiffness: 200,
             staggerChildren: 0.1,
@@ -29,7 +29,7 @@ const containerVariants = {
         y: "100%",
         transition: {
             duration: 0.4,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as const,
         },
     },
 };
@@ -39,7 +39,7 @@ const itemVariants = {
     visible: {
         y: 0,
         opacity: 1,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
     },
 };
 

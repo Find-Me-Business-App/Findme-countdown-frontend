@@ -48,7 +48,7 @@ export default function Footer() {
         visible: {
             y: 0,
             opacity: 1,
-            transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] }
+            transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] as const }
         }
     };
 

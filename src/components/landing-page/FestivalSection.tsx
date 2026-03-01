@@ -28,7 +28,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             rotate: 0,
             filter: "blur(0px)",
             transition: {
-                type: "spring",
+                type: "spring" as const,
                 damping: 12,
                 stiffness: 100,
                 delay: i * 0.05,

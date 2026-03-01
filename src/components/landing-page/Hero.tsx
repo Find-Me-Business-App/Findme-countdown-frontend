@@ -24,7 +24,7 @@ export default function Hero() {
             y: 0,
             transition: {
                 duration: 0.8,
-                ease: [0.2, 0.65, 0.3, 0.9],
+                ease: [0.2, 0.65, 0.3, 0.9] as const,
             },
         },
     };

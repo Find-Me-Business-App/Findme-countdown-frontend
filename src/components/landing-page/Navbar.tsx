@@ -20,7 +20,7 @@ const navVariants = {
         opacity: 1,
         transition: {
             duration: 0.8,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.22, 1, 0.36, 1] as const,
             staggerChildren: 0.1,
             delayChildren: 0.2,
         },
@@ -32,7 +32,7 @@ const itemVariants = {
     visible: {
         y: 0,
         opacity: 1,
-        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] as const },
     },
 };
 
