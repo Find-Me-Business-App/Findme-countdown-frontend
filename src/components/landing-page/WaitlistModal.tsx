@@ -69,7 +69,7 @@ export default function WaitlistModal() {
                         </button>
 
                         <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left h-full">
-                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 w-full">{config.title}</h2>
+                            <h2 className="text-3xl md:text-3xl font-bold text-white mb-6 w-full">{config.title}</h2>
 
                             <p className="text-white/70 text-sm md:text-base mb-6 leading-relaxed max-w-[320px] md:max-w-[450px]">
                                 {config.description}

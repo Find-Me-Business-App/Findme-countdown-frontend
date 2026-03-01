@@ -12,6 +12,37 @@ interface MobileMenuProps {
     onContactClick: () => void;
 }
 
+const containerVariants = {
+    hidden: { opacity: 0, y: "100%" },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            type: "spring",
+            damping: 25,
+            stiffness: 200,
+            staggerChildren: 0.1,
+            delayChildren: 0.2,
+        },
+    },
+    exit: {
+        y: "100%",
+        transition: {
+            duration: 0.4,
+            ease: [0.22, 1, 0.36, 1],
+        },
+    },
+};
+
+const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+        y: 0,
+        opacity: 1,
+        transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+    },
+};
+
 export default function MobileMenu({ isOpen, onClose, activeSection, onContactClick }: MobileMenuProps) {
     const navLinks = [
         { label: "Home", href: "/", id: "home" },
@@ -34,31 +65,33 @@ export default function MobileMenu({ isOpen, onClose, activeSection, onContactCl
 
                     {/* Bottom Sheet */}
                     <motion.div
-                        initial={{ y: "100%" }}
-                        animate={{ y: 0 }}
-                        exit={{ y: "100%" }}
-                        transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
                         className="relative w-full bg-[#f4f4f4] rounded-t-[40px] px-8 pt-12 pb-10 flex flex-col items-center gap-8 shadow-[0_-10px_40px_rgba(0,0,0,0.1)]"
                     >
                         {/* Links */}
                         <div className="flex flex-col items-center gap-6 w-full">
                             {navLinks.map((link) => (
-                                <Link
-                                    key={link.id}
-                                    href={link.href}
-                                    onClick={onClose}
-                                    className={`text-lg font-semibold tracking-wide transition-colors ${activeSection === link.id
-                                        ? "text-[#1d294d] border-b-2 border-[#1d294d]/20 pb-1"
-                                        : "text-[#1d294d]/60 hover:text-[#1d294d]"
-                                        }`}
-                                >
-                                    {link.label}
-                                </Link>
+                                <motion.div key={link.id} variants={itemVariants}>
+                                    <Link
+                                        href={link.href}
+                                        onClick={onClose}
+                                        className={`text-lg font-semibold tracking-wide transition-colors ${activeSection === link.id
+                                            ? "text-[#1d294d] border-b-2 border-[#1d294d]/20 pb-1"
+                                            : "text-[#1d294d]/60 hover:text-[#1d294d]"
+                                            }`}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                </motion.div>
                             ))}
                         </div>
 
                         {/* Contact Button */}
-                        <button
+                        <motion.button
+                            variants={itemVariants}
                             onClick={() => {
                                 onClose();
                                 onContactClick();
@@ -66,7 +99,7 @@ export default function MobileMenu({ isOpen, onClose, activeSection, onContactCl
                             className="w-full max-w-[300px] bg-[#1d294d] text-white py-4 rounded-xl font-bold tracking-wider hover:bg-[#2a3b6d] transition-colors shadow-lg active:scale-95 duration-200 mt-4"
                         >
                             Contact us
-                        </button>
+                        </motion.button>
                     </motion.div>
                 </div>
             )}
