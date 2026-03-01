@@ -1,0 +1,65 @@
+# Findme
+
+[![Next.js](https://img.shields.io/badge/Next.js-15.1.6-black?logo=next.js)](https://nextjs.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.0-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Framer Motion](https://img.shields.io/badge/Framer_Motion-12.0-blue?logo=framer)](https://www.framer.com/motion/)
+
+> A premium event discovery and management platform designed to connect people with the best local experiences.
+
+## ✨ Features
+
+- **🎯 Festival Discovery**: Explore curated local events and festivals with a high-fidelity visual experience.
+- **🚀 Priority Access**: Join waitlists for upcoming events to secure early-bird slots.
+- **🎫 Seamless Registration**: Quick and intuitive registration process for event attendees and business partners.
+- **📱 Responsive Design**: Fully optimized for mobile, tablet, and desktop viewing.
+- **💎 Premium UI**: Modern aesthetics featuring glassmorphism, smooth animations, and a sleek dark mode.
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 15.1.6](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4.0](https://tailwindcss.com/)
+- **Animations**: [Framer Motion 12.0](https://www.framer.com/motion/)
+- **Icons**: [Lucide React](https://lucide.dev/)
+- **Language**: [TypeScript](https://www.typescriptlang.org/)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18.x or later
+- npm, yarn, pnpm, or bun
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd Findme/my-app2
+   ```
+
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+3. **Run the development server:**
+   ```bash
+   npm run dev
+   ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📂 Project Structure
+
+```text
+src/
+├── app/            # Next.js App Router (pages & global styles)
+├── components/     # Reusable UI components
+│   └── landing-page/ # Main landing page sections (Hero, Waitlist, etc.)
+├── config/         # App configurations and constants
+└── public/         # Static assets (images, SVGs)
+```
+
+## 📜 License
+
+This project is private and proprietary.
