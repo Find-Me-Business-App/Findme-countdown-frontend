@@ -50,7 +50,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
     };
 
     return (
-        <section className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        <section className="relative min-h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
             {/* Background Image & Overlay */}
             <div className="absolute inset-0 z-0">
                 <Image
