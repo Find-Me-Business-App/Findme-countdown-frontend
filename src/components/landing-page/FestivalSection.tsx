@@ -93,7 +93,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             </motion.div>
 
             {/* ── Central Content ── */}
-            <div className="relative z-10 flex flex-col items-center text-center px-4">
+            <div className="relative z-10 flex flex-col items-center text-center px-4 mt-[-8vh] md:mt-0">
 
                 {/* Confetti — simple fade-in then float (single motion div each) */}
                 <div className="absolute inset-0 -m-6 md:-m-10 pointer-events-none overflow-hidden">
@@ -182,7 +182,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6, ease: smoothEase }}
-                className="absolute bottom-16 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center"
+                className="absolute bottom-28 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center"
             >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-white mb-2 shadow-xl">
                     <div className="w-full flex h-full">
@@ -200,7 +200,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7, ease: smoothEase }}
-                className="absolute bottom-32 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
+                className="absolute bottom-44 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
             >
                 <p className="text-white/60 text-[8px] md:text-[10px] font-medium mb-2 md:mb-3">Theme sounds :</p>
                 <div className="flex items-center gap-3 md:gap-4 bg-black/80 md:bg-black/40 md:backdrop-blur-md p-2 md:p-3 rounded-2xl border border-white/10 max-w-[280px] md:max-w-none shadow-2xl transition-all group hover:border-white/30">

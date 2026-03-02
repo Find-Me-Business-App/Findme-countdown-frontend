@@ -186,10 +186,10 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7, ease: smoothEase }}
-                className="absolute bottom-32 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
+                className="absolute bottom-45 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
             >
                 <div className="bg-[#1d294d]/95 md:bg-[#1d294d]/90 md:backdrop-blur-md p-1 px-1 rounded-xl border border-white/10 shadow-xl">
-                    <button 
+                    <button
                         onClick={() => openModal("registration", "business")}
                         className="bg-[#1d294d] text-white px-6 py-2 rounded-lg font-bold hover:scale-105 transition-transform active:scale-95"
                     >
