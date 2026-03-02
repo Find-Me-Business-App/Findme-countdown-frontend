@@ -30,4 +30,9 @@ export const FESTIVAL_SONGS: Song[] = [
         artist: "Raino",
         src: "/audio/addicted.mp3"
     },
+    { 
+        title: "Mystery Mix", 
+        artist: "FindMe Exclusive",
+        src: "/audio/music-2.mp3"
+    },
 ];
