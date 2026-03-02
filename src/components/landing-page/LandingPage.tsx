@@ -48,8 +48,14 @@ export default function LandingPage() {
                 {/* Hero Section */}
                 <StickySection id="home" zIndex="z-10" containerRef={containerRef}>
                     <div className="relative h-full w-full flex flex-col items-center justify-center bg-black">
-                        {/* Background Image */}
-                        <div className="absolute inset-0 z-0">
+                        {/* Background Image — cinematic zoom-in */}
+                        <motion.div
+                            initial={{ scale: 1.2, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+                            className="absolute inset-0 z-0 transform-gpu will-change-transform"
+                        >
                             <Image
                                 src="/Rectangle 3329.png"
                                 alt="Background"
@@ -58,7 +64,7 @@ export default function LandingPage() {
                                 priority
                             />
                             <div className="absolute inset-0 bg-black/40" />
-                        </div>
+                        </motion.div>
 
                         <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8">
                             <Hero />
@@ -67,7 +73,14 @@ export default function LandingPage() {
 
                         <Waitlist onJoin={() => openModal("waitlist", activeSection)} />
 
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] border border-white/5 rounded-full pointer-events-none" />
+                        {/* Decorative circle — spring scale-in */}
+                        <motion.div
+                            initial={{ scale: 0, opacity: 0 }}
+                            whileInView={{ scale: 1, opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] border border-white/5 rounded-full pointer-events-none transform-gpu"
+                        />
                     </div>
                 </StickySection>
 

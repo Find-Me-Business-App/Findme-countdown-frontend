@@ -13,12 +13,13 @@ export default function Waitlist({ variant = "dark", onJoin }: WaitlistProps) {
     return (
         <motion.div
             onClick={onJoin}
-            initial={{ opacity: 0, y: 40, scale: 0.8 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
+            initial={{ opacity: 0, y: 30, scale: 0.9 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
             transition={{
-                duration: 1.0,
-                delay: 0.8,
-                ease: [0.2, 0.65, 0.3, 0.9],
+                duration: 0.8,
+                delay: 1.3,
+                ease: [0.22, 1, 0.36, 1],
             }}
             className="absolute bottom-6 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
         >
