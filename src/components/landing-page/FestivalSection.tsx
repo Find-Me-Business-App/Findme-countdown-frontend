@@ -24,46 +24,40 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
 
     /* ── Letter spring reveal for title ── */
     const letterVariants = {
-        hidden: { y: 40, opacity: 0, scale: 0.5, rotate: -5, filter: "blur(4px)" },
+        hidden: { y: 30, opacity: 0, scale: 0.6 },
         visible: (i: number) => ({
             y: 0,
             opacity: 1,
             scale: 1,
-            rotate: 0,
-            filter: "blur(0px)",
             transition: {
                 type: "spring" as const,
-                damping: 12,
-                stiffness: 150,
+                damping: 14,
+                stiffness: 120,
                 delay: i * 0.025,
             }
         })
     };
 
-    /* ── Infinite floating drift (for fireworks & confetti after entrance) ── */
-    const floatingVariants = {
-        animate: (i: number) => ({
-            y: [0, -8, 0],
-            x: [0, i % 2 === 0 ? 6 : -6, 0],
-            rotate: [0, i % 2 === 0 ? 2 : -2, 0],
-            transition: {
-                duration: 6 + (i % 3),
-                repeat: Infinity,
-                ease: "easeInOut" as const
-            }
-        })
-    };
+    /* ── Simple float for decorative elements (runs after entrance) ── */
+    const floatY = (i: number) => ({
+        y: [0, -6, 0],
+        transition: {
+            duration: 5 + (i % 3),
+            repeat: Infinity,
+            ease: "easeInOut" as const
+        }
+    });
 
     return (
         <section className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
 
-            {/* ── Layer 1: Background — cinematic zoom-in ── */}
+            {/* ── Background — simple fade-in (no scale on mobile for perf) ── */}
             <motion.div
-                initial={{ scale: 1.15, opacity: 0 }}
-                whileInView={{ scale: 1, opacity: 1 }}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 1.4, ease: smoothEase }}
-                className="absolute inset-0 z-0 transform-gpu will-change-transform"
+                transition={{ duration: 1.0, ease: "easeOut" }}
+                className="absolute inset-0 z-0"
             >
                 <Image
                     src="/section3-background.png"
@@ -75,45 +69,33 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 <div className="absolute inset-0 bg-black/30" />
             </motion.div>
 
-            {/* ── Layer 2: Fireworks — burst in then float ── */}
+            {/* ── Fireworks — fade in then float (single motion div, no nesting) ── */}
             <motion.div
-                initial={{ scale: 0, opacity: 0, rotate: -15 }}
-                whileInView={{ scale: 1, opacity: 0.6, rotate: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 0.6, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.3, ease: smoothEase }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] z-[1] pointer-events-none transform-gpu"
+                transition={{ duration: 0.6, delay: 0.2, ease: smoothEase }}
+                animate={floatY(1)}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] z-[1] pointer-events-none"
             >
-                <motion.div
-                    custom={1}
-                    variants={floatingVariants}
-                    animate="animate"
-                    className="w-full h-full"
-                >
-                    <Image src="/kisspng-fireworks.png" alt="Fireworks" fill className="object-contain" />
-                </motion.div>
+                <Image src="/kisspng-fireworks.png" alt="Fireworks" fill className="object-contain" />
             </motion.div>
 
             <motion.div
-                initial={{ scale: 0, opacity: 0, rotate: 15 }}
-                whileInView={{ scale: 1, opacity: 0.4, rotate: 0 }}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 0.4, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.5, ease: smoothEase }}
-                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] z-0 pointer-events-none transform-gpu"
+                transition={{ duration: 0.6, delay: 0.4, ease: smoothEase }}
+                animate={floatY(2)}
+                className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] z-0 pointer-events-none"
             >
-                <motion.div
-                    custom={2}
-                    variants={floatingVariants}
-                    animate="animate"
-                    className="w-full h-full"
-                >
-                    <Image src="/kisspng-fireworks-diwali.png" alt="Fireworks" fill className="object-contain" />
-                </motion.div>
+                <Image src="/kisspng-fireworks-diwali.png" alt="Fireworks" fill className="object-contain" />
             </motion.div>
 
-            {/* ── Layer 3: Central Content ── */}
+            {/* ── Central Content ── */}
             <div className="relative z-10 flex flex-col items-center text-center px-4">
 
-                {/* Confetti shapes — staggered burst then float */}
+                {/* Confetti — simple fade-in then float (single motion div each) */}
                 <div className="absolute inset-0 -m-6 md:-m-10 pointer-events-none overflow-hidden">
                     {[
                         { color: "bg-yellow-400", clip: "clip-triangle", pos: "top-4 left-[30%]" },
@@ -123,19 +105,13 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     ].map((shape, i) => (
                         <motion.div
                             key={i}
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
+                            initial={{ opacity: 0, scale: 0 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: 0.4 + i * 0.1, ease: smoothEase }}
-                            className={`absolute ${shape.pos}`}
-                        >
-                            <motion.div
-                                custom={i}
-                                variants={floatingVariants}
-                                animate="animate"
-                                className={`w-2 h-2 md:w-3 md:h-3 ${shape.color} ${shape.clip}`}
-                            />
-                        </motion.div>
+                            transition={{ duration: 0.4, delay: 0.3 + i * 0.08, ease: smoothEase }}
+                            animate={floatY(i)}
+                            className={`absolute ${shape.pos} w-2 h-2 md:w-3 md:h-3 ${shape.color} ${shape.clip}`}
+                        />
                     ))}
                 </div>
 
@@ -144,7 +120,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-20px" }}
+                        viewport={{ once: true }}
                         className="flex flex-wrap gap-x-[0.1em] gap-y-2 justify-center mb-2"
                     >
                         {"FINDME".split("").map((letter, i) => (
@@ -171,7 +147,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
-                        viewport={{ once: true, margin: "-20px" }}
+                        viewport={{ once: true }}
                         className="flex gap-[0.1em] justify-center"
                     >
                         {"FESTIVAL".split("").map((letter, i) => (
@@ -187,26 +163,26 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     </motion.div>
                 </div>
 
-                {/* ── Tagline: DANCE • MUSIC • TECHNOLOGY ── */}
+                {/* ── Tagline ── */}
                 <motion.div
-                    initial={{ opacity: 0, letterSpacing: "-0.2em", filter: "blur(4px)" }}
-                    whileInView={{ opacity: 0.9, letterSpacing: "0.2em", filter: "blur(0px)" }}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 0.9, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.8, delay: 0.6, ease: smoothEase }}
+                    transition={{ duration: 0.6, delay: 0.5, ease: smoothEase }}
                 >
-                    <p className="text-white text-[10px] md:text-2xl font-bold flex items-center gap-2 md:gap-4 drop-shadow-lg uppercase">
+                    <p className="text-white text-[10px] md:text-2xl font-bold flex items-center gap-2 md:gap-4 drop-shadow-lg uppercase tracking-[0.2em]">
                         DANCE <span className="text-white/40">•</span> MUSIC <span className="text-white/40">•</span> TECHNOLOGY
                     </p>
                 </motion.div>
             </div>
 
-            {/* ── Layer 4: Location badge — scale pop-in (mobile-friendly) ── */}
+            {/* ── Location badge — fade + slide up ── */}
             <motion.div
-                initial={{ opacity: 0, scale: 0.7, y: 20 }}
-                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.7, ease: smoothEase }}
-                className="absolute bottom-16 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center transform-gpu"
+                transition={{ duration: 0.5, delay: 0.6, ease: smoothEase }}
+                className="absolute bottom-16 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center"
             >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-white mb-2 shadow-xl">
                     <div className="w-full flex h-full">
@@ -218,13 +194,13 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 <span className="text-white text-[8px] md:text-[10px] font-bold tracking-[0.4em] uppercase">UYO</span>
             </motion.div>
 
-            {/* ── Layer 5: Music Player — slide up with deblur (mobile-friendly) ── */}
+            {/* ── Music Player — fade + slide up ── */}
             <motion.div
-                initial={{ opacity: 0, y: 40, filter: "blur(6px)" }}
-                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.7, delay: 0.8, ease: smoothEase }}
-                className="absolute bottom-32 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end transform-gpu"
+                transition={{ duration: 0.6, delay: 0.7, ease: smoothEase }}
+                className="absolute bottom-32 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
             >
                 <p className="text-white/60 text-[8px] md:text-[10px] font-medium mb-2 md:mb-3">Theme sounds :</p>
                 <div className="flex items-center gap-3 md:gap-4 bg-black/80 md:bg-black/40 md:backdrop-blur-md p-2 md:p-3 rounded-2xl border border-white/10 max-w-[280px] md:max-w-none shadow-2xl transition-all group hover:border-white/30">
@@ -266,7 +242,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 </div>
             </motion.div>
 
-            {/* ── Layer 6: Waitlist ── */}
+            {/* ── Waitlist ── */}
             <Waitlist variant="dark" onJoin={onOpenWaitlist} />
 
             <style jsx>{`
