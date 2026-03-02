@@ -14,7 +14,7 @@ import InfoModal from "./InfoModal";
 import RegistrationModal from "./RegistrationModal";
 import { useModalStore } from "@/store/useModalStore";
 import { useSectionObserver } from "@/hooks/useSectionObserver";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useRef } from "react";
 
 export default function LandingPage() {
@@ -35,7 +35,8 @@ export default function LandingPage() {
     return (
         <div
             ref={containerRef}
-            className="relative w-full bg-black h-[100dvh] overflow-y-auto overflow-x-clip overscroll-behavior-y-none touch-pan-y"
+            className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth overscroll-y-none"
+            style={{ scrollSnapType: 'y mandatory', scrollBehavior: 'smooth', scrollSnapStop: 'always' }}
         >
             <Navbar
                 activeSection={activeSection}
@@ -43,62 +44,57 @@ export default function LandingPage() {
                 onScrollToSection={scrollToSection}
             />
 
-            {/* Sticky Scroll Container */}
-            <div className="relative w-full">
-                {/* Hero Section */}
-                <StickySection id="home" zIndex="z-10" containerRef={containerRef}>
-                    <div className="relative h-full w-full flex flex-col items-center justify-center bg-black">
-                        {/* Background Image — cinematic zoom-in */}
-                        <motion.div
-                            initial={{ scale: 1.2, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
-                            className="absolute inset-0 z-0 transform-gpu will-change-transform"
-                        >
-                            <Image
-                                src="/Rectangle 3329.png"
-                                alt="Background"
-                                fill
-                                className="object-cover opacity-80"
-                                priority
-                            />
-                            <div className="absolute inset-0 bg-black/40" />
-                        </motion.div>
+            {/* Home Section */}
+            <section id="home" className="h-screen snap-start snap-always relative bg-black flex flex-col items-center justify-center">
+                {/* Background Image */}
+                <motion.div
+                    initial={{ scale: 1.2, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 z-0"
+                >
+                    <Image
+                        src="/Rectangle 3329.png"
+                        alt="Background"
+                        fill
+                        className="object-cover opacity-80"
+                        priority
+                    />
+                    <div className="absolute inset-0 bg-black/40" />
+                </motion.div>
 
-                        <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8">
-                            <Hero />
-                            <Countdown />
-                        </main>
+                <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8">
+                    <Hero />
+                    <Countdown />
+                </main>
 
-                        <Waitlist onJoin={() => openModal("waitlist", activeSection)} />
+                <Waitlist onJoin={() => openModal("waitlist", activeSection)} />
 
-                        {/* Decorative circle — spring scale-in */}
-                        <motion.div
-                            initial={{ scale: 0, opacity: 0 }}
-                            whileInView={{ scale: 1, opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] border border-white/5 rounded-full pointer-events-none transform-gpu"
-                        />
-                    </div>
-                </StickySection>
+                {/* Decorative circle */}
+                <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vh] h-[80vh] border border-white/5 rounded-full pointer-events-none"
+                />
+            </section>
 
-                {/* Business Section */}
-                <StickySection id="business" zIndex="z-20" containerRef={containerRef}>
-                    <BusinessSection onOpenWaitlist={() => openModal("waitlist", "business")} />
-                </StickySection>
+            {/* Business Section */}
+            <section id="business" className="h-screen snap-start snap-always">
+                <BusinessSection onOpenWaitlist={() => openModal("waitlist", "business")} />
+            </section>
 
-                {/* Festival Section */}
-                <section id="festival" className="relative z-30 h-[100dvh] w-full">
-                    <FestivalSection onOpenWaitlist={() => openModal("waitlist", "festival")} />
-                </section>
+            {/* Festival Section */}
+            <section id="festival" className="h-screen snap-start snap-always">
+                <FestivalSection onOpenWaitlist={() => openModal("waitlist", "festival")} />
+            </section>
 
-                {/* Footer */}
-                <section id="footer" className="relative z-40 bg-white border-t border-black/5">
-                    <Footer />
-                </section>
-            </div>
+            {/* Footer */}
+            <section id="footer" className="snap-start snap-always bg-white border-t border-black/5">
+                <Footer />
+            </section>
 
             {/* Modals */}
             <ContactModal />
@@ -109,44 +105,5 @@ export default function LandingPage() {
     );
 }
 
-function StickySection({
-    children,
-    id,
-    zIndex,
-    containerRef
-}: {
-    children: React.ReactNode;
-    id: string;
-    zIndex: string;
-    containerRef: React.RefObject<HTMLDivElement | null>;
-}) {
-    const sectionRef = useRef<HTMLDivElement>(null);
 
-    // Track scroll progress of this section relative to the container
-    const { scrollYProgress } = useScroll({
-        target: sectionRef,
-        container: containerRef,
-        offset: ["start start", "end start"]
-    });
-
-    // Semantic animations for the "stacked" effect
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
-    const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.3]);
-    const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(10px)"]);
-
-    return (
-        <section
-            id={id}
-            ref={sectionRef}
-            className={`sticky top-0 h-[100dvh] w-full overflow-hidden ${zIndex} outline-none`}
-        >
-            <motion.div
-                style={{ scale, opacity, filter: blur }}
-                className="h-full w-full transform-gpu will-change-transform overflow-hidden"
-            >
-                {children}
-            </motion.div>
-        </section>
-    );
-}
 

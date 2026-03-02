@@ -14,7 +14,7 @@ export interface WaitlistSectionConfig {
     description: string;
     actionLabel?: string;
     actionLink?: string;
-    svgPath: string;
+    svgPath: string; 
     buttonGradient: string;
 }
 

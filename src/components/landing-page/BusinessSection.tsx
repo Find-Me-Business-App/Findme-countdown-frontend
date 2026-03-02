@@ -3,17 +3,16 @@
 import { useState, useEffect, ReactNode } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { useModalStore } from "@/store/useModalStore";
 import Waitlist from "./Waitlist";
 
 const BUSINESS_STEPS = [
     {
-        title: "Empower Your Business with Ai",
+        title: "Give Your Business Publicity",
         titleStyled: (
             <>
-                <span className="text-[#3b82f6]">Empower Your </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e]">Business </span>
-                <span className="text-[#3b82f6]">with </span>
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e]">Ai</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#1d4ed8]">Give Your </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e]">Business Publicity</span>
             </>
         ),
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking."
@@ -22,10 +21,20 @@ const BUSINESS_STEPS = [
         title: "Reduce Business Cost by 90%",
         titleStyled: (
             <>
-                <span className="text-[#3b82f6]">Reduce Business </span>
-                <span className="text-[#4c1d95]">Cost </span>
-                <span className="text-[#b91c1c]">by </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] via-[#8b5cf6] to-[#ec4899]">Reduce Business Cost by </span>
                 <span className="text-[#22c55e]">90%</span>
+            </>
+        ),
+        description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking."
+    },
+    {
+        title: "Empower Your Business with Ai",
+        titleStyled: (
+            <>
+                <span className="text-[#3b82f6]">Empower Your </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e]">Business </span>
+                <span className="text-[#3b82f6]">with </span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e]">Ai</span>
             </>
         ),
         description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking."
@@ -46,8 +55,8 @@ function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) 
     return (
         <motion.div
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-80px" }}
+            animate="visible"
+            exit="hidden"
             variants={{
                 hidden: { opacity: 0 },
                 visible: {
@@ -92,6 +101,7 @@ interface BusinessSectionProps {
 
 export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const { openModal } = useModalStore();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -150,7 +160,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                         <RevealMorph delay={0.3} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 md:whitespace-nowrap">
                             {BUSINESS_STEPS[currentIndex].titleStyled}
                         </RevealMorph>
-                        <RevealMorph delay={0.55} className="text-gray-700 text-sm md:text-lg font-medium max-w-2xl leading-relaxed opacity-90 px-4">
+                        <RevealMorph delay={0.55} className="text-[#334155] text-sm md:text-lg font-medium max-w-2xl leading-relaxed opacity-90 px-4">
                             {BUSINESS_STEPS[currentIndex].description}
                         </RevealMorph>
                     </div>
@@ -178,9 +188,12 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 transition={{ duration: 0.6, delay: 0.7, ease: smoothEase }}
                 className="absolute bottom-32 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
             >
-                <div className="bg-[#1d294d]/95 md:bg-[#1d294d]/90 md:backdrop-blur-md p-1 px-1 rounded-2xl border border-white/10 shadow-xl">
-                    <button className="bg-[#1d294d] text-white px-10 py-4 rounded-xl font-bold hover:scale-105 transition-transform active:scale-95">
-                        <span className="text-sm tracking-widest uppercase">Early bird</span>
+                <div className="bg-[#1d294d]/95 md:bg-[#1d294d]/90 md:backdrop-blur-md p-1 px-1 rounded-xl border border-white/10 shadow-xl">
+                    <button 
+                        onClick={() => openModal("registration", "business")}
+                        className="bg-[#1d294d] text-white px-6 py-2 rounded-lg font-bold hover:scale-105 transition-transform active:scale-95"
+                    >
+                        <span className="text-xs tracking-widest uppercase">Early bird</span>
                     </button>
                 </div>
                 <span className="text-[#22c55e] text-sm mt-3 font-bold uppercase tracking-[0.3em]">Free</span>
