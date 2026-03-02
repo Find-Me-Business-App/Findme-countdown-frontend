@@ -42,17 +42,13 @@ function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) 
     return (
         <motion.div
             initial="hidden"
-            animate="visible"
-            exit="exit"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
             variants={{
                 hidden: { opacity: 0 },
                 visible: {
                     opacity: 1,
                     transition: { staggerChildren: 0.02, delayChildren: delay }
-                },
-                exit: {
-                    opacity: 0,
-                    transition: { staggerChildren: 0.015, staggerDirection: -1 }
                 }
             }}
             className={className}
@@ -64,8 +60,7 @@ function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) 
                         key={i}
                         variants={{
                             hidden: { opacity: 0, filter: "blur(4px)", y: 10 },
-                            visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] } },
-                            exit: { opacity: 0, filter: "blur(2px)", y: -5, transition: { duration: 0.3 } }
+                            visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] } }
                         }}
                         className="inline-block mr-[0.2em]"
                     >
@@ -76,8 +71,7 @@ function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) 
                 <motion.span
                     variants={{
                         hidden: { opacity: 0, filter: "blur(4px)", y: 10 },
-                        visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] } },
-                        exit: { opacity: 0, filter: "blur(2px)", y: -5, transition: { duration: 0.3 } }
+                        visible: { opacity: 1, filter: "blur(0px)", y: 0, transition: { duration: 0.6, ease: [0.2, 0.65, 0.3, 0.9] } }
                     }}
                     className="inline-block"
                 >
@@ -123,11 +117,11 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
 
             {/* Large BUSINESS background text */}
             <motion.div
-                initial={{ scale: 1.05, opacity: 0, filter: "blur(8px)" }}
-                whileInView={{ scale: 1, opacity: 1, filter: "blur(0px)" }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: [0.2, 0.65, 0.3, 0.9] }}
-                className="absolute top-[25%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full px-4 flex justify-center pointer-events-none"
+                initial={{ y: 60, opacity: 0, filter: "blur(10px)" }}
+                whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                className="absolute top-[25%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full px-4 flex justify-center pointer-events-none will-change-transform transform-gpu"
             >
                 <Image
                     src="/BUSINESS.png"

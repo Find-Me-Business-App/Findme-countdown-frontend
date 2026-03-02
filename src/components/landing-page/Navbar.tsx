@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { motion } from "framer-motion";
 import { useState } from "react";
 
@@ -11,6 +10,7 @@ import MobileMenu from "./MobileMenu";
 interface NavbarProps {
     activeSection: SectionType;
     onOpenModal: () => void;
+    onScrollToSection: (id: string) => void;
 }
 
 const navVariants = {
@@ -36,14 +36,19 @@ const itemVariants = {
     },
 };
 
-export default function Navbar({ activeSection, onOpenModal }: NavbarProps) {
+export default function Navbar({ activeSection, onOpenModal, onScrollToSection }: NavbarProps) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const navLinks = [
-        { name: "Home", href: "/", id: "home" },
+        { name: "Home", href: "#", id: "home" },
         { name: "Business", href: "#business", id: "business" },
         { name: "Festival", href: "#festival", id: "festival" },
     ];
+
+    const handleLinkClick = (e: React.MouseEvent, id: string) => {
+        e.preventDefault();
+        onScrollToSection(id);
+    };
 
     return (
         <>
@@ -72,9 +77,10 @@ export default function Navbar({ activeSection, onOpenModal }: NavbarProps) {
                 {/* Logo */}
                 <motion.div
                     variants={itemVariants}
-                    className="flex-none flex items-center"
+                    className="flex-none flex items-center cursor-pointer"
                     whileHover={{ scale: 1.05 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                    onClick={(e) => handleLinkClick(e, "home")}
                 >
                     <Image
                         src="/logo1.svg"
@@ -90,12 +96,13 @@ export default function Navbar({ activeSection, onOpenModal }: NavbarProps) {
                     <div className="flex items-center gap-10">
                         {navLinks.map((link) => (
                             <motion.div key={link.id} variants={itemVariants} className="relative py-1">
-                                <Link
+                                <a
                                     href={link.href}
+                                    onClick={(e) => handleLinkClick(e, link.id)}
                                     className={`${activeSection === link.id ? "text-white" : "text-white/60"} hover:text-white transition-colors relative z-10`}
                                 >
                                     {link.name}
-                                </Link>
+                                </a>
                                 {activeSection === link.id && (
                                     <motion.div
                                         layoutId="activeSection"
@@ -146,6 +153,7 @@ export default function Navbar({ activeSection, onOpenModal }: NavbarProps) {
                 onClose={() => setIsMenuOpen(false)}
                 activeSection={activeSection}
                 onContactClick={onOpenModal}
+                onScrollToSection={onScrollToSection}
             />
         </>
     );

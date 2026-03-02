@@ -18,24 +18,35 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 export default function LandingPage() {
-    const activeSection = useSectionObserver();
     const { openModal } = useModalStore();
     const containerRef = useRef<HTMLDivElement>(null);
+    const activeSection = useSectionObserver(containerRef);
+
+    const scrollToSection = (id: string) => {
+        const element = document.getElementById(id);
+        if (element && containerRef.current) {
+            containerRef.current.scrollTo({
+                top: element.offsetTop,
+                behavior: "smooth"
+            });
+        }
+    };
 
     return (
         <div
             ref={containerRef}
-            className="relative w-full bg-black snap-y snap-mandatory h-[100dvh] overflow-y-auto overflow-x-clip overscroll-behavior-y-none"
+            className="relative w-full bg-black h-[100dvh] overflow-y-auto overflow-x-clip overscroll-behavior-y-none touch-pan-y"
         >
             <Navbar
                 activeSection={activeSection}
                 onOpenModal={() => openModal("contact", activeSection)}
+                onScrollToSection={scrollToSection}
             />
 
             {/* Sticky Scroll Container */}
-            <div className="relative">
+            <div className="relative w-full">
                 {/* Hero Section */}
-                <StickySection id="home" zIndex="z-10">
+                <StickySection id="home" zIndex="z-10" containerRef={containerRef}>
                     <div className="relative h-full w-full flex flex-col items-center justify-center bg-black">
                         {/* Background Image */}
                         <div className="absolute inset-0 z-0">
@@ -61,17 +72,17 @@ export default function LandingPage() {
                 </StickySection>
 
                 {/* Business Section */}
-                <StickySection id="business" zIndex="z-20">
+                <StickySection id="business" zIndex="z-20" containerRef={containerRef}>
                     <BusinessSection onOpenWaitlist={() => openModal("waitlist", "business")} />
                 </StickySection>
 
                 {/* Festival Section */}
-                <StickySection id="festival" zIndex="z-30">
+                <section id="festival" className="relative z-30 h-[100dvh] w-full">
                     <FestivalSection onOpenWaitlist={() => openModal("waitlist", "festival")} />
-                </StickySection>
+                </section>
 
                 {/* Footer */}
-                <section id="footer" className="relative z-40 bg-white shadow-[0_-100px_80px_rgba(0,0,0,0.8)] snap-start">
+                <section id="footer" className="relative z-40 bg-white border-t border-black/5">
                     <Footer />
                 </section>
             </div>
@@ -85,26 +96,40 @@ export default function LandingPage() {
     );
 }
 
-function StickySection({ children, id, zIndex }: { children: React.ReactNode; id: string; zIndex: string }) {
-    const ref = useRef<HTMLDivElement>(null);
+function StickySection({
+    children,
+    id,
+    zIndex,
+    containerRef
+}: {
+    children: React.ReactNode;
+    id: string;
+    zIndex: string;
+    containerRef: React.RefObject<HTMLDivElement | null>;
+}) {
+    const sectionRef = useRef<HTMLDivElement>(null);
+
+    // Track scroll progress of this section relative to the container
     const { scrollYProgress } = useScroll({
-        target: ref,
+        target: sectionRef,
+        container: containerRef,
         offset: ["start start", "end start"]
     });
 
+    // Semantic animations for the "stacked" effect
     const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
     const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1, 0.3]);
-    const filter = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(10px)"]);
+    const blur = useTransform(scrollYProgress, [0, 1], ["blur(0px)", "blur(10px)"]);
 
     return (
         <section
             id={id}
-            ref={ref}
-            className={`sticky top-0 h-[100dvh] w-full overflow-hidden ${zIndex} snap-start snap-always`}
+            ref={sectionRef}
+            className={`sticky top-0 h-[100dvh] w-full overflow-hidden ${zIndex} outline-none`}
         >
             <motion.div
-                style={{ scale, opacity, filter }}
-                className="h-full w-full transform-gpu"
+                style={{ scale, opacity, filter: blur }}
+                className="h-full w-full transform-gpu will-change-transform overflow-hidden"
             >
                 {children}
             </motion.div>

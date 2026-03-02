@@ -1,36 +1,56 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, RefObject } from "react";
 import { SectionType } from "@/config/modal-configs";
 
+const SECTION_IDS: SectionType[] = ["home", "business", "festival"];
+
 /**
- * Custom hook to track the currently visible section using Intersection Observer.
+ * Tracks the currently visible section by scroll position within a container.
+ * Works correctly with sticky stacked sections by comparing scroll offset
+ * against each section's offsetTop.
  */
-export function useSectionObserver() {
+export function useSectionObserver(containerRef?: RefObject<HTMLDivElement | null>) {
     const [activeSection, setActiveSection] = useState<SectionType>("home");
 
-    useEffect(() => {
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.5,
-        };
+    const detectSection = useCallback(() => {
+        const container = containerRef?.current;
+        if (!container) return;
 
-        const handleIntersect = (entries: IntersectionObserverEntry[]) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveSection(entry.target.id as SectionType);
+        const scrollTop = container.scrollTop;
+        const viewportHeight = container.clientHeight;
+        // Use 40% of the viewport as the "trigger line" for determining which section is active
+        const triggerPoint = scrollTop + viewportHeight * 0.4;
+
+        let currentSection: SectionType = "home";
+
+        for (const id of SECTION_IDS) {
+            const section = document.getElementById(id);
+            if (section) {
+                // offsetTop is relative to the offsetParent, which should be the relative container
+                if (triggerPoint >= section.offsetTop) {
+                    currentSection = id;
                 }
-            });
+            }
+        }
+
+        setActiveSection(currentSection);
+    }, [containerRef]);
+
+    useEffect(() => {
+        const container = containerRef?.current;
+        if (!container) return;
+
+        // Detect on mount
+        detectSection();
+
+        // Listen for scroll events on the container (passive for performance)
+        container.addEventListener("scroll", detectSection, { passive: true });
+
+        return () => {
+            container.removeEventListener("scroll", detectSection);
         };
-
-        const observer = new IntersectionObserver(handleIntersect, observerOptions);
-
-        const sections = document.querySelectorAll('section[id]');
-        sections.forEach((section) => observer.observe(section));
-
-        return () => observer.disconnect();
-    }, []);
+    }, [containerRef, detectSection]);
 
     return activeSection;
 }

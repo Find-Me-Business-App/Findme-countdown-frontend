@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 
-import Link from "next/link";
 import { SectionType } from "@/config/modal-configs";
 
 interface MobileMenuProps {
@@ -10,6 +9,7 @@ interface MobileMenuProps {
     onClose: () => void;
     activeSection: SectionType;
     onContactClick: () => void;
+    onScrollToSection: (id: string) => void;
 }
 
 const containerVariants = {
@@ -43,12 +43,18 @@ const itemVariants = {
     },
 };
 
-export default function MobileMenu({ isOpen, onClose, activeSection, onContactClick }: MobileMenuProps) {
+export default function MobileMenu({ isOpen, onClose, activeSection, onContactClick, onScrollToSection }: MobileMenuProps) {
     const navLinks = [
-        { label: "Home", href: "/", id: "home" },
+        { label: "Home", href: "#", id: "home" },
         { label: "Business", href: "#business", id: "business" },
         { label: "Festival", href: "#festival", id: "festival" },
     ];
+
+    const handleClick = (e: React.MouseEvent, id: string) => {
+        e.preventDefault();
+        onClose();
+        onScrollToSection(id);
+    };
 
     return (
         <AnimatePresence>
@@ -75,16 +81,16 @@ export default function MobileMenu({ isOpen, onClose, activeSection, onContactCl
                         <div className="flex flex-col items-center gap-6 w-full">
                             {navLinks.map((link) => (
                                 <motion.div key={link.id} variants={itemVariants}>
-                                    <Link
+                                    <a
                                         href={link.href}
-                                        onClick={onClose}
+                                        onClick={(e) => handleClick(e, link.id)}
                                         className={`text-lg font-semibold tracking-wide transition-colors ${activeSection === link.id
                                             ? "text-[#1d294d] border-b-2 border-[#1d294d]/20 pb-1"
                                             : "text-[#1d294d]/60 hover:text-[#1d294d]"
                                             }`}
                                     >
                                         {link.label}
-                                    </Link>
+                                    </a>
                                 </motion.div>
                             ))}
                         </div>
