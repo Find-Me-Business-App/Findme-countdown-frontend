@@ -95,7 +95,7 @@ export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
     },
     business: {
         title: "FindMe For Business",
-        description: "FindMe for Business is an all-in-one enterprise solution providing advertising, financial organization, research enhancement, and custom design. By integrating tailored AI models and multi-business synchronization, it streamlines complex operations within a global ecosystem. The platform also tracks ecological impact while providing strategic insights, automated updates, and localized field support from trained FindMe Agents.",
+        description: "FindMe Business is an all-in-one enterprise solution providing advertising, financial organization, research enhancement, and custom design. By integrating tailored AI models and multi-business synchronization, it streamlines complex operations within a global ecosystem. The platform also tracks ecological impact while providing strategic insights, automated updates, and localized field support from trained FindMe Agents.",
         subDescription: "Create, manage and automate all astacking.",
         imagePath: "/more-info2.png",
         accentColor: "bg-[#1e3a8a]",
