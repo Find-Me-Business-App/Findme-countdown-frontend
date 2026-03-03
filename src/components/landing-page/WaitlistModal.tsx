@@ -29,7 +29,7 @@ export default function WaitlistModal() {
     return (
         <AnimatePresence>
             {isModalVisible && (
-                <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                     {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}
@@ -46,63 +46,66 @@ export default function WaitlistModal() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 30 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="relative w-full max-w-[420px] md:max-w-[650px] h-[85vh] md:h-auto max-h-[90vh] md:max-h-none overflow-hidden bg-[#222222] md:bg-[#333333]/90 md:backdrop-blur-3xl rounded-[40px] md:rounded-[50px] p-10 md:p-12 shadow-lg md:shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10"
+                        className="relative w-full max-w-[400px] md:max-w-[550px] 
+                                 h-auto max-h-[70vh] md:max-h-[85vh]
+                                 /* Custom Classy Scrollbar */
+                                 overflow-y-auto scrollbar-classy
+                                 bg-[#1a1a1a] md:bg-[#333333]/90 md:backdrop-blur-3xl 
+                                 rounded-[35px] md:rounded-[50px] p-8 md:p-12 
+                                 shadow-[0_20px_60px_rgba(0,0,0,0.6)] 
+                                 border border-white/10"
                         style={{ willChange: "transform, opacity" }}
                     >
                         {/* Decorative Background SVG */}
-                        <div className="absolute -bottom-5 -right-0 z-0 opacity-40 pointer-events-none blur-[2px] block">
+                        <div className="absolute -bottom-4 -right-2 z-0 opacity-30 pointer-events-none blur-[1px]">
                             <Image
                                 src={config.svgPath}
                                 alt="Decoration"
-                                width={180}
-                                height={280}
-                                className="object-contain w-[120px] md:w-[180px] h-auto"
+                                width={160}
+                                height={260}
+                                className="object-contain w-[100px] md:w-[140px] h-auto"
                             />
                         </div>
 
                         {/* Close Button */}
                         <button
                             onClick={closeModal}
-                            className="absolute top-6 right-6 z-30 text-white/40 hover:text-white transition-colors"
+                            className="absolute top-6 right-6 z-50 text-white/40 hover:text-white transition-all active:scale-90"
                         >
-                            <X className="w-8 h-8" />
+                            <X className="w-6 h-6 md:w-7 md:h-7" />
                         </button>
 
-                        <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left h-full">
-                            <h2 className="text-3xl md:text-3xl font-bold text-white mb-6 w-full">{config.title}</h2>
+                        <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
+                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 w-full pr-8">
+                                {config.title}
+                            </h2>
 
-                            <p className="text-white/70 text-sm md:text-base mb-6 leading-relaxed max-w-[320px] md:max-w-[450px]">
+                            <p className="text-white/60 text-sm md:text-base mb-6 leading-relaxed max-w-[320px] md:max-w-[420px]">
                                 {config.description}
                             </p>
 
                             {config.actionLabel && (
-                                <a
-                                    href={config.actionLink}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        openModal("registration", section);
-                                    }}
-                                    className="flex items-center gap-1.5 text-[#3b82f6] text-sm font-medium hover:underline mb-8 group"
+                                <button
+                                    onClick={() => openModal("registration", section)}
+                                    className="flex items-center gap-1.5 text-[#3b82f6] text-sm font-medium hover:underline mb-6 group"
                                 >
                                     {config.actionLabel}
                                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                                </a>
+                                </button>
                             )}
 
-                            {/* Email Input Area extracted to WaitlistForm */}
-                            <WaitlistForm section={section} />
+                            {/* Form Area */}
+                            <div className="w-full mb-8">
+                                <WaitlistForm section={section} />
+                            </div>
 
-                            <a
-                                href="#"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    openModal("info", section);
-                                }}
-                                className="flex items-center gap-1.5 text-[#4ea1ff] text-sm font-medium hover:underline group mt-auto self-start md:self-auto"
+                            <button
+                                onClick={() => openModal("info", section)}
+                                className="flex items-center gap-1.5 text-[#4ea1ff] text-xs md:text-sm font-medium hover:underline group pb-2"
                             >
                                 More Information
-                                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                            </a>
+                                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            </button>
                         </div>
                     </motion.div>
                 </div>
@@ -110,4 +113,3 @@ export default function WaitlistModal() {
         </AnimatePresence>
     );
 }
-
