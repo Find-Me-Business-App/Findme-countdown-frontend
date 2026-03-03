@@ -87,15 +87,15 @@ export const WAITLIST_CONFIGS: Record<SectionType, WaitlistSectionConfig> = {
 
 export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
     home: {
-        title: "About FindMe",
-        description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
-        subDescription: "Create, manage and automate all astacking.",
-        imagePath: "/more-info1.png",
-        accentColor: "bg-white",
+       title: "About FindMe",
+       description: "FindMe is a unified digital ecosystem connecting individuals and businesses through AI-powered systems. Operating as a scalable SaaS solution, it simplifies service discovery, financial organization, and multi-enterprise synchronization within one interface. Beyond digital tools, FindMe deploys trained physical agents for localized support, ensuring neighborhood enterprises thrive. From procurement to recycling, the platform manages the entire business lifecycle while promoting global sustainability standards to ensure no one is left behind in the digital age.",
+       subDescription: "Create, manage and automate all astacking.",
+       imagePath: "/more-info1.png",
+       accentColor: "bg-white"
     },
     business: {
         title: "FindMe For Business",
-        description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
+        description: "FindMe for Business is an all-in-one enterprise solution providing advertising, financial organization, research enhancement, and custom design. By integrating tailored AI models and multi-business synchronization, it streamlines complex operations within a global ecosystem. The platform also tracks ecological impact while providing strategic insights, automated updates, and localized field support from trained FindMe Agents.",
         subDescription: "Create, manage and automate all astacking.",
         imagePath: "/more-info2.png",
         accentColor: "bg-[#1e3a8a]",
