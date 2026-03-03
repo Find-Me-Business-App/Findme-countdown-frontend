@@ -47,14 +47,18 @@ export default function WaitlistModal() {
                         exit={{ opacity: 0, y: 30 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
                         className="relative w-full max-w-[400px] md:max-w-[550px] 
+                                 /* Scrollable but compact */
                                  h-auto max-h-[70vh] md:max-h-[85vh]
-                                 /* Custom Classy Scrollbar */
-                                 overflow-y-auto scrollbar-classy
+                                 overflow-y-auto scrollbar-hide
                                  bg-[#1a1a1a] md:bg-[#333333]/90 md:backdrop-blur-3xl 
                                  rounded-[35px] md:rounded-[50px] p-8 md:p-12 
                                  shadow-[0_20px_60px_rgba(0,0,0,0.6)] 
                                  border border-white/10"
-                        style={{ willChange: "transform, opacity" }}
+                        style={{ 
+                            willChange: "transform, opacity",
+                            msOverflowStyle: 'none',
+                            scrollbarWidth: 'none'
+                        }}
                     >
                         {/* Decorative Background SVG */}
                         <div className="absolute -bottom-4 -right-2 z-0 opacity-30 pointer-events-none blur-[1px]">
