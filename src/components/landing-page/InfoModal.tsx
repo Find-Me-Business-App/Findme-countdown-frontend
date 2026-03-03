@@ -47,7 +47,7 @@ export default function InfoModal() {
                         transition={{ duration: 0.25, ease: "easeOut" }}
                         className="relative w-full max-w-[400px] md:max-w-[750px] 
                                  /* Reduced Height */
-                                 max-h-[70vh] 
+                                 max-h-[50vh] 
                                  /* Enable scrolling but hide scrollbar */
                                  overflow-y-auto scrollbar-hide
                                  bg-[#222222] md:bg-[#333333]/90 md:backdrop-blur-3xl 
