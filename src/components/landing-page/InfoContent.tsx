@@ -17,7 +17,7 @@ export default function InfoContent({ config }: InfoContentProps) {
     return (
         <>
             {/* Mobile Image (Top) */}
-            <div className="relative w-full h-[220px] md:hidden pointer-events-none mb-4 whitespace-normal">
+            <div className="relative w-full h-[280px] md:hidden pointer-events-none mb-4 whitespace-normal">
                 <Image
                     src={config.imagePath}
                     alt="Illustration"
@@ -32,14 +32,14 @@ export default function InfoContent({ config }: InfoContentProps) {
                 <Image
                     src={config.imagePath}
                     alt="Illustration"
-                    width={300}
-                    height={300}
+                    width={380}
+                    height={380}
                     className="object-contain"
                     priority
                 />
             </div>
 
-            <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:p-14 w-full md:w-[65%] whitespace-normal">
+            <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:p-14 w-full md:w-[65%] whitespace-normal overflow-y-auto scrollbar-hide max-h-[50vh] md:max-h-[70vh]">
                 {/* Header Section */}
                 <div className="mb-6 md:mb-8 flex flex-col items-center md:items-start">
                     <div className={`hidden md:block w-32 h-1 ${config.accentColor} mb-3`} />
