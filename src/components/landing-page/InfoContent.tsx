@@ -17,7 +17,7 @@ export default function InfoContent({ config }: InfoContentProps) {
     return (
         <>
             {/* Mobile Image (Top) */}
-            <div className="relative w-full h-[280px] md:hidden pointer-events-none mb-4 whitespace-normal">
+            <div className="relative w-full h-[220px] md:hidden pointer-events-none mb-4 whitespace-normal">
                 <Image
                     src={config.imagePath}
                     alt="Illustration"
@@ -32,8 +32,8 @@ export default function InfoContent({ config }: InfoContentProps) {
                 <Image
                     src={config.imagePath}
                     alt="Illustration"
-                    width={380}
-                    height={380}
+                    width={300}
+                    height={300}
                     className="object-contain"
                     priority
                 />

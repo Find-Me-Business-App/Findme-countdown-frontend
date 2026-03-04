@@ -204,7 +204,7 @@ export default function Footer() {
                 >
                     <p className="flex items-center gap-2 opacity-80 text-center">
                         <span className="w-4 h-4 md:w-5 md:h-5 rounded-full border border-gray-300 flex items-center justify-center text-[9px] md:text-[10px]">C</span>
-                        Copyright 2022 FindMe.com - All rights reserved.
+                        Copyright 2026 FindMe.com - All rights reserved.
                     </p>
                 </motion.div>
             </div>

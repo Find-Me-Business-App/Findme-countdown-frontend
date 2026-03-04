@@ -45,16 +45,8 @@ export default function InfoModal() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 30 }}
                         transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="relative w-full max-w-[400px] md:max-w-[750px] 
-                                 /* Reduced Height */
-                                 max-h-[55vh] 
-                                 /* Enable scrolling but hide scrollbar */
-                                 overflow-y-auto scrollbar-hide
-                                 bg-[#222222] md:bg-[#333333]/90 md:backdrop-blur-3xl 
-                                 rounded-[40px] md:rounded-[60px] 
-                                 shadow-lg md:shadow-[0_20px_50px_rgba(0,0,0,0.5)] 
-                                 border border-white/10 flex flex-col md:flex-row p-6 md:p-0"
-                        style={{ 
+                        className="relative w-full max-w-[420px] md:max-w-[900px] h-auto max-h-[90vh] md:max-h-none bg-[#111111] md:bg-[#1a1a1a]/95 md:backdrop-blur-3xl rounded-[40px] md:rounded-[55px] shadow-2xl border border-white/5 flex flex-col md:flex-row overflow-hidden scrollbar-hide"
+                        style={{
                             willChange: "transform, opacity",
                             msOverflowStyle: 'none',  /* IE and Edge */
                             scrollbarWidth: 'none',   /* Firefox */
