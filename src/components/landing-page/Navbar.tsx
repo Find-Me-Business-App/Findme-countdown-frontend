@@ -59,7 +59,7 @@ export default function Navbar({ activeSection, onOpenModal, onScrollToSection }
                 className="fixed top-0 left-0 right-0 z-50 flex items-center px-8 py-6 md:px-16 lg:px-24"
             >
                 {/* Mobile Menu Trigger (Mobile only) */}
-                <motion.div variants={itemVariants} className="md:hidden flex-1">
+                <motion.div variants={itemVariants} className="md:hidden flex-1 -ml-2">
                     <div
                         className="cursor-pointer p-1 w-fit hover:scale-110 transition-transform active:scale-95"
                         onClick={() => setIsMenuOpen(true)}

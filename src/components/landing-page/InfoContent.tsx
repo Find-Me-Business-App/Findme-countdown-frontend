@@ -39,7 +39,7 @@ export default function InfoContent({ config }: InfoContentProps) {
                 />
             </div>
 
-            <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:p-14 w-full md:w-[65%] whitespace-normal">
+            <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:p-14 w-full md:w-[65%] whitespace-normal overflow-y-auto scrollbar-hide max-h-[50vh] md:max-h-[70vh]">
                 {/* Header Section */}
                 <div className="mb-6 md:mb-8 flex flex-col items-center md:items-start">
                     <div className={`hidden md:block w-32 h-1 ${config.accentColor} mb-3`} />

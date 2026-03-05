@@ -93,7 +93,7 @@ export default function Footer() {
                     {/* Tagline */}
                     <motion.div
                         variants={itemVariants}
-                        className="md:absolute md:left-1/2 md:-translate-x-1/2 text-gray-400 font-bold tracking-[0.25em] text-[10px] md:text-xs text-center mb-8 md:mb-0"
+                        className="md:absolute md:left-1/2 md:-translate-x-1/2 text-gray-400 font-bold tracking-[0.25em] text-xs md:text-xs text-center mb-8 md:mb-0"
                     >
                         LIMITLESS POSSIBILITIES
                     </motion.div>
@@ -133,13 +133,13 @@ export default function Footer() {
                 >
                     {FOOTER_LINKS.map((section) => (
                         <motion.div key={section.title} variants={itemVariants} className="flex flex-col gap-3 md:gap-4">
-                            <h4 className="text-[#1d294d] font-bold text-[9px] md:text-[13px] tracking-[0.05em] mb-1">{section.title}</h4>
+                            <h4 className="text-[#1d294d] font-bold text-[11px] md:text-[13px] tracking-[0.05em] mb-1">{section.title}</h4>
                             <div className="flex flex-col gap-2 md:gap-2.5">
                                 {section.links.map((link) => (
                                     <Link
                                         key={link}
                                         href="#"
-                                        className="text-gray-500 hover:text-black hover:translate-x-1 transition-all text-[9px] md:text-sm font-medium flex items-center gap-1.5 group"
+                                        className="text-gray-500 hover:text-black hover:translate-x-1 transition-all text-[11px] md:text-sm font-medium flex items-center gap-1.5 group"
                                     >
                                         <span className="leading-tight">{link}</span>
                                         {link === "Eco" && (
@@ -163,7 +163,7 @@ export default function Footer() {
                     initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ type: "spring", damping: 12, stiffness: 120, delay: 0.5 }}
-                    className="flex flex-row items-center justify-center gap-3 md:gap-4 mb-10 scale-[0.8] sm:scale-100 origin-center md:hidden"
+                    className="flex flex-row items-center justify-center gap-3 md:gap-4 mb-10 md:hidden"
                 >
                     {/* Play Store Button */}
                     <div className="bg-[#1d2645] text-white px-4 md:px-6 py-2 md:py-3 rounded-[10px] md:rounded-xl flex items-center gap-2 md:gap-3 w-auto md:w-48 shadow-lg cursor-pointer hover:brightness-110 active:scale-95 transition-all border border-white/5">
@@ -176,8 +176,8 @@ export default function Footer() {
                             </svg>
                         </div>
                         <div className="flex flex-col text-left">
-                            <span className="text-[7px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Download on the</span>
-                            <span className="text-xs md:text-sm font-bold leading-none mt-0.5">PlayStore</span>
+                            <span className="text-[8px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Download on the</span>
+                            <span className="text-sm md:text-sm font-bold leading-none mt-0.5">PlayStore</span>
                         </div>
                     </div>
 
@@ -189,8 +189,8 @@ export default function Footer() {
                             </svg>
                         </div>
                         <div className="flex flex-col text-left">
-                            <span className="text-[7px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Get it on the</span>
-                            <span className="text-xs md:text-sm font-bold leading-none mt-0.5">AppStore</span>
+                            <span className="text-[8px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Get it on the</span>
+                            <span className="text-sm md:text-sm font-bold leading-none mt-0.5">AppStore</span>
                         </div>
                     </div>
                 </motion.div>
@@ -200,11 +200,11 @@ export default function Footer() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
-                    className="flex justify-center items-center text-gray-400 text-[10px] md:text-[12px] pt-8 border-t border-black/5"
+                    className="flex justify-center items-center text-gray-400 text-xs md:text-[12px] pt-8 border-t border-black/5"
                 >
                     <p className="flex items-center gap-2 opacity-80 text-center">
-                        <span className="w-4 h-4 md:w-5 md:h-5 rounded-full border border-gray-300 flex items-center justify-center text-[8px] md:text-[10px]">C</span>
-                        Copyright 2022 FindMe.com - All rights reserved.
+                        <span className="w-4 h-4 md:w-5 md:h-5 rounded-full border border-gray-300 flex items-center justify-center text-[9px] md:text-[10px]">C</span>
+                        Copyright 2026 FindMe.com - All rights reserved.
                     </p>
                 </motion.div>
             </div>

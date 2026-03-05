@@ -54,7 +54,7 @@ export default function WaitlistModal() {
                                  rounded-[35px] md:rounded-[50px] p-8 md:p-12 
                                  shadow-[0_20px_60px_rgba(0,0,0,0.6)] 
                                  border border-white/10"
-                        style={{ 
+                        style={{
                             willChange: "transform, opacity",
                             msOverflowStyle: 'none',
                             scrollbarWidth: 'none'
