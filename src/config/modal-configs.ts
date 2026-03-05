@@ -103,7 +103,7 @@ export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
     },
     festival: {
         title: "About Launch Festival",
-        description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking.",
+        description: "FindMe Festival is not just another event , it’s a 3-Day Open Festival marking the launch of what we boldly believe will become one of the most useful apps in the world.But this is bigger than an app.FindMe Festival is where music, dance, culture, and technology collide to celebrate Africa, our journey, our creativity, our resilience, and our future. It’s about honoring how far we’ve come and stepping confidently into what’s next.The festival is built on three pillars: connection, fun, and growth.Merchants and creatives will showcase their products and services to a vibrant audience, while Africa’s spirit and energy take center stage - raw, authentic, and unforgettable.We’ll unveil what FindMe stands for, how it works, the benefits it offers, and the opportunities ahead including how individuals can use AI to improve input, amplify output, and unlock new levels of personal and business growth.This is an invitation. To connect. To build. To celebrate. To be part of something from the very beginning.Across borders and distance, we stretch out our hands in friendship,  come and make this festival unforgettable.Attend. Participate. Experience.FindMe Festival isn’t just an event. It’s a moment you don’t want to miss.",
         subDescription: "Create, manage and automate all astacking.",
         imagePath: "/more-info3.png",
         accentColor: "bg-[#1e3a8a]",
