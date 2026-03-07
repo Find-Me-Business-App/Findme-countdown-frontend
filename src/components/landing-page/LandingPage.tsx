@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Navbar from "./Navbar";
 import Hero from "./Hero";
 import Countdown from "./Countdown";
@@ -66,7 +65,15 @@ export default function LandingPage() {
                     transition={{ duration: 1.8, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute inset-0"
                 >
-                    <Image src="/Rectangle 3329.png" alt="Background" fill className="object-cover opacity-80" priority />
+                    <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover opacity-80"
+                    >
+                        <source src="/video/5680034-hd_1920_1080_24fps.mp4" type="video/mp4" />
+                    </video>
                     <div className="absolute inset-0 bg-black/40" />
                 </motion.div>
                 <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8">
