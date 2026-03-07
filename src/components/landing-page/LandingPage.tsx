@@ -72,7 +72,7 @@ export default function LandingPage() {
                         playsInline
                         className="absolute inset-0 w-full h-full object-cover opacity-80"
                     >
-                        <source src="/video/5680034-hd_1920_1080_24fps.mp4" type="video/mp4" />
+                        <source src="/video/17564221-uhd_3840_2160_30fps.mp4" type="video/mp4" />
                     </video>
                     <div className="absolute inset-0 bg-black/40" />
                 </motion.div>
