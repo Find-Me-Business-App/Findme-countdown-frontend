@@ -76,7 +76,7 @@ export default function LandingPage() {
                         className="absolute inset-0 w-full h-full object-cover opacity-80"
                     >
                         <source
-                            src={isMobile ? "/video/17564221-uhd_3840_2160_30fps.webm" : "/video/17564221-uhd_3840_2160_30fps.mp4"}
+                            src={isMobile ? "/video/17564221-uhd_3840_2160_30fps (1).webm" : "/video/17564221-uhd_3840_2160_30fps.mp4"}
                             type={isMobile ? "video/webm" : "video/mp4"}
                         />
                     </video>
