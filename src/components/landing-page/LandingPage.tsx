@@ -13,6 +13,7 @@ import InfoModal from "./InfoModal";
 import RegistrationModal from "./RegistrationModal";
 import { useModalStore } from "@/store/useModalStore";
 import { useSectionObserver } from "@/hooks/useSectionObserver";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
 
@@ -20,6 +21,7 @@ export default function LandingPage() {
     const { openModal } = useModalStore();
     const containerRef = useRef<HTMLDivElement>(null);
     const activeSection = useSectionObserver(containerRef);
+    const isMobile = useMediaQuery("(max-width: 768px)");
 
     const { scrollYProgress } = useScroll({ container: containerRef });
 
@@ -66,13 +68,17 @@ export default function LandingPage() {
                     className="absolute inset-0"
                 >
                     <video
+                        key={isMobile ? 'mobile-video' : 'desktop-video'}
                         autoPlay
                         loop
                         muted
                         playsInline
                         className="absolute inset-0 w-full h-full object-cover opacity-80"
                     >
-                        <source src="/video/17564221-uhd_3840_2160_30fps.mp4" type="video/mp4" />
+                        <source
+                            src={isMobile ? "/video/17564221-uhd_3840_2160_30fps.webm" : "/video/17564221-uhd_3840_2160_30fps.mp4"}
+                            type={isMobile ? "video/webm" : "video/mp4"}
+                        />
                     </video>
                     <div className="absolute inset-0 bg-black/40" />
                 </motion.div>
