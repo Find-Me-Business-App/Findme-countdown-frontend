@@ -10,7 +10,6 @@ import WaitlistForm from "./WaitlistForm";
 import ModalBackdrop from "../shared/ModalBackdrop";
 import ModalContainer from "../shared/ModalContainer";
 import ModalCloseButton from "../shared/ModalCloseButton";
-import { THEME } from "@/config/theme";
 
 export default function WaitlistModal() {
     const { isOpen, type, section, closeModal, openModal } = useModalStore();
