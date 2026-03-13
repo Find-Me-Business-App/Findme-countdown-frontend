@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { motion, Variants } from "framer-motion";
+import { THEME } from "@/config/theme";
 
 const FOOTER_LINKS = [
     {
@@ -62,7 +63,7 @@ export default function Footer() {
                 className="absolute inset-0 z-0"
             >
                 <Image
-                    src="/footer-backgroung.png"
+                    src={THEME.assets.images.footer.bg}
                     alt="Footer Background"
                     fill
                     className="object-cover opacity-60"
@@ -82,7 +83,7 @@ export default function Footer() {
                     {/* Logo */}
                     <motion.div variants={itemVariants}>
                         <Image
-                            src="/Footer-logo.png"
+                            src={THEME.assets.images.footer.logo}
                             alt="Findme Logo"
                             width={140}
                             height={50}
@@ -144,7 +145,7 @@ export default function Footer() {
                                         <span className="leading-tight">{link}</span>
                                         {link === "Eco" && (
                                             <Image
-                                                src="/Vector.svg"
+                                                src={THEME.assets.icons.social.vector}
                                                 alt="Eco"
                                                 width={12}
                                                 height={12}

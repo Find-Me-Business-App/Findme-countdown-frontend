@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { SectionType } from "@/config/modal-configs";
 import MobileMenu from "./MobileMenu";
+import { THEME } from "@/config/theme";
 
 interface NavbarProps {
     activeSection: SectionType;
@@ -65,7 +66,7 @@ export default function Navbar({ activeSection, onOpenModal, onScrollToSection }
                         onClick={() => setIsMenuOpen(true)}
                     >
                         <Image
-                            src="/menu-button.svg"
+                            src={THEME.assets.icons.nav.menu}
                             alt="Menu"
                             width={24}
                             height={24}
@@ -83,7 +84,7 @@ export default function Navbar({ activeSection, onOpenModal, onScrollToSection }
                     onClick={(e) => handleLinkClick(e, "home")}
                 >
                     <Image
-                        src="/logo1.svg"
+                        src={THEME.assets.icons.nav.logo}
                         alt="Findme Logo"
                         width={100}
                         height={32}
@@ -122,7 +123,7 @@ export default function Navbar({ activeSection, onOpenModal, onScrollToSection }
                         whileHover={{ y: -2 }}
                     >
                         <Image
-                            src="/Phone.svg"
+                            src={THEME.assets.icons.nav.phone}
                             alt="Contact"
                             width={21}
                             height={24}
@@ -138,7 +139,7 @@ export default function Navbar({ activeSection, onOpenModal, onScrollToSection }
                         onClick={onOpenModal}
                     >
                         <Image
-                            src="/Phone.svg"
+                            src={THEME.assets.icons.nav.phone}
                             alt="Contact"
                             width={21}
                             height={24}

@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useModalStore } from "@/store/useModalStore";
 import Waitlist from "./Waitlist";
+import { THEME } from "@/config/theme";
 
 const BUSINESS_STEPS = [
     {
@@ -122,14 +123,14 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 className="absolute inset-0 z-0 transform-gpu will-change-transform"
             >
                 <Image
-                    src="/section-background.png"
+                    src={THEME.assets.images.business.bg}
                     alt="Business Background"
                     fill
                     className="object-cover"
                     priority
                 />
                 <Image
-                    src="/overlay2.png"
+                    src={THEME.assets.images.business.overlay}
                     alt="Overlay"
                     fill
                     className="object-cover opacity-100 mix-blend-screen"
@@ -145,7 +146,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 className="absolute top-[25%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full px-4 flex justify-center pointer-events-none will-change-transform transform-gpu"
             >
                 <Image
-                    src="/BUSINESS.png"
+                    src={THEME.assets.images.business.text}
                     alt="BUSINESS"
                     width={800}
                     height={400}

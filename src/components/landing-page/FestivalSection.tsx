@@ -5,6 +5,7 @@ import { Play, Pause, SkipBack, SkipForward } from "lucide-react";
 import { motion } from "framer-motion";
 import { useFestivalPlayer } from "@/hooks/useFestivalPlayer";
 import Waitlist from "./Waitlist";
+import { THEME } from "@/config/theme";
 
 /* ─── Shared easing ─── */
 const smoothEase = [0.22, 1, 0.36, 1] as const;
@@ -60,7 +61,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 className="absolute inset-0 z-0"
             >
                 <Image
-                    src="/section3-background.png"
+                    src={THEME.assets.images.festival.bg}
                     alt="Festival Background"
                     fill
                     className="object-cover opacity-80"
@@ -78,7 +79,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 animate={floatY(1)}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] z-[1] pointer-events-none"
             >
-                <Image src="/kisspng-fireworks.png" alt="Fireworks" fill className="object-contain" />
+                <Image src={THEME.assets.images.festival.fireworks} alt="Fireworks" fill className="object-contain" />
             </motion.div>
 
             <motion.div
@@ -89,7 +90,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 animate={floatY(2)}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] z-0 pointer-events-none"
             >
-                <Image src="/kisspng-fireworks-diwali.png" alt="Fireworks" fill className="object-contain" />
+                <Image src={THEME.assets.images.festival.fireworksDiwali} alt="Fireworks" fill className="object-contain" />
             </motion.div>
 
             {/* ── Central Content ── */}

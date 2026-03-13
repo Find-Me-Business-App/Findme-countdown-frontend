@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useCreateWaitlist } from "@/hooks/useCreateWaitlist";
 import { SectionType } from "@/config/modal-configs";
+import { THEME } from "@/config/theme";
 
 interface WaitlistFormProps {
     section: SectionType;
@@ -18,26 +19,48 @@ export default function WaitlistForm({ section }: WaitlistFormProps) {
     };
 
     return (
-        <div className="flex flex-col gap-3 mb-12 w-full max-w-[320px] md:max-w-[440px] items-center md:items-start whitespace-normal">
-            <label className="text-white/40 text-xs md:text-sm font-medium px-1">Enter your email</label>
-            <div className="flex flex-col md:flex-row gap-3 w-full">
+        <div className="flex flex-col gap-4 w-full">
+            <label 
+                className="text-[13px] font-bold px-1"
+                style={{ color: "#FFFFFF" }}
+            >
+                Enter your email
+            </label>
+            <div className="flex flex-row gap-3 w-full max-w-[480px]">
                 <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="email@example.com"
-                    className="w-full bg-white/5 border border-white/20 rounded-xl px-5 py-3.5 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/20 text-center md:text-left"
+                    placeholder="obinnaegbule@yahoo.com"
+                    className="flex-1 border-2 border-white/40 rounded-xl px-5 py-3.5 text-base focus:outline-none transition-all placeholder:text-white/30 text-white"
+                    style={{ 
+                        backgroundColor: "transparent",
+                    }}
                 />
                 <button
                     onClick={handleSubmit}
                     disabled={isPending}
-                    className="bg-[#2c375b] text-white px-8 py-3.5 rounded-xl font-bold text-sm tracking-widest hover:brightness-110 transition-all shadow-xl w-full md:w-auto disabled:opacity-50"
+                    className="bg-gradient-to-r from-[#2B365A] to-[#3B4B7A] text-white px-10 py-3.5 rounded-xl font-bold text-[18px] tracking-[2px] hover:brightness-125 transition-all shadow-xl disabled:opacity-50 shrink-0"
                 >
                     {isPending ? "SENDING..." : "SEND"}
                 </button>
             </div>
-            {isError && <p className="text-red-500 text-xs mt-1">{error.message}</p>}
-            {isSuccess && <p className="text-green-500 text-xs mt-1">Check your email to confirm registration!</p>}
+            {isError && (
+                <p 
+                    className="text-xs mt-1"
+                    style={{ color: THEME.colors.text.danger }}
+                >
+                    {error.message}
+                </p>
+            )}
+            {isSuccess && (
+                <p 
+                    className="text-green-500 text-xs mt-1"
+                >
+                    Check your email to confirm registration!
+                </p>
+            )}
         </div>
     );
 }
+

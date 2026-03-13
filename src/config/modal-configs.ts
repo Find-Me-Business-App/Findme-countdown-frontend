@@ -113,12 +113,12 @@ export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
 export const REGISTRATION_CONFIGS: Partial<Record<SectionType, RegistrationSectionConfig>> = {
     business: {
         title: "Early Bird",
-        description: "Create, manage and automate all aspects of your business tracking.",
+        description: "Be among the first businesses on FindMe. Lets make history today",
         accentColor: "bg-white",
     },
     festival: {
         title: "Participate",
-        description: "Create, manage and automate all aspects of your business tracking.",
+        description: "Lets make FindMe Launch Festival a memorable experience by joining hands where matters.",
         accentColor: "bg-white",
     }
 };

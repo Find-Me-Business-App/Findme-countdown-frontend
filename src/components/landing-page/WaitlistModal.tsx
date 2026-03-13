@@ -1,12 +1,16 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowUpRight, ArrowRight } from "lucide-react";
+import { AnimatePresence } from "framer-motion";
+import { ArrowUpRight, ArrowRight } from "lucide-react";
 import { WAITLIST_CONFIGS } from "@/config/modal-configs";
 import Image from "next/image";
 import { useEffect } from "react";
 import { useModalStore } from "@/store/useModalStore";
 import WaitlistForm from "./WaitlistForm";
+import ModalBackdrop from "../shared/ModalBackdrop";
+import ModalContainer from "../shared/ModalContainer";
+import ModalCloseButton from "../shared/ModalCloseButton";
+import { THEME } from "@/config/theme";
 
 export default function WaitlistModal() {
     const { isOpen, type, section, closeModal, openModal } = useModalStore();
@@ -30,88 +34,74 @@ export default function WaitlistModal() {
         <AnimatePresence>
             {isModalVisible && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    {/* Backdrop */}
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        onClick={closeModal}
-                        className="absolute inset-0 bg-black/70 md:bg-black/40 md:backdrop-blur-xl"
-                    />
+                    <ModalBackdrop onClick={closeModal} type="waitlist" />
 
-                    {/* Modal Content Container */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 30 }}
-                        transition={{ duration: 0.25, ease: "easeOut" }}
-                        className="relative w-full max-w-[400px] md:max-w-[550px] 
-                                 /* Scrollable but compact */
-                                 h-auto max-h-[70vh] md:max-h-[85vh]
-                                 overflow-y-auto scrollbar-hide
-                                 bg-[#1a1a1a] md:bg-[#333333]/90 md:backdrop-blur-3xl 
-                                 rounded-[35px] md:rounded-[50px] p-8 md:p-12 
-                                 shadow-[0_20px_60px_rgba(0,0,0,0.6)] 
-                                 border border-white/10"
+                    <ModalContainer
+                        type="waitlist"
+                        className="p-10 md:p-14 overflow-hidden md:overflow-hidden relative"
                         style={{
-                            willChange: "transform, opacity",
-                            msOverflowStyle: 'none',
-                            scrollbarWidth: 'none'
+                            backgroundColor: "#4F4F4F",
+                            border: "1.5px solid rgba(255, 255, 255, 0.4)",
+                            borderRadius: "40px",
+                            maxWidth: "760px",
+                            width: "100%",
+                            maxHeight: "90vh"
                         }}
                     >
-                        {/* Decorative Background SVG */}
-                        <div className="absolute -bottom-4 -right-2 z-0 opacity-30 pointer-events-none blur-[1px]">
+                        {/* Dynamic Decorative SVG */}
+                        <div className="absolute -bottom-5 -right-6 z-0 opacity-20 pointer-events-none blur-[0.5px]">
                             <Image
                                 src={config.svgPath}
                                 alt="Decoration"
-                                width={160}
-                                height={260}
-                                className="object-contain w-[100px] md:w-[140px] h-auto"
+                                width={180}
+                                height={280}
+                                className="object-contain w-[140px] md:w-[180px] h-auto"
                             />
                         </div>
 
-                        {/* Close Button */}
-                        <button
-                            onClick={closeModal}
-                            className="absolute top-6 right-6 z-50 text-white/40 hover:text-white transition-all active:scale-90"
-                        >
-                            <X className="w-6 h-6 md:w-7 md:h-7" />
-                        </button>
+                        <ModalCloseButton onClick={closeModal} className="text-white opacity-60 hover:opacity-100 transition-opacity" />
 
-                        <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left">
-                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-3 w-full pr-8">
+                        <div className="relative z-10 flex flex-col items-start text-left">
+                            <h2
+                                className="text-3xl md:text-[40px] font-bold mb-4 w-full pr-8 tracking-tight leading-none"
+                                style={{ color: "#FFFFFF" }}
+                            >
                                 {config.title}
                             </h2>
 
-                            <p className="text-white/60 text-sm md:text-base mb-6 leading-relaxed max-w-[320px] md:max-w-[420px]">
+                            <p
+                                className="text-[15px] md:text-17px mb-8 leading-relaxed max-w-[480px] opacity-80"
+                                style={{ color: "#FFFFFF" }}
+                            >
                                 {config.description}
                             </p>
 
                             {config.actionLabel && (
                                 <button
                                     onClick={() => openModal("registration", section)}
-                                    className="flex items-center gap-1.5 text-[#3b82f6] text-sm font-medium hover:underline mb-6 group"
+                                    className="flex items-center gap-1.5 text-[15px] font-medium hover:opacity-80 mb-10 group transition-all"
+                                    style={{ color: "#389FFF" }}
                                 >
                                     {config.actionLabel}
-                                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                                    <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                                 </button>
                             )}
 
                             {/* Form Area */}
-                            <div className="w-full mb-8">
+                            <div className="w-full mb-10">
                                 <WaitlistForm section={section} />
                             </div>
 
                             <button
                                 onClick={() => openModal("info", section)}
-                                className="flex items-center gap-1.5 text-[#4ea1ff] text-xs md:text-sm font-medium hover:underline group pb-2"
+                                className="flex items-center gap-1.5 text-[15px] font-medium hover:opacity-80 group transition-all"
+                                style={{ color: "#389FFF" }}
                             >
                                 More Information
-                                <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                             </button>
                         </div>
-                    </motion.div>
+                    </ModalContainer>
                 </div>
             )}
         </AnimatePresence>
