@@ -5,7 +5,7 @@ import { THEME } from "@/config/theme";
 
 interface ModalBackdropProps {
     onClick: () => void;
-    type?: "registration" | "info" | "default";
+    type?: "registration" | "info" | "waitlist" | "default";
 }
 
 export default function ModalBackdrop({ onClick, type = "default" }: ModalBackdropProps) {

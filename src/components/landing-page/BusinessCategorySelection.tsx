@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, X } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { THEME } from "@/config/theme";
 
 interface BusinessCategorySelectionProps {
