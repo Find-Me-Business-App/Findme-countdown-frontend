@@ -12,9 +12,9 @@ export default function ModalBackdrop({ onClick, type = "default" }: ModalBackdr
     const config = THEME.colors.backdrop[type];
 
     // Convert blur string to tailwind class
-    const blurClass = config.blur === "xl" ? "md:backdrop-blur-xl" :
-        config.blur === "3xl" ? "md:backdrop-blur-3xl" :
-            config.blur === "none" ? "" :
+    const blurClass = (config.blur as string) === "xl" ? "md:backdrop-blur-xl" :
+        (config.blur as string) === "3xl" ? "md:backdrop-blur-3xl" :
+            (config.blur as string) === "none" ? "" :
                 "md:backdrop-blur-md";
 
     return (

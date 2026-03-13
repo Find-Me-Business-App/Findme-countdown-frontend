@@ -117,7 +117,7 @@ export default function RegistrationModal() {
                             />
                         ) : showOwnerVerification ? (
                             <OwnerVerification 
-                                onSelect={(isOwner) => {
+                                onSelect={(_isOwner) => {
                                     setView("verification");
                                 }}
                                 onBack={() => setView("account_info")}
@@ -155,7 +155,7 @@ export default function RegistrationModal() {
                             />
                         ) : showFestivalOwnerInfo ? (
                             <FestivalOwnerInfo
-                                onSubmit={(data) => {
+                                onSubmit={(_data) => {
                                     setView("success");
                                 }}
                                 onBack={() => setView("festival_business_name")}

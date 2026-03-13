@@ -19,8 +19,8 @@ export default function ModalContainer({
     maxWidth,
     style = {}
 }: ModalContainerProps) {
-    const bgConfig = (THEME.colors.background as any)[type] || THEME.colors.background.registration;
-    const borderRadius = (THEME.variants.borderRadius as any)[type] || THEME.variants.borderRadius.registration;
+    const bgConfig = (THEME.colors.background as Record<string, any>)[type] || THEME.colors.background.registration;
+    const borderRadius = (THEME.variants.borderRadius as Record<string, any>)[type] || THEME.variants.borderRadius.registration;
     
     // Default max widths based on type if not provided
     const defaultMaxWidth = type === "registration" ? "max-w-[420px] md:max-w-[760px]" : "max-w-[420px] md:max-w-[900px]";
