@@ -75,7 +75,7 @@ export default function BusinessCategorySelection({ onSelect, onBack }: Business
                         className="absolute top-full left-0 right-0 mt-2 rounded-2xl border overflow-hidden z-[110] shadow-2xl max-h-[300px] overflow-y-auto"
                         style={{ 
                             backgroundColor: THEME.colors.components.dropdownBg,
-                            borderColor: THEME.colors.components.separator 
+                            borderColor: "var(--modal-separator, rgba(0,0,0,0.1))" 
                         }}
                     >
                         {CATEGORIES.map((cat) => (

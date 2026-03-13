@@ -135,7 +135,7 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
                                 className="absolute top-full left-0 right-0 mt-2 border rounded-xl overflow-hidden z-[110] shadow-2xl"
                                 style={{ 
                                     backgroundColor: THEME.colors.components.dropdownBg,
-                                    borderColor: THEME.colors.components.separator 
+                                    borderColor: "var(--modal-separator, rgba(0,0,0,0.1))" 
                                 }}
                             >
                                 {ROLES.map((role) => (

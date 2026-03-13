@@ -7,8 +7,7 @@ import { useFestivalPlayer } from "@/hooks/useFestivalPlayer";
 import Waitlist from "./Waitlist";
 import { THEME } from "@/config/theme";
 
-/* ─── Shared easing ─── */
-const smoothEase = [0.22, 1, 0.36, 1] as const;
+import { SMOOTH_EASE } from "@/data/landing-page";
 
 interface FestivalSectionProps {
     onOpenWaitlist?: () => void;
@@ -75,7 +74,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 0.6, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2, ease: smoothEase }}
+                transition={{ duration: 0.6, delay: 0.2, ease: SMOOTH_EASE }}
                 animate={floatY(1)}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] md:w-[600px] md:h-[600px] z-[1] pointer-events-none"
             >
@@ -86,7 +85,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 initial={{ opacity: 0, scale: 0.8 }}
                 whileInView={{ opacity: 0.4, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.4, ease: smoothEase }}
+                transition={{ duration: 0.6, delay: 0.4, ease: SMOOTH_EASE }}
                 animate={floatY(2)}
                 className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] md:w-[800px] md:h-[800px] z-0 pointer-events-none"
             >
@@ -109,7 +108,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                             initial={{ opacity: 0, scale: 0 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: 0.3 + i * 0.08, ease: smoothEase }}
+                            transition={{ duration: 0.4, delay: 0.3 + i * 0.08, ease: SMOOTH_EASE }}
                             animate={floatY(i)}
                             className={`absolute ${shape.pos} w-2 h-2 md:w-3 md:h-3 ${shape.color} ${shape.clip}`}
                         />
@@ -169,7 +168,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     initial={{ opacity: 0, y: 10 }}
                     whileInView={{ opacity: 0.9, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.6, delay: 0.5, ease: smoothEase }}
+                    transition={{ duration: 0.6, delay: 0.5, ease: SMOOTH_EASE }}
                 >
                     <p className="text-white text-[10px] md:text-2xl font-bold flex items-center gap-2 md:gap-4 drop-shadow-lg uppercase tracking-[0.2em]">
                         DANCE <span className="text-white/40">•</span> MUSIC <span className="text-white/40">•</span> TECHNOLOGY
@@ -182,7 +181,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.6, ease: smoothEase }}
+                transition={{ duration: 0.5, delay: 0.6, ease: SMOOTH_EASE }}
                 className="absolute bottom-28 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center"
             >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-white mb-2 shadow-xl">
@@ -200,7 +199,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.7, ease: smoothEase }}
+                transition={{ duration: 0.6, delay: 0.7, ease: SMOOTH_EASE }}
                 className="absolute bottom-44 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
             >
                 <p className="text-white/60 text-[8px] md:text-[10px] font-medium mb-2 md:mb-3">Theme sounds :</p>

@@ -11,7 +11,7 @@ interface RegistrationSuccessProps {
 
 export default function RegistrationSuccess({ userName, businessName, onDone }: RegistrationSuccessProps) {
     return (
-        <div className="flex flex-col w-full h-[400px] md:h-[450px] relative px-2 py-4 items-center justify-center text-center">
+        <div className="flex flex-col w-full min-h-[400px] md:h-[450px] relative px-2 py-4 md:py-6 items-center justify-center text-center">
             {/* Header Section (Absolute top) */}
             <div className="absolute top-4 left-2 text-left w-full">
                 <div

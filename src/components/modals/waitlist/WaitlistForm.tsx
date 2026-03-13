@@ -22,25 +22,27 @@ export default function WaitlistForm({ section }: WaitlistFormProps) {
         <div className="flex flex-col gap-4 w-full">
             <label 
                 className="text-[13px] font-bold px-1"
-                style={{ color: "#FFFFFF" }}
+                style={{ color: THEME.colors.text.primary }}
             >
                 Enter your email
             </label>
-            <div className="flex flex-row gap-3 w-full max-w-[480px]">
+            <div className="flex flex-col md:flex-row gap-3 w-full max-w-[480px]">
                 <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="obinnaegbule@yahoo.com"
-                    className="flex-1 border-2 border-white/40 rounded-xl px-5 py-3.5 text-base focus:outline-none transition-all placeholder:text-white/30 text-white"
+                    className="w-full md:flex-1 border-2 rounded-xl px-5 py-3 md:py-3.5 text-base focus:outline-none transition-all"
                     style={{ 
-                        backgroundColor: "transparent",
+                        backgroundColor: THEME.colors.input.bg,
+                        borderColor: THEME.colors.input.border,
+                        color: THEME.colors.input.text
                     }}
                 />
                 <button
                     onClick={handleSubmit}
                     disabled={isPending}
-                    className="bg-gradient-to-r from-[#2B365A] to-[#3B4B7A] text-white px-10 py-3.5 rounded-xl font-bold text-[18px] tracking-[2px] hover:brightness-125 transition-all shadow-xl disabled:opacity-50 shrink-0"
+                    className="w-full md:w-auto bg-gradient-to-r from-[#2B365A] to-[#3B4B7A] text-white px-6 md:px-10 py-3 md:py-3.5 rounded-xl font-bold text-base md:text-[18px] tracking-[2px] hover:brightness-125 transition-all shadow-xl disabled:opacity-50 shrink-0"
                 >
                     {isPending ? "SENDING..." : "SEND"}
                 </button>
@@ -54,13 +56,10 @@ export default function WaitlistForm({ section }: WaitlistFormProps) {
                 </p>
             )}
             {isSuccess && (
-                <p 
-                    className="text-green-500 text-xs mt-1"
-                >
+                <p className="text-green-500 text-xs mt-1">
                     Check your email to confirm registration!
                 </p>
             )}
         </div>
     );
 }
-

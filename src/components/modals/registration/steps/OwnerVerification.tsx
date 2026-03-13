@@ -9,7 +9,7 @@ interface OwnerVerificationProps {
 
 export default function OwnerVerification({ onSelect, onBack }: OwnerVerificationProps) {
     return (
-        <div className="flex flex-col w-full h-[400px] md:h-[450px] relative px-2 py-4">
+        <div className="flex flex-col w-full min-h-[350px] md:h-[450px] relative px-2 py-4">
             {/* Header Section */}
             <div className="mb-12">
                 <div

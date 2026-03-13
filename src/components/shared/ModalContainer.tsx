@@ -10,6 +10,7 @@ interface ModalContainerProps {
     type?: "registration" | "info" | "waitlist";
     maxWidth?: string;
     style?: React.CSSProperties;
+    overflow?: string;
 }
 
 export default function ModalContainer({ 
@@ -17,10 +18,11 @@ export default function ModalContainer({
     className = "", 
     type = "registration",
     maxWidth,
-    style = {}
+    style = {},
+    overflow = "overflow-y-auto"
 }: ModalContainerProps) {
-    const bgConfig = (THEME.colors.background as Record<string, any>)[type] || THEME.colors.background.registration;
-    const borderRadius = (THEME.variants.borderRadius as Record<string, any>)[type] || THEME.variants.borderRadius.registration;
+    const bgConfig = (THEME.colors.background as Record<string, { mobile: string; desktop: string }>)[type] || THEME.colors.background.registration;
+    const borderRadius = (THEME.variants.borderRadius as Record<string, string>)[type] || THEME.variants.borderRadius.registration;
     
     // Default max widths based on type if not provided
     const defaultMaxWidth = type === "registration" ? "max-w-[420px] md:max-w-[760px]" : "max-w-[420px] md:max-w-[900px]";
@@ -32,14 +34,28 @@ export default function ModalContainer({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className={`relative w-full ${finalMaxWidth} h-auto max-h-[90vh] md:max-h-none overflow-y-auto ${borderRadius} shadow-2xl border ${type === 'info' ? 'border-white/5' : 'border-white/10'} ${className}`}
+            className={`relative w-full ${finalMaxWidth} h-auto max-h-[95vh] md:max-h-none ${overflow} ${borderRadius} shadow-2xl border ${className}`}
             style={{ 
                 willChange: "transform, opacity",
-                backgroundColor: typeof window !== 'undefined' && window.innerWidth < 768 ? bgConfig.mobile : bgConfig.desktop,
+                backgroundColor: "var(--modal-bg)",
+                borderColor: "var(--modal-border)",
                 boxShadow: typeof window !== 'undefined' && window.innerWidth >= 768 ? THEME.colors.shadows.standard : undefined,
-                ...style
-            }}
+                ...style,
+                // Use CSS variables for responsive background and border
+                "--modal-bg": bgConfig.mobile,
+                "--modal-border": "#ffffff",
+                "--modal-separator": THEME.colors.components.separator.mobile,
+            } as React.CSSProperties}
         >
+            <style jsx>{`
+                @media (min-width: 768px) {
+                    div {
+                        --modal-bg: ${bgConfig.desktop} !important;
+                        --modal-border: ${type === 'info' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)'} !important;
+                        --modal-separator: ${THEME.colors.components.separator.desktop} !important;
+                    }
+                }
+            `}</style>
             {children}
         </motion.div>
     );

@@ -1,19 +1,15 @@
 "use client";
 
-import Navbar from "./Navbar";
-import Hero from "./Hero";
-import Countdown from "./Countdown";
-import Waitlist from "./Waitlist";
-import BusinessSection from "./BusinessSection";
-import FestivalSection from "./FestivalSection";
-import Footer from "./Footer";
-import ContactModal from "./ContactModal";
-import WaitlistModal from "./WaitlistModal";
-import InfoModal from "./InfoModal";
-import RegistrationModal from "./RegistrationModal";
+import Navbar from "@/components/layout/Navbar";
+import Hero from "./sections/Hero";
+import Countdown from "./sections/Countdown";
+import Waitlist from "./sections/Waitlist";
+import BusinessSection from "./sections/BusinessSection";
+import FestivalSection from "./sections/FestivalSection";
+import Footer from "./sections/Footer";
+import ModalProvider from "@/components/modals/ModalProvider";
 import { useModalStore } from "@/store/useModalStore";
 import { useSectionObserver } from "@/hooks/useSectionObserver";
-import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { motion, useScroll } from "framer-motion";
 import { useRef } from "react";
 
@@ -21,7 +17,6 @@ export default function LandingPage() {
     const { openModal } = useModalStore();
     const containerRef = useRef<HTMLDivElement>(null);
     const activeSection = useSectionObserver(containerRef);
-    const isMobile = useMediaQuery("(max-width: 768px)");
 
     const { scrollYProgress } = useScroll({ container: containerRef });
 
@@ -35,9 +30,6 @@ export default function LandingPage() {
         }
     };
 
-
-
-
     return (
         <div
             ref={containerRef}
@@ -49,8 +41,6 @@ export default function LandingPage() {
                 className="fixed top-0 left-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-50"
                 style={{ scaleX: scrollYProgress, transformOrigin: '0%' }}
             />
-
-
 
             <Navbar
                 activeSection={activeSection}
@@ -68,17 +58,13 @@ export default function LandingPage() {
                     className="absolute inset-0"
                 >
                     <video
-                        key={isMobile ? 'mobile-video' : 'desktop-video'}
                         autoPlay
                         loop
                         muted
                         playsInline
                         className="absolute inset-0 w-full h-full object-cover opacity-80"
                     >
-                        <source
-                            src={isMobile ? "/video/17564221-uhd_3840_2160_30fps (1).webm" : "/video/17564221-uhd_3840_2160_30fps.mp4"}
-                            type={isMobile ? "video/webm" : "video/mp4"}
-                        />
+                        <source src="/video/17564221-uhd_3840_2160_30fps.mp4" type="video/mp4" />
                     </video>
                     <div className="absolute inset-0 bg-black/40" />
                 </motion.div>
@@ -111,14 +97,12 @@ export default function LandingPage() {
                 <Footer />
             </section>
 
-            {/* Modals */}
-            <ContactModal />
-            <WaitlistModal />
-            <InfoModal />
-            <RegistrationModal />
+            {/* All Modals — centralized */}
+            <ModalProvider />
         </div>
     );
 }
+
 
 
 

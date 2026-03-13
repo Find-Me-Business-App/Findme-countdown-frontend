@@ -8,20 +8,20 @@ export const THEME = {
         // Core background colors
         background: {
             registration: {
-                mobile: "#4a5a5a",
-                desktop: "rgba(255, 255, 255, 0.2)",
+                mobile: "#787878",
+                desktop: "#787878",
             },
             info: {
-                mobile: "#111111",
-                desktop: "rgba(26, 26, 26, 0.95)",
+                mobile: "#787878",
+                desktop: "#787878",
             },
             waitlist: {
-                mobile: "#1a1a1a",
-                desktop: "rgba(51, 51, 51, 0.9)",
+                mobile: "#787878",
+                desktop: "#787878",
             },
             contact: {
-                mobile: "#4b4b4b",
-                desktop: "#4b4b4b",
+                mobile: "#787878",
+                desktop: "#787878",
             }
         },
         // Backdrop colors and effects
@@ -49,41 +49,43 @@ export const THEME = {
         },
         // Text colors
         text: {
-            primary: "#ffffff",
-            secondary: "rgba(255, 255, 255, 0.7)",
-            muted: "rgba(255, 255, 255, 0.5)",
+            primary: "#FFFFFF", // Dark Navy for readability on light gray
+            secondary: "#FFFFFF",
+            muted: "#FFFFFF",
             accent: "#3b82f6", // FindMe Blue
-            link: "#4ea1ff", // Info link blue
+            link: "#3b82f6", // Changed to accent for better contrast
             danger: "#ea4335", // AME Red
-            dark: "#2B365A", // Account Selection header
-            success: "#4ade80", // Green-400
+            dark: "#2B365A",
+            success: "#16a34a", // Darker green for accessibility
         },
         // Input fields and form elements
         input: {
-            bg: "rgba(255, 255, 255, 0.05)",
-            border: "rgba(255, 255, 255, 0.15)",
-            text: "#ffffff",
-            placeholder: "rgba(255, 255, 255, 0.25)",
-            label: "rgba(255, 255, 255, 0.5)",
-            focusBorder: "rgba(255, 255, 255, 0.4)",
-            // High clarity variants (like used in contact message area)
+            bg: "rgba(0, 0, 0, 0.05)",
+            border: "rgba(0, 0, 0, 0.1)",
+            text: "#FFFFFF",
+            placeholder: "rgba(43, 54, 90, 0.4)",
+            label: "FFFFFF",
+            focusBorder: "rgba(59, 130, 246, 0.5)",
             clarity: {
-                bg: "#d4d4d4",
-                text: "#1f2937",
+                bg: "#f3f4f6",
+                text: "#FFFFFF",
                 placeholder: "#6b7280",
             }
         },
         // Components within modals
         components: {
-            separator: "rgba(255, 255, 255, 0.1)",
-            iconContainer: "rgba(255, 255, 255, 0.05)",
-            dropdownBg: "#1a1a1a",
-            chipBg: "rgba(255, 255, 255, 0.05)",
-            chipHover: "rgba(255, 255, 255, 0.1)",
+            separator: {
+                mobile: "#ffffff",
+                desktop: "rgba(0, 0, 0, 0.1)",
+            },
+            iconContainer: "rgba(0, 0, 0, 0.05)",
+            dropdownBg: "#787878",
+            chipBg: "rgba(0, 0, 0, 0.05)",
+            chipHover: "rgba(0, 0, 0, 0.08)",
             prompts: {
-                blue: "rgba(59, 130, 246, 0.3)",
-                white: "rgba(255, 255, 255, 0.1)",
-                purple: "rgba(168, 85, 247, 0.3)",
+                blue: "rgba(59, 130, 246, 0.15)",
+                white: "rgba(0, 0, 0, 0.05)",
+                purple: "rgba(168, 85, 247, 0.15)",
             }
         },
         // Action / Button colors

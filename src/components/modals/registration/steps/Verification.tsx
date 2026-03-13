@@ -10,7 +10,7 @@ interface VerificationProps {
 
 export default function Verification({ onSubmit, onBack }: VerificationProps) {
     return (
-        <div className="flex flex-col w-full h-[450px] md:h-[500px] relative px-2 py-4">
+        <div className="flex flex-col w-full min-h-[400px] md:h-[500px] relative px-2 py-4 md:py-6">
             {/* Header Section */}
             <div className="mb-8">
                 <div

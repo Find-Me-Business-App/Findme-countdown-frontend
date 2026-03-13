@@ -39,13 +39,7 @@ export default function ContactForm({ section }: ContactFormProps) {
             </h3>
 
             <div className="space-y-3 md:space-y-5">
-                <div className="flex flex-col gap-1 md:gap-2">
-                    <label 
-                        className="text-[10px] md:text-xs font-medium px-1"
-                        style={{ color: THEME.colors.input.label }}
-                    >
-                        Name
-                    </label>
+                <FormField label="Name">
                     <input
                         type="text"
                         name="name"
@@ -59,14 +53,8 @@ export default function ContactForm({ section }: ContactFormProps) {
                             color: THEME.colors.input.text
                         }}
                     />
-                </div>
-                <div className="flex flex-col gap-1 md:gap-2">
-                    <label 
-                        className="text-[10px] md:text-xs font-medium px-1"
-                        style={{ color: THEME.colors.input.label }}
-                    >
-                        Email
-                    </label>
+                </FormField>
+                <FormField label="Email">
                     <input
                         type="email"
                         name="email"
@@ -80,14 +68,8 @@ export default function ContactForm({ section }: ContactFormProps) {
                             color: THEME.colors.input.text
                         }}
                     />
-                </div>
-                <div className="flex flex-col gap-1 md:gap-2">
-                    <label 
-                        className="text-[10px] md:text-xs font-medium px-1"
-                        style={{ color: THEME.colors.input.label }}
-                    >
-                        Message
-                    </label>
+                </FormField>
+                <FormField label="Message">
                     <div 
                         className="border rounded-[26px] p-2.5 flex items-start gap-3 md:gap-4"
                         style={{ 
@@ -121,10 +103,26 @@ export default function ContactForm({ section }: ContactFormProps) {
                             />
                         </button>
                     </div>
-                </div>
+                </FormField>
                 {isError && <p className="text-red-500 text-xs px-1">{error.message}</p>}
                 {isSuccess && <p className="text-green-500 text-xs px-1">Message sent successfully!</p>}
             </div>
+        </div>
+    );
+}
+
+/* ─── Sub-component: Form Field ─────────────────────────────────── */
+
+function FormField({ label, children }: { label: string; children: React.ReactNode }) {
+    return (
+        <div className="flex flex-col gap-1 md:gap-2">
+            <label 
+                className="text-[10px] md:text-xs font-medium px-1"
+                style={{ color: THEME.colors.input.label }}
+            >
+                {label}
+            </label>
+            {children}
         </div>
     );
 }

@@ -33,7 +33,7 @@ export default function AccountTypeSelection({ onSelect }: AccountTypeSelectionP
             <div className="flex flex-col">
                 <div
                     className="h-[1.5px] w-full mb-2"
-                    style={{ backgroundColor: THEME.colors.components.separator }}
+                    style={{ backgroundColor: "var(--modal-separator, rgba(0,0,0,0.1))" }}
                 />
 
                 {/* Create your business */}
@@ -74,7 +74,7 @@ export default function AccountTypeSelection({ onSelect }: AccountTypeSelectionP
 
                 <div
                     className="h-[1.5px] w-full my-2"
-                    style={{ backgroundColor: THEME.colors.components.separator }}
+                    style={{ backgroundColor: "var(--modal-separator, rgba(0,0,0,0.1))" }}
                 />
 
                 {/* Register business as a listing */}
@@ -116,7 +116,7 @@ export default function AccountTypeSelection({ onSelect }: AccountTypeSelectionP
 
                 <div
                     className="h-[1.5px] w-full mt-2"
-                    style={{ backgroundColor: THEME.colors.components.separator }}
+                    style={{ backgroundColor: "var(--modal-separator, rgba(0,0,0,0.1))" }}
                 />
             </div>
         </div>

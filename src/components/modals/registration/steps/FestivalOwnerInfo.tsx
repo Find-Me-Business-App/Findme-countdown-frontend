@@ -2,10 +2,16 @@
 
 import { useState } from "react";
 import { ChevronRight, ChevronDown, Plus } from "lucide-react";
-import { THEME } from "@/config/theme";
+
+interface FestivalOwnerFormData {
+    ownershipType: string;
+    name: string;
+    email: string;
+    phone: string;
+}
 
 interface FestivalOwnerInfoProps {
-    onSubmit: (data: any) => void;
+    onSubmit: (data: FestivalOwnerFormData) => void;
     onBack?: () => void;
 }
 
@@ -182,12 +188,21 @@ export default function FestivalOwnerInfo({ onSubmit, onBack }: FestivalOwnerInf
                         </div>
                     </div>
 
-                    {/* Navigation Button inside scroll - Aligned to bottom right of form */}
-                    <div className="flex justify-end pt-8 pb-4">
+                    {/* Navigation Buttons inside scroll - Aligned to bottom right of form */}
+                    <div className="flex justify-between items-center pt-8 pb-4">
+                        {onBack && (
+                            <button
+                                type="button"
+                                onClick={onBack}
+                                className="w-16 h-16 rounded-full flex items-center justify-center border border-white/20 hover:bg-white/10 transition-all hover:scale-105 active:scale-95 group"
+                            >
+                                <ChevronRight className="w-8 h-8 text-white rotate-180" strokeWidth={3} />
+                            </button>
+                        )}
                         <button
                             type="submit"
                             form="owner-form"
-                            className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-105 active:scale-95 group"
+                            className="w-16 h-16 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-105 active:scale-95 group ml-auto"
                             style={{ backgroundColor: "#2B365A" }}
                         >
                             <ChevronRight className="w-8 h-8 text-white" strokeWidth={3} />

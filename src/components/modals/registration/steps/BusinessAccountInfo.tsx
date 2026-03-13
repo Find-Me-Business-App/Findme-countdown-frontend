@@ -17,9 +17,9 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
     const [ownership, setOwnership] = useState("Self owned");
 
     return (
-        <div className="flex flex-col w-full h-[600px] md:h-[550px] relative overflow-hidden">
+        <div className="flex flex-col w-full min-h-[500px] md:h-[550px] relative overflow-hidden">
             {/* Header section (fixed) */}
-            <div className="flex flex-col mb-4 pt-4 px-2">
+            <div className="flex flex-col mb-4 pt-2 md:pt-4 px-2">
                 <div
                     className="w-20 h-[3.5px] mb-6 opacity-95 rounded-full"
                     style={{ backgroundColor: THEME.colors.text.primary }}

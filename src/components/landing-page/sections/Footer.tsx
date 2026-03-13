@@ -2,35 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Facebook, Instagram, Linkedin, Twitter } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import { THEME } from "@/config/theme";
 
-const FOOTER_LINKS = [
-    {
-        title: "HOME",
-        links: ["About us", "Categories", "Features", "Publish", "Terms"],
-    },
-    {
-        title: "SERVICES",
-        links: ["Plans", "Business dashboard", "Business Network", "Integrations", "Multiverse"],
-    },
-    {
-        title: "FEATURES",
-        links: ["Create", "Wallet", "E-App", "Charity", "Eco"],
-    },
-    {
-        title: "CONTACT",
-        links: ["Download App", "Support", "FAQ", "Find Agent", "Service Centers"],
-    },
-];
-
-const SOCIALS = [
-    { Icon: Facebook, href: "#" },
-    { Icon: Instagram, href: "#" },
-    { Icon: Linkedin, href: "#" },
-    { Icon: Twitter, href: "#" },
-];
+import { FOOTER_LINKS, SOCIALS } from "@/data/footer";
 
 export default function Footer() {
     const containerVariants: Variants = {

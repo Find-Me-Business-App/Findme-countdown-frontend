@@ -58,7 +58,7 @@ export default function BusinessNameSelection({ onSelect, onBack }: BusinessName
                 </form>
             </div>
 
-            <div className="mt-40">
+            <div className="mt-12 md:mt-40">
                 <p 
                     className="text-[10px] md:text-xs font-bold uppercase tracking-widest opacity-60"
                     style={{ color: THEME.colors.text.primary }}
