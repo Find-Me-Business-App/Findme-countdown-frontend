@@ -92,9 +92,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 transition={{ duration: 0.7, delay: 0.6, ease: SMOOTH_EASE }}
                 className="absolute bottom-12 left-8 md:left-16 z-20 hidden md:block"
             >
-                <p className="text-gray-500 text-xs font-bold tracking-[0.2em] uppercase">
-                    FINDME LAUNCH FESTIVAL
-                </p>
+                
             </motion.div>
 
             {/* ── Layer 5: Early Bird CTA — scale pop-in ── */}
@@ -124,9 +122,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 transition={{ duration: 0.6, delay: 0.5, ease: SMOOTH_EASE }}
                 className="absolute bottom-4 z-10 w-full flex justify-center md:hidden"
             >
-                <p className="text-gray-400 text-[10px] font-bold tracking-[0.2em] uppercase opacity-60">
-                    Web pre launch home
-                </p>
+                
             </motion.div>
 
             {/* ── Layer 7: Waitlist button ── */}

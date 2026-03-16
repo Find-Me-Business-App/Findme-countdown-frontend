@@ -15,7 +15,7 @@ export const BUSINESS_STEPS: BusinessStep[] = [
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#8b5cf6] via-[#ec4899] to-[#f43f5e]">Business Publicity</span>
             </>
         ),
-        description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking."
+        description: "Sell more with your sales as FindMe rewards your business by increased free promotion of your business, products and services to buying customers near you and expands your reach . When you keep record of your physical sales on FindMe it also increases your visibility for intermediate (multiverse) sales on a customer seeking something else."
     },
     {
         title: "Reduce Business Cost by 90%",
@@ -25,7 +25,7 @@ export const BUSINESS_STEPS: BusinessStep[] = [
                 <span className="text-[#22c55e]">90%</span>
             </>
         ),
-        description: "Create, manage and automate all aspects of your business operations seamlessly with limitless integrations from Sales, inventory, payroll, portfolio, logistics and tracking."
+        description: "Manage all your assets effectively from a central point and share information with your team in real time. Monitor your real estate property, delivery van, machinery etc and also remotely manage your assets activities operations and CCTV cameras."
     },
     {
         title: "Empower Your Business with Ai",
