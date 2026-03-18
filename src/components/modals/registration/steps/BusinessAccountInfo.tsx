@@ -7,12 +7,13 @@ import { THEME } from "@/config/theme";
 interface BusinessAccountInfoProps {
     businessName: string;
     category: string;
+    onBack?: () => void;
     onComplete: (ownershipType: string) => void;
 }
 
 const OWNERSHIP_TYPES = ["Self owned", "Partnership", "Corporation", "Freelancer", "LLC"];
 
-export default function BusinessAccountInfo({ businessName, category, onComplete }: BusinessAccountInfoProps) {
+export default function BusinessAccountInfo({ businessName, category, onBack, onComplete }: BusinessAccountInfoProps) {
     const [ownership, setOwnership] = useState("Self owned");
 
     return (
@@ -20,7 +21,7 @@ export default function BusinessAccountInfo({ businessName, category, onComplete
             {/* Header section (fixed) */}
             <div className="flex flex-col mb-4 pt-2 md:pt-4 px-2">
                 <div
-                    className="w-20 h-[3.5px] mb-6 opacity-95"
+                    className="w-20 h-[3.5px] mb-6 opacity-95 rounded-full"
                     style={{ backgroundColor: THEME.colors.text.primary }}
                 />
                 <h2
@@ -202,7 +203,15 @@ export default function BusinessAccountInfo({ businessName, category, onComplete
                 <div className="w-8 h-8 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
             </button>
 
-
+            {onBack && (
+                <button
+                    onClick={onBack}
+                    className="absolute bottom-4 left-2 text-sm font-medium hover:underline px-2 py-1"
+                    style={{ color: THEME.colors.text.muted }}
+                >
+                    Back
+                </button>
+            )}
 
             <style jsx>{`
                 .no-scrollbar::-webkit-scrollbar {
