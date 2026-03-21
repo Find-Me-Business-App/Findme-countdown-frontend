@@ -10,10 +10,14 @@ import { ModalBackdrop, ModalContainer, ModalCloseButton } from "../shared";
  * Scroll locking is handled by ModalProvider.
  */
 export default function InfoModal() {
-    const { section, closeModal } = useModalStore();
+    const { section, closeModal, openModal } = useModalStore();
     const config = INFO_CONFIGS[section];
 
     if (!config) return null;
+
+    const handleBack = () => {
+        openModal("waitlist", section);
+    };
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
@@ -27,7 +31,7 @@ export default function InfoModal() {
                     scrollbarWidth: 'none',
                 }}
             >
-                <ModalCloseButton onClick={closeModal} />
+                <ModalCloseButton onClick={closeModal} onBack={handleBack} />
                 <InfoContent config={config} />
             </ModalContainer>
         </div>
