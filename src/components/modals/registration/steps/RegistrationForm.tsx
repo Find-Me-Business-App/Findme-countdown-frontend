@@ -40,13 +40,11 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        if ((section === "business" || section === "festival") && onNext) {
-            onNext({ name: formData.name, email: formData.email, role: formData.role });
-            return;
-        }
-
         mutate({ ...formData, section }, {
             onSuccess: () => {
+                if ((section === "business" || section === "festival") && onNext) {
+                    onNext({ name: formData.name, email: formData.email, role: formData.role });
+                }
                 if (onSuccess) onSuccess();
             }
         });

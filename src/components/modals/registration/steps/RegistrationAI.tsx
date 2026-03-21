@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import { THEME } from "@/config/theme";
 
@@ -26,6 +27,8 @@ const PROMPTS = [
 ];
 
 export default function RegistrationAI({ onNext }: RegistrationAIProps) {
+    const [promptText, setPromptText] = useState("");
+
     return (
         <div className="flex flex-col w-full">
             <div className="mb-6 md:mb-8">
@@ -59,6 +62,7 @@ export default function RegistrationAI({ onNext }: RegistrationAIProps) {
                         {PROMPTS.map((prompt, index) => (
                              <div
                                 key={index}
+                                onClick={() => setPromptText(prompt.text)}
                                 className="border rounded-xl p-3 md:p-4 transition-colors cursor-pointer group"
                                 style={{ 
                                     backgroundColor: THEME.colors.components.chipBg,
@@ -86,6 +90,8 @@ export default function RegistrationAI({ onNext }: RegistrationAIProps) {
 
                 <div className="relative group">
                     <textarea
+                        value={promptText}
+                        onChange={(e) => setPromptText(e.target.value)}
                         className="w-full border rounded-2xl md:rounded-[24px] px-5 py-4 md:py-6 text-sm md:text-sm focus:outline-none transition-all resize-none min-h-[100px] md:min-h-[120px]"
                         style={{ 
                             backgroundColor: THEME.colors.input.bg,

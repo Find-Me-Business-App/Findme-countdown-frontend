@@ -100,7 +100,7 @@ export default function RegistrationModal() {
     const showBack = view !== "success";
 
     return (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-100 flex items-center justify-center p-4">
             <ModalBackdrop onClick={closeModal} type="registration" />
 
             <ModalContainer
@@ -263,6 +263,11 @@ function renderView({
                 <RegistrationFormView
                     config={config}
                     section={section as SectionType}
+                    onAMEClick={() => {
+                        if (section === "business") {
+                            setView("ai");
+                        }
+                    }}
                     onNext={
                         section === "business"
                             ? (data) => { if (data?.name) setUserName(data.name); setView("ai"); }

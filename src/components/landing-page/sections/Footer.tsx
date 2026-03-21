@@ -60,9 +60,9 @@ export default function Footer() {
                         <Image
                             src={THEME.assets.images.footer.logo}
                             alt="Findme Logo"
-                            width={140}
-                            height={50}
-                            className="h-9 md:h-10 w-auto opacity-90 mb-8 md:mb-0"
+                            width={200}
+                            height={72}
+                            className="h-11 md:h-14 w-auto opacity-90 mb-8 md:mb-0"
                         />
                     </motion.div>
 
@@ -105,7 +105,7 @@ export default function Footer() {
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={containerVariants}
-                    className="grid grid-cols-4 gap-x-2 md:gap-x-8 gap-y-8 mb-12"
+                    className="flex flex-col md:flex-row md:justify-between w-full gap-y-8 mb-12"
                 >
                     {FOOTER_LINKS.map((section) => (
                         <motion.div key={section.title} variants={itemVariants} className="flex flex-col gap-3 md:gap-4">

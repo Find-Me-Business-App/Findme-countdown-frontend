@@ -9,13 +9,14 @@ interface RegistrationFormViewProps {
     config: RegistrationSectionConfig;
     section: SectionType;
     onNext?: (data: { name?: string; email?: string; role?: string }) => void;
+    onAMEClick?: () => void;
 }
 
 /**
  * RegistrationFormView — the initial two-column layout with form + icon.
  * Extracted from the default branch of the old RegistrationModal.
  */
-export default function RegistrationFormView({ config, section, onNext }: RegistrationFormViewProps) {
+export default function RegistrationFormView({ config, section, onNext, onAMEClick }: RegistrationFormViewProps) {
 
     return (
         <>
@@ -23,7 +24,7 @@ export default function RegistrationFormView({ config, section, onNext }: Regist
             <div className="w-full md:w-[65%] flex flex-col relative pr-0 md:pr-4">
                 {(section === "business" || section === "festival") && (
                     <div 
-                        className="absolute right-[-16px] md:right-[-24px] top-4 bottom-4 w-[1px] hidden md:block" 
+                        className="absolute right-[-16px] md:right-[-24px] top-4 bottom-4 w-px hidden md:block" 
                         style={{ backgroundColor: THEME.colors.components.separator.desktop }}
                     />
                 )}
@@ -50,17 +51,20 @@ export default function RegistrationFormView({ config, section, onNext }: Regist
             </div>
 
             {/* Right Side: Icon Section */}
-            <RegistrationIconBanner section={section} />
+            <RegistrationIconBanner section={section} onAMEClick={onAMEClick} />
         </>
     );
 }
 
 /* ─── Sub-component: Icon Banner ─────────────────────────────── */
 
-function RegistrationIconBanner({ section }: { section: SectionType }) {
+function RegistrationIconBanner({ section, onAMEClick }: { section: SectionType; onAMEClick?: () => void }) {
     return (
-        <div className="md:w-[35%] flex flex-col items-center justify-center pt-2 md:pt-0">
-            <div className="flex flex-col items-center gap-6 group">
+        <div 
+            className={`md:w-[35%] flex flex-col items-center justify-center pt-2 md:pt-0 ${section === "business" ? "cursor-pointer" : ""}`}
+            onClick={() => section === "business" && onAMEClick?.()}
+        >
+            <div className={`flex flex-col items-center gap-6 group ${section === "business" ? "hover:scale-105 transition-transform duration-300" : ""}`}>
                 <div 
                     className="w-24 h-24 md:w-40 md:h-40 flex items-center justify-center transition-all duration-500 group-hover:scale-105 p-4 md:p-6"
                 >

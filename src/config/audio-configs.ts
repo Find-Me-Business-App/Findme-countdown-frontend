@@ -11,8 +11,8 @@ export const FESTIVAL_SONGS: Song[] = [
         src: "/audio/shootah.mp3" 
     },
     { 
-        title: "Afrika", 
-        artist: "Mzuk Maen feat. Mazet SA",
+        title: "Ngifaneie", 
+        artist: "the silent partner",
         src: "/audio/afrika.mp3"
     },
     { 
@@ -31,8 +31,8 @@ export const FESTIVAL_SONGS: Song[] = [
         src: "/audio/addicted.mp3"
     },
     { 
-        title: "Mystery Mix", 
-        artist: "FindMe Exclusive",
+        title: "Afrika", 
+        artist: "Mzuk Maen feat. Mazet SA",
         src: "/audio/music-2.mp3"
     },
 ];
