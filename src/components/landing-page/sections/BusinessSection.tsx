@@ -28,7 +28,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
     }, []);
 
     return (
-        <section className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden bg-white">
+        <section className="relative h-screen min-h-[600px] w-full flex flex-col items-center justify-center overflow-hidden bg-white">
 
             {/* ── Layer 1: Background with cinematic zoom ── */}
             <motion.div
@@ -59,7 +59,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 whileInView={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.7, delay: 0.15, ease: SMOOTH_EASE }}
-                className="absolute top-[25%] md:top-[40%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full px-4 flex justify-center pointer-events-none will-change-transform transform-gpu"
+                className="absolute top-[18%] md:top-[35%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 w-full px-4 flex justify-center pointer-events-none will-change-transform transform-gpu"
             >
                 <Image
                     src={THEME.assets.images.business.text}
@@ -71,10 +71,10 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
             </motion.div>
 
             {/* ── Layer 3: Title + Description (morphing text) ── */}
-            <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-6xl h-auto mt-[-20vh] md:mt-8">
+            <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-6xl h-auto mt-[-10vh] md:mt-0">
                 <AnimatePresence mode="wait">
                     <div key={currentIndex} className="flex flex-col items-center w-full">
-                        <RevealMorph delay={0.3} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-6 md:whitespace-nowrap">
+                        <RevealMorph delay={0.3} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 md:mb-6 md:whitespace-nowrap">
                             {BUSINESS_STEPS[currentIndex].titleStyled}
                         </RevealMorph>
                         <RevealMorph delay={0.55} className="text-[#334155] text-sm md:text-lg font-medium max-w-2xl leading-relaxed opacity-90 px-4">
@@ -92,7 +92,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 transition={{ duration: 0.7, delay: 0.6, ease: SMOOTH_EASE }}
                 className="absolute bottom-12 left-8 md:left-16 z-20 hidden md:block"
             >
-                
+
             </motion.div>
 
             {/* ── Layer 5: Early Bird CTA — scale pop-in ── */}
@@ -101,7 +101,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7, ease: SMOOTH_EASE }}
-                className="absolute bottom-64 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
+                className="absolute bottom-36 md:bottom-8 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
             >
                 <div className="bg-[#1d294d]/95 md:bg-[#1d294d]/90 md:backdrop-blur-md p-1 px-1 rounded-xl border border-white/10 shadow-xl">
                     <button
@@ -122,14 +122,14 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 transition={{ duration: 0.6, delay: 0.5, ease: SMOOTH_EASE }}
                 className="absolute bottom-4 z-10 w-full flex justify-center md:hidden"
             >
-                
+
             </motion.div>
 
             {/* ── Layer 7: Waitlist button ── */}
             <Waitlist
                 variant="light"
                 onJoin={onOpenWaitlist}
-                className="absolute bottom-24 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
+                className="absolute bottom-4 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
             />
         </section>
     );

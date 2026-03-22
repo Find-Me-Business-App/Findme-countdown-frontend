@@ -32,7 +32,7 @@ export default function InfoModal() {
                 }}
             >
                 <ModalCloseButton onClick={closeModal} onBack={handleBack} />
-                <InfoContent config={config} />
+                <InfoContent config={config} section={section} />
             </ModalContainer>
         </div>
     );

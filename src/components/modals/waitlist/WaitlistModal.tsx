@@ -24,13 +24,12 @@ export default function WaitlistModal() {
 
             <ModalContainer
                 type="waitlist"
-                className="p-6 md:p-14 relative"
+                className="px-10 py-10 md:p-14 relative w-[333px] h-[621px] max-h-none md:w-full md:h-auto md:max-h-[min(800px,90vh)]"
                 overflow="overflow-hidden"
                 style={{
                     borderRadius: "40px",
-                    maxWidth: "760px",
-                    width: "100%",
-                    maxHeight: "95vh"
+                    maxWidth: "800px",
+                    minHeight: "0"
                 }}
             >
                 {/* Decorative SVG */}
@@ -46,7 +45,6 @@ export default function WaitlistModal() {
 
                 <ModalCloseButton
                     onClick={closeModal}
-                    onBack={() => closeModal()}
                     className="opacity-60 hover:opacity-100 transition-opacity top-4 right-4 md:top-6 md:right-6"
                     style={{ color: THEME.colors.text.primary }}
                 />
@@ -70,14 +68,14 @@ export default function WaitlistModal() {
                         <WaitlistForm section={section} />
                     </div>
 
-                    <div className="pt-16 pb-4 md:pt-24 mt-auto">
+                    <div className="pt-16 pb-4 md:pt-24 mt-auto w-full flex justify-center md:justify-start">
                         <button
                             onClick={() => openModal("info", section)}
-                            className="flex items-center gap-1.5 text-[15px] font-medium hover:opacity-80 group transition-all"
+                            className="flex items-center gap-2.5 text-base md:text-[15px] font-medium hover:opacity-80 group transition-all tracking-wide md:tracking-normal bg-white/5 md:bg-transparent px-6 py-2.5 md:px-0 md:py-0 rounded-full md:rounded-none"
                             style={{ color: "#389FFF" }}
                         >
                             More Information
-                            <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                            <ArrowUpRight className="w-5 h-5 md:w-4 md:h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                         </button>
                     </div>
                 </div>

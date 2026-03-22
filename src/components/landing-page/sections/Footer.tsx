@@ -46,7 +46,7 @@ export default function Footer() {
                 <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
             </motion.div>
 
-            <div className="relative z-10 w-full px-5 py-6 md:px-16 lg:px-24">
+            <div className="relative z-10 w-full px-8 py-6 md:px-20 lg:px-32">
                 {/* Top Section */}
                 <motion.div
                     initial="hidden"
@@ -68,7 +68,7 @@ export default function Footer() {
 
                     <motion.div
                         variants={itemVariants}
-                        className="flex items-center gap-4 md:gap-5 mb-6 md:mb-0 md:-mr-8 lg:-mr-12"
+                        className="flex items-center gap-4 md:gap-5 mb-6 md:mb-0 md:-mr-4 lg:-mr-6"
                     >
                         {SOCIALS.map(({ Icon, href }, idx) => (
                             <Link

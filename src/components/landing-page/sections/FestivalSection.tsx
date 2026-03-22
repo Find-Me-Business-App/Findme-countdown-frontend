@@ -49,7 +49,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
     });
 
     return (
-        <section className="relative h-full w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+        <section className="relative h-screen min-h-[700px] w-full flex flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
 
             {/* ── Background — simple fade-in (no scale on mobile for perf) ── */}
             <motion.div
@@ -93,7 +93,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             </motion.div>
 
             {/* ── Central Content ── */}
-            <div className="relative z-10 flex flex-col items-center text-center px-4 mt-[-22vh] md:mt-0">
+            <div className="relative z-10 flex flex-col items-center text-center px-4 mt-[-12vh] md:mt-0">
 
                 {/* Confetti — simple fade-in then float (single motion div each) */}
                 <div className="absolute inset-0 -m-6 md:-m-10 pointer-events-none overflow-hidden">
@@ -116,7 +116,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 </div>
 
                 {/* ── Title: FINDME LAUNCH ── */}
-                <div className="text-4xl md:text-7xl font-black tracking-tight mb-6 md:mb-8 drop-shadow-lg">
+                <div className="text-4xl md:text-7xl font-black tracking-tight mb-4 md:mb-8 drop-shadow-lg">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -197,7 +197,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6, ease: SMOOTH_EASE }}
-                className="absolute bottom-88 left-1/2 -translate-x-1/2 md:bottom-12 md:left-16 md:translate-x-0 z-20 flex flex-col items-center"
+                className="absolute bottom-64 left-1/2 -translate-x-1/2 md:bottom-12 md:left-16 md:translate-x-0 z-20 flex flex-col items-center"
             >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-white mb-2 shadow-xl">
                     <div className="w-full flex h-full">
@@ -215,7 +215,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7, ease: SMOOTH_EASE }}
-                className="absolute bottom-60 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
+                className="absolute bottom-40 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
             >
                 <p className="text-white/60 text-[8px] md:text-[10px] font-medium mb-2 md:mb-3">Theme sounds :</p>
                 <div className="flex items-center gap-3 md:gap-4 bg-black/80 md:bg-black/40 md:backdrop-blur-md p-2 md:p-3 rounded-2xl border border-white/10 max-w-[280px] md:max-w-none shadow-2xl transition-all group hover:border-white/30">
@@ -261,7 +261,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             <Waitlist
                 variant="dark"
                 onJoin={onOpenWaitlist}
-                className="absolute bottom-20 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
+                className="absolute bottom-6 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
             />
 
             <style jsx>{`
