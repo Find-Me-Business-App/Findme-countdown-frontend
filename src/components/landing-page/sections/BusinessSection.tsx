@@ -105,7 +105,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
             >
                 <div className="bg-[#1d294d]/95 md:bg-[#1d294d]/90 md:backdrop-blur-md p-1 px-1 rounded-xl border border-white/10 shadow-xl">
                     <button
-                        onClick={() => openModal("registration", "business")}
+                        onClick={() => openModal("registration", "business", { fromEarlyBird: true })}
                         className="bg-[#1d294d] text-white px-6 py-2 rounded-lg font-bold hover:scale-105 transition-transform active:scale-95"
                     >
                         <span className="text-xs tracking-widest uppercase">Early bird</span>

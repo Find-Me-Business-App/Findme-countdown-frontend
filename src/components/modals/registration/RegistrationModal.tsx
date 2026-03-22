@@ -41,7 +41,8 @@ export type RegistrationView =
  * Each sub-step is a standalone component imported from landing-page.
  */
 export default function RegistrationModal() {
-    const { section, closeModal, openModal } = useModalStore();
+    const { section, closeModal, openModal, data } = useModalStore();
+    const fromEarlyBird = data?.fromEarlyBird === true;
     const config = REGISTRATION_CONFIGS[section as keyof typeof REGISTRATION_CONFIGS];
     const [view, setView] = useState<RegistrationView>("form");
     const [businessName, setBusinessName] = useState("");
@@ -110,7 +111,7 @@ export default function RegistrationModal() {
             >
                 <ModalCloseButton
                     onClick={closeModal}
-                    onBack={showBack ? handleBack : undefined}
+                    onBack={showBack && !fromEarlyBird ? handleBack : undefined}
                     className={`top-4 right-4 md:top-10 md:right-10 ${isFestivalVerification ? 'text-white/80 hover:text-white' : ''}`}
                     style={isFestivalVerification ? { color: 'white' } : {}}
                 />
