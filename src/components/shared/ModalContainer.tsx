@@ -34,7 +34,7 @@ export default function ModalContainer({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className={`relative w-full ${finalMaxWidth} h-auto max-h-[95vh] md:max-h-none ${overflow} ${borderRadius} shadow-2xl border scrollbar-hide ${className}`}
+            className={`relative w-full ${finalMaxWidth} h-auto max-h-[85vh] md:max-h-none ${overflow} ${borderRadius} shadow-2xl border scrollbar-hide ${className}`}
             style={{ 
                 willChange: "transform, opacity",
                 backgroundColor: "var(--modal-bg)",

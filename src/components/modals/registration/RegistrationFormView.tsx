@@ -28,13 +28,13 @@ export default function RegistrationFormView({ config, section, onNext, onAMECli
                         style={{ backgroundColor: THEME.colors.components.separator.desktop }}
                     />
                 )}
-                <div className="mb-4 md:mb-6">
+                <div className="mb-3 md:mb-6">
                     <div
-                        className="w-14 h-[3px] md:w-18 mb-4 md:mb-5 opacity-90"
+                        className="w-14 h-[3px] md:w-18 mb-3 md:mb-5 opacity-90"
                         style={{ backgroundColor: THEME.colors.text.primary }}
                     />
                     <h2
-                        className="text-2xl md:text-3xl font-bold mb-2 md:mb-3 tracking-tight"
+                        className="text-2xl md:text-3xl font-bold mb-1.5 md:mb-3 tracking-tight"
                         style={{ color: THEME.colors.text.primary }}
                     >
                         {config.title}

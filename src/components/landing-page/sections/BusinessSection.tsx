@@ -101,7 +101,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                 whileInView={{ opacity: 1, scale: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7, ease: SMOOTH_EASE }}
-                className="absolute bottom-45 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
+                className="absolute bottom-64 md:bottom-12 md:right-16 z-20 flex flex-col items-center left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0"
             >
                 <div className="bg-[#1d294d]/95 md:bg-[#1d294d]/90 md:backdrop-blur-md p-1 px-1 rounded-xl border border-white/10 shadow-xl">
                     <button
@@ -126,7 +126,11 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
             </motion.div>
 
             {/* ── Layer 7: Waitlist button ── */}
-            <Waitlist variant="light" onJoin={onOpenWaitlist} />
+            <Waitlist
+                variant="light"
+                onJoin={onOpenWaitlist}
+                className="absolute bottom-24 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
+            />
         </section>
     );
 }

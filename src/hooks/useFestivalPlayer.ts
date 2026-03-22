@@ -24,7 +24,6 @@ export function useFestivalPlayer() {
     }, []);
 
     useEffect(() => {
-        // Always have an audio instance
         if (!audioRef.current) {
             audioRef.current = new Audio();
         }
@@ -36,22 +35,17 @@ export function useFestivalPlayer() {
 
         audio.addEventListener("ended", handleSongEnd);
 
-        // Sync src
-        const absoluteSrc = currentSong.src.startsWith('http') ? currentSong.src : `${window.location.origin}${currentSong.src}`;
-        if (audio.src !== absoluteSrc) {
+        // Sync src only if it changed
+        if (audio.getAttribute('src') !== currentSong.src) {
             audio.src = currentSong.src;
-            audio.load(); // Ensure new source is loaded
         }
 
-        // Sync play/pause state
+        // Sync playback state
         if (isPlaying) {
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.catch(err => {
-                    console.error("Playback failed:", err);
-                    setIsPlaying(false);
-                });
-            }
+            audio.play().catch(err => {
+                console.error("Playback failed:", err);
+                setIsPlaying(false);
+            });
         } else {
             audio.pause();
         }

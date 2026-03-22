@@ -68,11 +68,14 @@ export default function LandingPage() {
                     </video>
                     <div className="absolute inset-0 bg-black/40" />
                 </motion.div>
-                <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8">
+                <main className="relative z-10 flex flex-col items-center justify-center px-4 md:px-8 mt-[-18vh] md:mt-0">
                     <Hero />
                     <Countdown />
                 </main>
-                <Waitlist onJoin={() => openModal("waitlist", activeSection)} />
+                <Waitlist
+                    onJoin={() => openModal("waitlist", activeSection)}
+                    className="absolute bottom-24 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
+                />
                 <motion.div
                     initial={{ scale: 0, opacity: 0 }}
                     whileInView={{ scale: 1, opacity: 1 }}

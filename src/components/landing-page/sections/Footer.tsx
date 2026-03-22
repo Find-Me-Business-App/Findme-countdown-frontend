@@ -46,16 +46,16 @@ export default function Footer() {
                 <div className="absolute inset-0 bg-white/40 backdrop-blur-sm" />
             </motion.div>
 
-            <div className="relative z-10 w-full px-6 py-8 md:px-16 lg:px-24">
+            <div className="relative z-10 w-full px-5 py-6 md:px-16 lg:px-24">
                 {/* Top Section */}
                 <motion.div
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={containerVariants}
-                    className="flex flex-col md:flex-row items-center md:justify-between relative mb-8 md:mb-10"
+                    className="flex flex-col md:flex-row items-center md:justify-between relative mb-6 md:mb-10"
                 >
-                    {/* Logo */}
+                    {/* Logo - Back on left */}
                     <motion.div variants={itemVariants}>
                         <Image
                             src={THEME.assets.images.footer.logo}
@@ -66,18 +66,9 @@ export default function Footer() {
                         />
                     </motion.div>
 
-                    {/* Tagline */}
                     <motion.div
                         variants={itemVariants}
-                        className="md:absolute md:left-1/2 md:-translate-x-1/2 text-gray-400 font-bold tracking-[0.25em] text-xs md:text-xs text-center mb-8 md:mb-0"
-                    >
-                        LIMITLESS POSSIBILITIES
-                    </motion.div>
-
-                    {/* Socials */}
-                    <motion.div
-                        variants={itemVariants}
-                        className="flex items-center gap-4 md:gap-5 mb-6 md:mb-0"
+                        className="flex items-center gap-4 md:gap-5 mb-6 md:mb-0 md:-mr-8 lg:-mr-12"
                     >
                         {SOCIALS.map(({ Icon, href }, idx) => (
                             <Link
@@ -89,6 +80,13 @@ export default function Footer() {
                             </Link>
                         ))}
                     </motion.div>
+
+                    <motion.div
+                        variants={itemVariants}
+                        className="md:absolute md:left-1/2 md:-translate-x-1/2 text-gray-400 font-bold tracking-[0.12em] md:tracking-[0.25em] text-[11px] md:text-sm text-center mb-6 md:mb-0"
+                    >
+                        LIMITLESS POSSIBILITIES
+                    </motion.div>
                 </motion.div>
 
                 {/* Full Width Divider */}
@@ -96,7 +94,7 @@ export default function Footer() {
                     initial={{ scaleX: 0, opacity: 0 }}
                     whileInView={{ scaleX: 1, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.3 }}
-                    className="w-full h-px bg-black/5 mb-10 origin-left"
+                    className="w-full h-px bg-black/5 mb-8 origin-left"
                 />
 
                 {/* Main Content Grid */}
@@ -105,26 +103,26 @@ export default function Footer() {
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={containerVariants}
-                    className="flex flex-col md:flex-row md:justify-between w-full gap-y-8 mb-12"
+                    className="flex flex-wrap justify-between w-full gap-y-8 mb-10 px-1"
                 >
                     {FOOTER_LINKS.map((section) => (
-                        <motion.div key={section.title} variants={itemVariants} className="flex flex-col gap-3 md:gap-4">
-                            <h4 className="text-[#1d294d] font-bold text-[11px] md:text-[13px] tracking-[0.05em] mb-1">{section.title}</h4>
-                            <div className="flex flex-col gap-2 md:gap-2.5">
+                        <motion.div key={section.title} variants={itemVariants} className="flex flex-col gap-2 md:gap-4 items-start text-left">
+                            <h4 className="text-[#1d294d] font-bold text-[10px] md:text-[14px] uppercase tracking-[0.05em] mb-1">{section.title}</h4>
+                            <div className="flex flex-col gap-1.5 md:gap-2.5 items-start">
                                 {section.links.map((link) => (
                                     <Link
                                         key={link}
                                         href="#"
-                                        className="text-gray-500 hover:text-black hover:translate-x-1 transition-all text-[11px] md:text-sm font-medium flex items-center gap-1.5 group"
+                                        className="text-gray-500 hover:text-black transition-all text-[9.5px] md:text-[13px] font-medium flex items-center justify-start gap-1 group"
                                     >
-                                        <span className="leading-tight">{link}</span>
+                                        <span className="leading-tight text-left">{link}</span>
                                         {link === "Eco" && (
                                             <Image
                                                 src={THEME.assets.icons.social.vector}
                                                 alt="Eco"
-                                                width={12}
-                                                height={12}
-                                                className="w-3 h-3 md:w-3.5 md:h-3.5 flex-shrink-0 group-hover:rotate-12 transition-transform"
+                                                width={10}
+                                                height={10}
+                                                className="w-2.5 h-2.5 md:w-3.5 md:h-3.5 flex-shrink-0 group-hover:rotate-12 transition-transform opacity-70"
                                             />
                                         )}
                                     </Link>
@@ -134,16 +132,16 @@ export default function Footer() {
                     ))}
                 </motion.div>
 
-                {/* App Store Buttons - Visible only on mobile */}
+                {/* App Store Buttons */}
                 <motion.div
                     initial={{ y: 30, opacity: 0 }}
                     whileInView={{ y: 0, opacity: 1 }}
                     transition={{ type: "spring", damping: 12, stiffness: 120, delay: 0.5 }}
-                    className="flex flex-row items-center justify-center gap-3 md:gap-4 mb-10 md:hidden"
+                    className="flex flex-row items-center justify-center gap-2.5 md:gap-4 mb-8"
                 >
                     {/* Play Store Button */}
-                    <div className="bg-[#1d2645] text-white px-4 md:px-6 py-2 md:py-3 rounded-[10px] md:rounded-xl flex items-center gap-2 md:gap-3 w-auto md:w-48 shadow-lg cursor-pointer hover:brightness-110 active:scale-95 transition-all border border-white/5">
-                        <div className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0">
+                    <div className="bg-[#1d2645] text-white px-3.5 md:px-6 py-2 md:py-3 rounded-[10px] md:rounded-xl flex items-center gap-2 md:gap-3 w-auto md:w-48 shadow-lg cursor-pointer hover:brightness-110 active:scale-95 transition-all border border-white/5">
+                        <div className="w-5 h-5 md:w-8 md:h-8 flex-shrink-0">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                                 <path d="M3.5 3.5V20.5C3.5 20.8 3.7 21 4 21C4.1 21 4.2 21 4.3 20.9L13 12.2L4.3 3.5C4.2 3.4 4.1 3.4 4 3.4C3.7 3.4 3.5 3.6 3.5 3.9V3.5Z" fill="#00E5FF" />
                                 <path d="M13 12.2L16.2 15.4L20.1 13.2C20.4 13 20.6 12.7 20.6 12.2C20.6 11.7 20.4 11.4 20.1 11.2L16.2 9L13 12.2Z" fill="#FFD600" />
@@ -152,21 +150,21 @@ export default function Footer() {
                             </svg>
                         </div>
                         <div className="flex flex-col text-left">
-                            <span className="text-[8px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Download on the</span>
-                            <span className="text-sm md:text-sm font-bold leading-none mt-0.5">PlayStore</span>
+                            <span className="text-[7px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Download on the</span>
+                            <span className="text-[12px] md:text-sm font-bold leading-none mt-0.5">PlayStore</span>
                         </div>
                     </div>
 
                     {/* App Store Button */}
-                    <div className="bg-[#1d2645] text-white px-4 md:px-6 py-2 md:py-3 rounded-[10px] md:rounded-xl flex items-center gap-2 md:gap-3 w-auto md:w-48 shadow-lg cursor-pointer hover:brightness-110 active:scale-95 transition-all border border-white/5">
-                        <div className="w-6 h-6 md:w-8 md:h-8 flex-shrink-0">
+                    <div className="bg-[#1d2645] text-white px-3.5 md:px-6 py-2 md:py-3 rounded-[10px] md:rounded-xl flex items-center gap-2 md:gap-3 w-auto md:w-48 shadow-lg cursor-pointer hover:brightness-110 active:scale-95 transition-all border border-white/5">
+                        <div className="w-5 h-5 md:w-8 md:h-8 flex-shrink-0">
                             <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
                                 <path d="M17.05 20.28c-.96.95-2.12 2.37-3.6 2.37-1.4 0-1.87-.89-3.52-.89-1.65 0-2.17.87-3.48.91-1.37.04-2.58-1.57-3.63-3.1C.68 16.27-.92 11.53.94 8.28c.92-1.6 2.53-2.61 4.31-2.64 1.34-.03 2.61.89 3.43.89.82 0 2.36-1.12 3.97-.96 1.69.17 2.96.79 3.65 1.78-1.76 1.06-1.48 3.39.29 4.12.8.33 1.54.89 2.02 1.59-1.1 1.62-2.3 3.11-3.56 4.38a16.82 16.82 0 0 1-1 2.84zM12.03 5.43c.12-2.42-1.92-4.59-4.32-4.72-.15 2.5 2.14 4.5 4.32 4.72z" />
                             </svg>
                         </div>
                         <div className="flex flex-col text-left">
-                            <span className="text-[8px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Get it on the</span>
-                            <span className="text-sm md:text-sm font-bold leading-none mt-0.5">AppStore</span>
+                            <span className="text-[7px] md:text-[8px] uppercase tracking-wider opacity-60 whitespace-nowrap">Get it on the</span>
+                            <span className="text-[12px] md:text-sm font-bold leading-none mt-0.5">AppStore</span>
                         </div>
                     </div>
                 </motion.div>
@@ -176,10 +174,10 @@ export default function Footer() {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.8 }}
-                    className="flex justify-center items-center text-gray-400 text-xs md:text-[12px] pt-8 border-t border-black/5"
+                    className="flex justify-center items-center text-gray-400 text-[11px] md:text-[12px] pt-6 border-t border-black/5"
                 >
                     <p className="flex items-center gap-2 opacity-80 text-center">
-                        <span className="w-4 h-4 md:w-5 md:h-5 rounded-full border border-gray-300 flex items-center justify-center text-[9px] md:text-[10px]">C</span>
+                        <span className="w-3.5 h-3.5 md:w-5 md:h-5 rounded-full border border-gray-400 flex items-center justify-center text-[8px] md:text-[10px]">C</span>
                         Copyright 2026 FindMe.com - All rights reserved.
                     </p>
                 </motion.div>

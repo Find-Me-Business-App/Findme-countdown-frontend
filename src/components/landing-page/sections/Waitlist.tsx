@@ -5,9 +5,10 @@ import { motion } from "framer-motion";
 interface WaitlistProps {
     variant?: "dark" | "light";
     onJoin?: () => void;
+    className?: string;
 }
 
-export default function Waitlist({ variant = "dark", onJoin }: WaitlistProps) {
+export default function Waitlist({ variant = "dark", onJoin, className }: WaitlistProps) {
     const isLight = variant === "light";
 
     return (
@@ -21,7 +22,7 @@ export default function Waitlist({ variant = "dark", onJoin }: WaitlistProps) {
                 delay: 1.3,
                 ease: [0.22, 1, 0.36, 1],
             }}
-            className="absolute bottom-16 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
+            className={className || "absolute bottom-4 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"}
         >
             <div className="relative w-24 h-24 md:w-28 md:h-28 flex items-center justify-center">
                 {/* Circular text SVG placeholder */}

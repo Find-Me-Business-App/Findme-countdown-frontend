@@ -62,7 +62,7 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-3 md:gap-4 scrollbar-hide">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 md:gap-4 scrollbar-hide">
             <div className="flex flex-col gap-1 md:gap-1.5">
                 <label
                     className={labelClasses}
@@ -152,7 +152,7 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
             )}
 
             {(section === "home" || section === "business") && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
                     <div className="flex flex-col gap-1.5">
                         <label
                             className={labelClasses}

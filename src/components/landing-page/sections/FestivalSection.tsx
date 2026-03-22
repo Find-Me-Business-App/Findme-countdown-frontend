@@ -93,7 +93,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             </motion.div>
 
             {/* ── Central Content ── */}
-            <div className="relative z-10 flex flex-col items-center text-center px-4 mt-[-8vh] md:mt-0">
+            <div className="relative z-10 flex flex-col items-center text-center px-4 mt-[-22vh] md:mt-0">
 
                 {/* Confetti — simple fade-in then float (single motion div each) */}
                 <div className="absolute inset-0 -m-6 md:-m-10 pointer-events-none overflow-hidden">
@@ -110,7 +110,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                             viewport={{ once: true }}
                             transition={{ duration: 0.4, delay: 0.3 + i * 0.08, ease: SMOOTH_EASE }}
                             animate={floatY(i)}
-                            className={`absolute ${shape.pos} w-2 h-2 md:w-3 md:h-3 ${shape.color} ${shape.clip}`}
+                            className={`absolute ${shape.pos} w-2 h-2 md:w-3 md:h-3 ${shape.color} ${shape.clip} shadow-[0_0_8px_rgba(255,255,255,0.4)]`}
                         />
                     ))}
                 </div>
@@ -128,7 +128,11 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                                 key={i}
                                 custom={i}
                                 variants={letterVariants}
-                                className={`${getLetterColor(letter, i, "FINDME")} filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] inline-block`}
+                                className={`${getLetterColor(letter, i, "FINDME")} inline-block`}
+                                style={{ 
+                                    textShadow: "0 4px 10px rgba(0,0,0,0.5), 0 0 15px rgba(255,255,255,0.1)",
+                                    WebkitTextStroke: "1px rgba(255,255,255,0.05)"
+                                }}
                             >
                                 {letter}
                             </motion.span>
@@ -137,7 +141,11 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                         <motion.span
                             custom={7}
                             variants={letterVariants}
-                            className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF3D00] via-[#823E8D] to-[#06CA02] filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] inline-block"
+                            className="text-transparent bg-clip-text bg-gradient-to-r from-[#FF3D00] via-[#823E8D] to-[#06CA02] inline-block"
+                            style={{ 
+                                textShadow: "0 4px 10px rgba(0,0,0,0.5), 0 0 15px rgba(255,255,255,0.1)",
+                                WebkitTextStroke: "1px rgba(255,255,255,0.05)"
+                            }}
                         >
                             LAUNCH
                         </motion.span>
@@ -155,7 +163,11 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                                 key={i}
                                 custom={i + 14}
                                 variants={letterVariants}
-                                className={`${getLetterColor(letter, i, "FESTIVAL")} filter drop-shadow-[0_0_8px_rgba(255,255,255,0.3)] inline-block`}
+                                className={`${getLetterColor(letter, i, "FESTIVAL")} inline-block`}
+                                style={{ 
+                                    textShadow: "0 4px 10px rgba(0,0,0,0.5), 0 0 15px rgba(255,255,255,0.1)",
+                                    WebkitTextStroke: "1px rgba(255,255,255,0.05)"
+                                }}
                             >
                                 {letter}
                             </motion.span>
@@ -170,9 +182,12 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.5, ease: SMOOTH_EASE }}
                 >
-                    <p className="text-white text-[10px] md:text-2xl font-bold flex items-center gap-2 md:gap-4 drop-shadow-lg uppercase tracking-[0.2em]">
-                        DANCE <span className="text-white/40">•</span> MUSIC <span className="text-white/40">•</span> TECHNOLOGY
-                    </p>
+                    <div className="relative px-6 py-1 md:py-2">
+                        <div className="absolute inset-0 bg-black/5 md:bg-black/10 backdrop-blur-[2px] rounded-full" />
+                        <p className="relative z-10 text-white text-[10px] md:text-2xl font-bold flex items-center gap-2 md:gap-4 uppercase tracking-[0.25em] md:tracking-[0.4em]">
+                            DANCE <span className="text-white/40">•</span> MUSIC <span className="text-white/40">•</span> TECHNOLOGY
+                        </p>
+                    </div>
                 </motion.div>
             </div>
 
@@ -182,7 +197,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.6, ease: SMOOTH_EASE }}
-                className="absolute bottom-28 md:bottom-12 left-8 md:left-16 z-20 flex flex-col items-center"
+                className="absolute bottom-88 left-1/2 -translate-x-1/2 md:bottom-12 md:left-16 md:translate-x-0 z-20 flex flex-col items-center"
             >
                 <div className="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white/20 overflow-hidden flex items-center justify-center bg-white mb-2 shadow-xl">
                     <div className="w-full flex h-full">
@@ -200,7 +215,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.7, ease: SMOOTH_EASE }}
-                className="absolute bottom-44 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
+                className="absolute bottom-60 left-1/2 -translate-x-1/2 md:bottom-12 md:right-16 md:left-auto md:translate-x-0 z-20 flex flex-col items-center md:items-end"
             >
                 <p className="text-white/60 text-[8px] md:text-[10px] font-medium mb-2 md:mb-3">Theme sounds :</p>
                 <div className="flex items-center gap-3 md:gap-4 bg-black/80 md:bg-black/40 md:backdrop-blur-md p-2 md:p-3 rounded-2xl border border-white/10 max-w-[280px] md:max-w-none shadow-2xl transition-all group hover:border-white/30">
@@ -243,7 +258,11 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
             </motion.div>
 
             {/* ── Waitlist ── */}
-            <Waitlist variant="dark" onJoin={onOpenWaitlist} />
+            <Waitlist
+                variant="dark"
+                onJoin={onOpenWaitlist}
+                className="absolute bottom-20 md:bottom-2 left-1/2 -translate-x-1/2 z-10 cursor-pointer group"
+            />
 
             <style jsx>{`
                 .clip-triangle {
