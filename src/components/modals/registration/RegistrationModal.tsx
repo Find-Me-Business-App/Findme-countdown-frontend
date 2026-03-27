@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { useModalStore } from "@/store/useModalStore";
 import RegistrationFormView from "./RegistrationFormView";
 import { ModalBackdrop, ModalContainer, ModalCloseButton } from "../shared";
-import { THEME } from "@/config/theme";
 
 // Sub-step components
 import RegistrationAI from "./steps/RegistrationAI";
@@ -61,18 +60,16 @@ export default function RegistrationModal() {
     const isSubStep = view !== "form" && view !== "ai";
     const isFestivalVerification = view === "festival_verification";
 
-    const isBusinessOrFestival = section === "business" || section === "festival";
 
     // Compute container sizing based on current view
     const containerClass = view === "ai"
         ? "max-w-[420px] md:max-w-[860px]"
         : isSubStep
-            ? `max-w-[420px] md:max-w-[680px] shadow-2xl ${isBusinessOrFestival ? 'border-0' : 'border-2'}`
+            ? `max-w-[420px] md:max-w-[680px] shadow-2xl border`
             : "max-w-[420px] md:max-w-[760px]";
 
     const containerStyle = {
-        ...(isSubStep && !isBusinessOrFestival ? { borderColor: THEME.colors.text.accent } : {}),
-        ...(isFestivalVerification ? { backgroundColor: "#8C8C8C", border: "none" } : {}),
+        ...(isFestivalVerification ? { backgroundColor: "rgba(140, 140, 140, 0.4)" } : {}),
         maxHeight: "85vh"
     };
 

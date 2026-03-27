@@ -34,16 +34,18 @@ export default function ModalContainer({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.25, ease: "easeOut" }}
-            className={`relative w-full ${finalMaxWidth} h-auto max-h-[85vh] md:max-h-none ${overflow} ${borderRadius} shadow-2xl border scrollbar-hide ${className}`}
+            className={`relative z-10 w-full ${finalMaxWidth} h-auto max-h-[85vh] md:max-h-none ${overflow} ${borderRadius} shadow-2xl border scrollbar-hide ${className}`}
             style={{ 
                 willChange: "transform, opacity",
                 backgroundColor: "var(--modal-bg)",
+                backdropFilter: "blur(16px)",
+                WebkitBackdropFilter: "blur(16px)",
                 borderColor: "var(--modal-border)",
                 boxShadow: typeof window !== 'undefined' && window.innerWidth >= 768 ? THEME.colors.shadows.standard : undefined,
                 ...style,
                 // Use CSS variables for responsive background and border
                 "--modal-bg": bgConfig.mobile,
-                "--modal-border": "#ffffff",
+                "--modal-border": "rgba(255, 255, 255, 0.4)",
                 "--modal-separator": THEME.colors.components.separator.mobile,
             } as React.CSSProperties}
         >
@@ -51,7 +53,7 @@ export default function ModalContainer({
                 @media (min-width: 768px) {
                     div {
                         --modal-bg: ${bgConfig.desktop} !important;
-                        --modal-border: ${type === 'info' ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0.1)'} !important;
+                        --modal-border: rgba(255, 255, 255, 0.4) !important;
                         --modal-separator: ${THEME.colors.components.separator.desktop} !important;
                     }
                 }

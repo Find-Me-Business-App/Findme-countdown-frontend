@@ -8,43 +8,43 @@ export const THEME = {
         // Core background colors
         background: {
             registration: {
-                mobile: "#787878",
-                desktop: "#787878",
+                mobile: "rgba(20, 20, 20, 0.4)",
+                desktop: "rgba(20, 20, 20, 0.4)",
             },
             info: {
-                mobile: "#787878",
-                desktop: "#787878",
+                mobile: "rgba(20, 20, 20, 0.4)",
+                desktop: "rgba(20, 20, 20, 0.4)",
             },
             waitlist: {
-                mobile: "#787878",
-                desktop: "#787878",
+                mobile: "rgba(20, 20, 20, 0.4)",
+                desktop: "rgba(20, 20, 20, 0.4)",
             },
             contact: {
-                mobile: "#787878",
-                desktop: "#787878",
+                mobile: "rgba(20, 20, 20, 0.4)",
+                desktop: "rgba(20, 20, 20, 0.4)",
             }
         },
         // Backdrop colors and effects
         backdrop: {
             registration: {
-                mobile: "rgba(38, 38, 38, 0.6)",
-                desktop: "rgba(38, 38, 38, 0.6)",
-                blur: "none",
+                mobile: "rgba(0, 0, 0, 0.25)",
+                desktop: "rgba(0, 0, 0, 0.25)",
+                blur: "sm",
             },
             info: {
-                mobile: "rgba(38, 38, 38, 0.6)",
-                desktop: "rgba(38, 38, 38, 0.6)",
-                blur: "none",
+                mobile: "rgba(0, 0, 0, 0.25)",
+                desktop: "rgba(0, 0, 0, 0.25)",
+                blur: "sm",
             },
             waitlist: {
-                mobile: "rgba(38, 38, 38, 0.6)",
-                desktop: "rgba(38, 38, 38, 0.6)",
-                blur: "none",
+                mobile: "rgba(0, 0, 0, 0.25)",
+                desktop: "rgba(0, 0, 0, 0.25)",
+                blur: "sm",
             },
             default: {
-                mobile: "rgba(38, 38, 38, 0.6)",
-                desktop: "rgba(38, 38, 38, 0.6)",
-                blur: "none",
+                mobile: "rgba(0, 0, 0, 0.25)",
+                desktop: "rgba(0, 0, 0, 0.25)",
+                blur: "sm",
             }
         },
         // Text colors

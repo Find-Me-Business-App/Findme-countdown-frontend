@@ -12,10 +12,12 @@ export default function ModalBackdrop({ onClick, type = "default" }: ModalBackdr
     const config = THEME.colors.backdrop[type];
 
     // Convert blur string to tailwind class
-    const blurClass = (config.blur as string) === "xl" ? "md:backdrop-blur-xl" :
-        (config.blur as string) === "3xl" ? "md:backdrop-blur-3xl" :
-            (config.blur as string) === "none" ? "" :
-                "md:backdrop-blur-md";
+    // Convert blur string to tailwind class - responsive-friendly
+    const blurClass = (config.blur as string) === "xl" ? "backdrop-blur-xl" :
+        (config.blur as string) === "sm" ? "backdrop-blur-sm" :
+            (config.blur as string) === "3xl" ? "backdrop-blur-3xl" :
+                (config.blur as string) === "none" ? "" :
+                    "backdrop-blur-md";
 
     return (
         <motion.div
@@ -24,9 +26,9 @@ export default function ModalBackdrop({ onClick, type = "default" }: ModalBackdr
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClick}
-            className="absolute inset-0"
+            className="absolute inset-0 z-0"
             style={{
-                backgroundColor: "var(--backdrop-color)",
+                backgroundColor: "transparent",
             }}
         >
             <div

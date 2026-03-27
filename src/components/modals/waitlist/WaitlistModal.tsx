@@ -24,11 +24,11 @@ export default function WaitlistModal() {
 
             <ModalContainer
                 type="waitlist"
-                className="px-10 py-10 md:p-14 relative w-[333px] h-[621px] max-h-none md:w-full md:h-auto md:max-h-[min(800px,90vh)]"
+                className="px-10 py-10 md:p-14 relative w-[333px] h-[621px] max-h-none md:w-[777px] md:h-[444px] md:max-h-none"
                 overflow="overflow-hidden"
                 style={{
                     borderRadius: "40px",
-                    maxWidth: "800px",
+                    maxWidth: "777px",
                     minHeight: "0"
                 }}
             >
@@ -55,7 +55,7 @@ export default function WaitlistModal() {
                     {config.actionLabel && (
                         <button
                             onClick={() => openModal("registration", section)}
-                            className="flex items-center gap-1.5 text-[15px] font-medium hover:opacity-80 mb-10 group transition-all"
+                            className="flex items-center gap-1.5 text-[15px] font-medium hover:opacity-80 mb-4 group transition-all"
                             style={{ color: "#389FFF" }}
                         >
                             {config.actionLabel}
@@ -64,11 +64,11 @@ export default function WaitlistModal() {
                     )}
 
                     {/* Form Area */}
-                    <div className="w-full mb-6">
+                    <div className="w-full mb-2">
                         <WaitlistForm section={section} />
                     </div>
 
-                    <div className="pt-16 pb-4 md:pt-24 mt-auto w-full flex justify-center md:justify-start">
+                    <div className="pt-4 pb-4 md:pt-4 md:pb-10 mt-auto w-full flex justify-center md:justify-start">
                         <button
                             onClick={() => openModal("info", section)}
                             className="flex items-center gap-2.5 text-base md:text-[15px] font-medium hover:opacity-80 group transition-all tracking-wide md:tracking-normal bg-white/5 md:bg-transparent px-6 py-2.5 md:px-0 md:py-0 rounded-full md:rounded-none"
