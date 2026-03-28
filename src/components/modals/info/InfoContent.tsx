@@ -10,79 +10,129 @@ interface InfoContentProps {
         imagePath: string;
         accentColor: string;
         title: string;
-        description: string;
+        description: string | string[];
         subDescription: string;
         titleColor?: string;
     };
     section: SectionType;
 }
 
+/**
+ * InfoContent — Redesigned to match the desktop mockup exactly.
+ */
 export default function InfoContent({ config, section }: InfoContentProps) {
     return (
-        <>
-            {/* Mobile Image (Top) */}
-            <div className="relative w-full h-[450px] md:hidden pointer-events-none mb-4 whitespace-normal transition-all duration-300 transform-gpu">
+        <div className="relative flex flex-col md:flex-row w-full h-full min-h-0 overflow-hidden">
+            
+            {/* 1. Mobile Image area (Hidden on Desktop) */}
+            <div className="relative w-full h-[28vh] min-h-[180px] md:hidden flex-shrink-0 bg-[#0f172a]/20">
                 <Image
                     src={config.imagePath}
                     alt="Illustration"
                     fill
-                    className="object-contain"
+                    className="object-contain p-4"
                     priority
                 />
             </div>
 
-            {/* Desktop Image (Right) */}
-            <div className="absolute right-0 bottom-4 z-0 pointer-events-none hidden md:block">
-                <Image
-                    src={config.imagePath}
-                    alt="Illustration"
-                    width={240}
-                    height={240}
-                    className="object-contain"
-                    priority
-                />
-            </div>
+            {/* 1. Content Wrapper (Flex-Row on Desktop) */}
+            <div className="relative z-10 flex flex-1 flex-col md:flex-row w-full min-h-0 overflow-hidden">
+                
+                {/* Text Area (Left) */}
+                <div className="flex flex-col w-full md:w-[60%] min-h-0 pt-6 md:pt-14 pb-8 md:pb-14 pl-6 pr-6 md:pl-16 md:pr-4 self-stretch">
+                    {/* Header (Indigo Bar ABOVE text) */}
+                    <div className="flex-shrink-0 mb-4 md:mb-6 flex flex-col items-center md:items-start">
+                        <InfoHeader accentColor={config.accentColor} />
+                        <h2 
+                            className="font-extrabold tracking-[0.03em] leading-[39px] text-[#2B365A] text-center md:text-left mx-auto md:mx-0"
+                            style={{ 
+                                fontSize: '24px',
+                                width: '251px',
+                                height: '39px',
+                            }}
+                        >
+                            {config.title}
+                        </h2>
+                    </div>
 
-            <div className="relative z-10 flex flex-col items-center md:items-start text-center md:text-left md:pt-14 md:pb-14 md:pl-14 w-full md:w-[65%] whitespace-normal h-fit max-h-[80vh] md:max-h-[85vh] overflow-hidden">
-                {/* Header (Fixed/Sticky) */}
-                <div className="px-8 md:px-0 w-full mb-2">
-                    <InfoHeader accentColor={config.accentColor} />
-                    <h2 className={`text-xl md:text-3xl font-bold mb-4 ${config.titleColor || 'text-white'}`}>
-                        {config.title}
-                    </h2>
+                    {/* Scrollable Body (Refined for airy mockup look) */}
+                    <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide pt-1 pb-14 info-scroll-mask">
+                        <InfoBody description={config.description} />
+                        <InfoFooter subDescription={config.subDescription} section={section} />
+                        <div className="h-12 flex-shrink-0" /> {/* Bottom spacing */}
+                    </div>
                 </div>
 
-                {/* Scrollable Body */}
-                <div className="flex-1 overflow-y-auto scrollbar-hide w-full px-8 md:px-0 md:pr-14 pb-14">
-                    {/* Main Description */}
-                    <InfoBody description={config.description} />
-
-                    {/* Sub Content */}
-                    <InfoFooter subDescription={config.subDescription} section={section} />
+                {/* Desktop Image Area (Right - True Flex-Column to prevent overlap) */}
+                <div className="hidden md:flex md:w-[40%] h-full relative pointer-events-none items-end justify-end">
+                    <motion.div
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="relative w-full h-[120%] -mb-[10%] -mr-[10%]" /* Slight overflow for dynamic look */
+                    >
+                        <Image
+                            src={config.imagePath}
+                            alt="Illustration"
+                            fill
+                            className="object-contain object-right-bottom select-none"
+                            priority
+                        />
+                    </motion.div>
                 </div>
             </div>
-        </>
+
+            {/* Custom Fade Mask (Only at the bottom now) */}
+            <style jsx>{`
+                .info-scroll-mask {
+                    -webkit-mask-image: linear-gradient(
+                        to bottom,
+                        black 0%,
+                        black calc(100% - 80px),
+                        transparent 100%
+                    );
+                    mask-image: linear-gradient(
+                        to bottom,
+                        black 0%,
+                        black calc(100% - 80px),
+                        transparent 100%
+                    );
+                }
+            `}</style>
+        </div>
     );
 }
 
 /* ─── Sub-components ────────────────────────────────────────────── */
 
 function InfoHeader({ accentColor }: { accentColor: string }) {
+    // Determine header bar color from accent or fallback
+    const barColor = accentColor.includes('bg-') ? accentColor : 'bg-[#1e3a8a]';
+
     return (
-        <div className="mb-6 md:mb-8 flex flex-col items-center md:items-start">
-            <div className={`hidden md:block w-32 h-1 ${accentColor} mb-3`} />
-            <div className={`md:hidden w-16 h-1 mb-4 rounded-full ${accentColor || 'bg-white'}`} />
-            <span className="text-white/40 text-sm md:text-xl font-medium uppercase tracking-widest md:normal-case md:tracking-normal">More Information</span>
+        <div className="mb-4 flex flex-col items-center md:items-start text-center md:text-left group">
+            {/* The primary indigo/blue accent bar on TOP */}
+            <div className={`w-32 md:w-44 h-1.5 ${barColor} mb-4 rounded-full shadow-lg shadow-indigo-500/10`} />
+            <span className="text-white font-bold text-base md:text-xl tracking-wide opacity-90 transition-opacity group-hover:opacity-100">
+                More Information
+            </span>
         </div>
     );
 }
 
-function InfoBody({ description }: { description: string }) {
+function InfoBody({ description }: { description: string | string[] }) {
+    const paragraphs = Array.isArray(description) ? description : [description];
+
     return (
-        <div className="mb-8 md:mb-10 flex flex-col items-center md:items-start">
-            <p className="text-white/70 text-sm md:text-base leading-relaxed px-2 md:px-0">
-                {description}
-            </p>
+        <div className="flex flex-col gap-6 md:gap-8 mb-10 w-full text-center md:text-left pr-4">
+            {paragraphs.map((p, i) => (
+                <p 
+                    key={i} 
+                    className="text-white/70 text-sm md:text-lg leading-[1.6] font-medium"
+                >
+                    {p}
+                </p>
+            ))}
         </div>
     );
 }
@@ -91,57 +141,34 @@ function InfoFooter({ subDescription, section }: { subDescription: string, secti
     const { openModal } = useModalStore();
 
     const getCTAConfig = () => {
-        if (section === "business") {
-            return {
-                label: "Register your business",
-                action: () => openModal("registration", "business"),
-                lineColor: "bg-[#1e3a8a]"
-            };
-        }
-        if (section === "festival") {
-            return {
-                label: "Participate",
-                action: () => openModal("registration", "festival"),
-                lineColor: "bg-[#1e3a8a]"
-            };
-        }
+        if (section === "business") return { label: "Register your business", action: () => openModal("registration", "business") };
+        if (section === "festival") return { label: "Participate Festival", action: () => openModal("registration", "festival") };
         return null;
     };
 
     const cta = getCTAConfig();
 
     return (
-        <div className="mt-4 md:mt-auto flex flex-col items-center md:items-start">
+        <div className="flex flex-col items-center md:items-start mt-8 w-full pr-4">
             {cta && (
-                <div className="mb-8 group">
+                <div className="group mb-12 flex flex-col items-center md:items-start cursor-pointer">
                     <button
                         onClick={cta.action}
-                        className="flex flex-col items-center md:items-start hover:opacity-80 transition-opacity"
+                        className="flex items-center gap-3 mb-3 hover:opacity-80 transition-all active:scale-95"
                     >
-                        <div className="flex items-center gap-2 mb-1">
-                            <span className="text-[#3b82f6] text-base md:text-lg font-bold">
-                                {cta.label}
-                            </span>
-                            <motion.span
-                                animate={{ x: [0, 5, 0] }}
-                                transition={{
-                                    duration: 1.5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut"
-                                }}
-                                className="text-white text-xl"
-                            >
-                                →
-                            </motion.span>
-                        </div>
-                        <div className={`w-full h-[2px] ${cta.lineColor}`} />
+                        <span className="text-[#3b82f6] text-lg md:text-2xl font-black tracking-tight">
+                            {cta.label}
+                        </span>
+                        <span className="text-white/60 text-2xl group-hover:translate-x-1 group-hover:text-[#3b82f6] transition-all">→</span>
                     </button>
+                    {/* Horizontal Divider Line matching mockup */}
+                    <div className="w-56 md:w-64 h-[2px] bg-[#1e3a8a] rounded-full origin-left opacity-60" />
                 </div>
             )}
-            {!cta && (
-                <div className="w-3/4 md:w-48 h-px bg-white/20 mb-6" />
-            )}
-            <p className="text-white/40 text-xs md:text-sm leading-relaxed px-4 md:px-0">
+            
+            {!cta && <div className="w-full h-[2px] bg-white/10 mb-8 max-w-xs" />}
+            
+            <p className="text-white/40 text-[11px] md:text-sm leading-relaxed max-w-md font-medium text-center md:text-left">
                 {subDescription}
             </p>
         </div>

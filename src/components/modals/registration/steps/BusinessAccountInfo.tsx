@@ -17,38 +17,36 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
     const [ownership, setOwnership] = useState("Self owned");
 
     return (
-        <div className="flex flex-col w-full min-h-[500px] md:h-[550px] relative overflow-hidden">
+        <div className="flex flex-col w-full h-full md:h-[600px] relative overflow-hidden">
             {/* Header section (fixed) */}
-            <div className="flex flex-col mb-4 pt-2 md:pt-4 px-2">
+            <div className="flex flex-col mb-4 pt-2 md:pt-4">
                 <div
-                    className="w-20 h-[3.5px] mb-6 opacity-95 rounded-full"
+                    className="w-16 md:w-20 h-1 mb-6 opacity-95 rounded-full"
                     style={{ backgroundColor: THEME.colors.text.primary }}
                 />
                 <h2
-                    className="text-2xl md:text-3xl font-bold mb-1 tracking-tight"
+                    className="text-xl md:text-3xl font-bold mb-1 tracking-tight"
                     style={{ color: THEME.colors.text.primary }}
                 >
                     Business Account
                 </h2>
                 <p
-                    className="text-lg md:text-xl opacity-70 mb-8"
+                    className="text-base md:text-xl opacity-70 mb-6 md:mb-8"
                     style={{ color: THEME.colors.text.secondary }}
                 >
                     Owners Information
                 </p>
 
-                {/* Ownership Type Selector (Horizontal scrollable) */}
-                <div className="flex gap-3 overflow-x-auto pb-6 scrollbar-hide no-scrollbar -mx-2 px-2">
+                <div className="flex gap-2.5 overflow-x-auto pb-6 scrollbar-hide no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
                     {OWNERSHIP_TYPES.map((type) => (
                         <button
                             key={type}
                             onClick={() => setOwnership(type)}
-                            className="whitespace-nowrap px-6 py-2.5 rounded-xl border-2 font-bold transition-all text-sm tracking-wide shadow-sm"
+                            className="whitespace-nowrap px-5 md:px-6 py-2 rounded-xl border-2 font-bold transition-all text-[13px] md:text-sm tracking-wide shadow-sm"
                             style={{
                                 backgroundColor: ownership === type ? THEME.colors.actions.primary : "white",
                                 borderColor: ownership === type ? THEME.colors.actions.primary : "transparent",
                                 color: ownership === type ? "white" : "#2B365A",
-                                opacity: 1
                             }}
                         >
                             {type}
@@ -58,7 +56,7 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
             </div>
 
             {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto px-2 pb-24 no-scrollbar custom-scrollbar">
+            <div className="flex-1 overflow-y-auto pb-28 no-scrollbar custom-scrollbar md:pr-2">
                 <h3
                     className="text-2xl font-bold mb-6 opacity-40 uppercase tracking-[0.05em]"
                     style={{ color: "#2B365A" }}
@@ -69,17 +67,17 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
                 <div className="flex flex-col gap-6">
                     {/* Business Name Field */}
                     <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
+                        <label className="text-[12px] md:text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
                             Business Name
                         </label>
                         <div
-                            className="flex items-center justify-between px-6 py-3.5 rounded-2xl border bg-white shadow-sm"
+                            className="flex items-center justify-between px-5 md:px-6 py-3 md:py-3.5 rounded-2xl border bg-white shadow-sm"
                             style={{ borderColor: THEME.colors.input.border }}
                         >
-                            <span className="text-lg font-bold" style={{ color: "#2B365A" }}>
+                            <span className="text-base md:text-lg font-bold" style={{ color: "#2B365A" }}>
                                 {businessName || "EmO Industries Inc"}
                             </span>
-                            <button className="text-[14px] font-semibold opacity-40 hover:opacity-100 transition-opacity" style={{ color: "#2B365A" }}>
+                            <button className="text-[13px] md:text-[14px] font-semibold opacity-40 hover:opacity-100 transition-opacity" style={{ color: "#2B365A" }}>
                                 Change
                             </button>
                         </div>
@@ -87,28 +85,28 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
 
                     {/* Category Field */}
                     <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
+                        <label className="text-[12px] md:text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
                             Category
                         </label>
                         <div
-                            className="flex items-center justify-between px-6 py-3.5 rounded-2xl border bg-white shadow-sm"
+                            className="flex items-center justify-between px-5 md:px-6 py-3 md:py-3.5 rounded-2xl border bg-white shadow-sm"
                             style={{ borderColor: THEME.colors.input.border }}
                         >
-                            <span className="text-lg font-bold" style={{ color: "#2B365A" }}>
+                            <span className="text-base md:text-lg font-bold" style={{ color: "#2B365A" }}>
                                 {category || "Texile Manufacturing company"}
                             </span>
-                            <ChevronDown className="w-6 h-6 opacity-40" style={{ color: "#2B365A" }} />
+                            <ChevronDown className="w-5 h-5 md:w-6 md:h-6 opacity-40" style={{ color: "#2B365A" }} />
                         </div>
                     </div>
 
                     {/* Sub / Main Category Grid */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="flex flex-col gap-2">
-                            <label className="text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
+                            <label className="text-[12px] md:text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
                                 Sub category
                             </label>
                             <div
-                                className="flex items-center px-6 py-3.5 rounded-2xl border bg-white shadow-sm"
+                                className="flex items-center px-5 md:px-6 py-3 md:py-3.5 rounded-2xl border bg-white shadow-sm"
                                 style={{ borderColor: THEME.colors.input.border }}
                             >
                                 <span className="text-sm font-medium opacity-40" style={{ color: "#2B365A" }}>
@@ -117,11 +115,11 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
                             </div>
                         </div>
                         <div className="flex flex-col gap-2">
-                            <label className="text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
+                            <label className="text-[12px] md:text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
                                 Main category
                             </label>
                             <div
-                                className="flex items-center px-6 py-3.5 rounded-2xl border bg-white shadow-sm"
+                                className="flex items-center px-5 md:px-6 py-3 md:py-3.5 rounded-2xl border bg-white shadow-sm"
                                 style={{ borderColor: THEME.colors.input.border }}
                             >
                                 <span className="text-sm font-medium opacity-40" style={{ color: "#2B365A" }}>
@@ -133,50 +131,50 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
 
                     {/* Subsidiary Category Field */}
                     <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold pl-1 uppercase tracking-wider flex items-center gap-1.5" style={{ color: "#2B365A" }}>
+                        <label className="text-[12px] md:text-[13px] font-bold pl-1 uppercase tracking-wider flex items-center gap-1.5" style={{ color: "#2B365A" }}>
                             Subsidiary category
                             <span className="opacity-40"><InfoIcon size={14} /></span>
                         </label>
                         <div
-                            className="flex items-center justify-between px-6 py-4 rounded-2xl border bg-white shadow-sm transition-all"
+                            className="flex items-center justify-between px-5 md:px-6 py-3.5 md:py-4 rounded-2xl border bg-white shadow-sm transition-all"
                             style={{ borderColor: THEME.colors.input.border }}
                         >
-                            <span className="text-lg font-medium" style={{ color: "#2B365A" }}>
+                            <span className="text-base md:text-lg font-medium" style={{ color: "#2B365A" }}>
                                 Manufacturing company
                             </span>
-                            <ChevronDown className="w-6 h-6 opacity-40" style={{ color: "#2B365A" }} />
+                            <ChevronDown className="w-5 h-5 md:w-6 md:h-6 opacity-40" style={{ color: "#2B365A" }} />
                         </div>
                     </div>
 
                     {/* Tags Section */}
-                    <div className="flex gap-4 mb-2">
-                        <div className="px-5 py-2.5 bg-white rounded-xl border shadow-sm flex items-center gap-3" style={{ borderColor: THEME.colors.input.border }}>
-                            <span className="text-sm font-bold" style={{ color: "#2B365A" }}>Factory</span>
+                    <div className="flex flex-wrap gap-3 mb-2">
+                        <div className="px-4 md:px-5 py-2 md:py-2.5 bg-white rounded-xl border shadow-sm flex items-center gap-2 md:gap-3" style={{ borderColor: THEME.colors.input.border }}>
+                            <span className="text-xs md:text-sm font-bold" style={{ color: "#2B365A" }}>Factory</span>
                             <button className="opacity-40 hover:opacity-100 transition-opacity">
-                                <XIcon size={16} style={{ color: "#2B365A" }} />
+                                <XIcon className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: "#2B365A" }} />
                             </button>
                         </div>
-                        <div className="px-5 py-2.5 bg-white rounded-xl border shadow-sm flex items-center gap-3" style={{ borderColor: THEME.colors.input.border }}>
-                            <span className="text-sm font-bold" style={{ color: "#2B365A" }}>Museum</span>
+                        <div className="px-4 md:px-5 py-2 md:py-2.5 bg-white rounded-xl border shadow-sm flex items-center gap-2 md:gap-3" style={{ borderColor: THEME.colors.input.border }}>
+                            <span className="text-xs md:text-sm font-bold" style={{ color: "#2B365A" }}>Museum</span>
                             <button className="opacity-40 hover:opacity-100 transition-opacity">
-                                <XIcon size={16} style={{ color: "#2B365A" }} />
+                                <XIcon className="w-3.5 h-3.5 md:w-4 md:h-4" style={{ color: "#2B365A" }} />
                             </button>
                         </div>
                     </div>
 
                     {/* Business major offering Field */}
                     <div className="flex flex-col gap-2">
-                        <label className="text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
+                        <label className="text-[12px] md:text-[13px] font-bold pl-1 uppercase tracking-wider" style={{ color: "#2B365A" }}>
                             Business major offering
                         </label>
                         <div
-                            className="flex items-center justify-between px-6 py-4 rounded-2xl border bg-white shadow-sm transition-all"
+                            className="flex items-center justify-between px-5 md:px-6 py-3.5 md:py-4 rounded-2xl border bg-white shadow-sm transition-all"
                             style={{ borderColor: THEME.colors.input.border }}
                         >
-                            <span className="text-lg font-medium" style={{ color: "#2B365A" }}>
+                            <span className="text-base md:text-lg font-medium" style={{ color: "#2B365A" }}>
                                 Product and services
                             </span>
-                            <ChevronDown className="w-6 h-6 opacity-40" style={{ color: "#2B365A" }} />
+                            <ChevronDown className="w-5 h-5 md:w-6 md:h-6 opacity-40" style={{ color: "#2B365A" }} />
                         </div>
                     </div>
 
@@ -194,24 +192,30 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
                 </div>
             </div>
 
-            {/* Floating Action Button */}
-            <button
-                onClick={() => onComplete(ownership)}
-                className="absolute bottom-6 right-2 w-16 h-16 rounded-full flex items-center justify-center shadow-2xl hover:scale-105 transition-all active:scale-95 group z-[120]"
-                style={{ backgroundColor: THEME.colors.actions.primary }}
-            >
-                <div className="w-8 h-8 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
-            </button>
+            {/* Action Buttons Container */}
+            <div className="absolute bottom-4 left-0 right-0 flex items-center justify-between pointer-events-none z-[120] px-1 md:px-0">
+                <div className="pointer-events-auto">
+                    {onBack && (
+                        <button
+                            onClick={onBack}
+                            className="text-[14px] md:text-[15px] font-bold opacity-60 hover:opacity-100 transition-opacity px-4 py-2"
+                            style={{ color: THEME.colors.text.muted }}
+                        >
+                            Back
+                        </button>
+                    )}
+                </div>
 
-            {onBack && (
-                <button
-                    onClick={onBack}
-                    className="absolute bottom-4 left-2 text-sm font-medium hover:underline px-2 py-1"
-                    style={{ color: THEME.colors.text.muted }}
-                >
-                    Back
-                </button>
-            )}
+                <div className="pointer-events-auto">
+                    <button
+                        onClick={() => onComplete(ownership)}
+                        className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-xl hover:scale-105 transition-all active:scale-95 group bg-[#2B365A]"
+                        style={{ backgroundColor: THEME.colors.actions.primary }}
+                    >
+                        <div className="w-7 h-7 md:w-8 md:h-8 rounded-full border-2 border-white/20 group-hover:border-white/40 transition-colors" />
+                    </button>
+                </div>
+            </div>
 
             <style jsx>{`
                 .no-scrollbar::-webkit-scrollbar {
