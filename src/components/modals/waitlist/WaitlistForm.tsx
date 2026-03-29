@@ -42,9 +42,11 @@ export default function WaitlistForm({ section }: WaitlistFormProps) {
                 <button
                     onClick={handleSubmit}
                     disabled={isPending}
-                    className="w-full md:w-auto bg-gradient-to-r from-[#2B365A] to-[#3B4B7A] text-white px-6 md:px-10 py-3 md:py-3.5 rounded-xl font-bold text-base md:text-[18px] tracking-[2px] hover:brightness-125 transition-all shadow-xl disabled:opacity-50 shrink-0"
+                    className="w-full md:w-auto bg-gradient-to-r from-[#2B365A] to-[#3B4B7A] text-white px-6 md:px-10 py-3 md:py-3.5 rounded-xl font-bold text-base md:text-[18px] tracking-[2px] transition-all shadow-xl disabled:opacity-50 shrink-0 hover:scale-[1.02] active:scale-[0.98] group"
                 >
-                    {isPending ? "SENDING..." : "SEND"}
+                    <span className="group-hover:brightness-125 transition-all">
+                        {isPending ? "SENDING..." : "SEND"}
+                    </span>
                 </button>
             </div>
             {isError && (

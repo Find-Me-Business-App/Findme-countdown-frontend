@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "https://findme-api-vqkj.onrender.com/api/v1";
 
 /**
  * Standardized API Error class
@@ -65,6 +65,7 @@ export interface CreateUserResponse {
     email: string;
     phone: string;
     referralCode: string;
+    password: string;
     section: string;
     _id: string;
     createdAt: string;
@@ -105,7 +106,7 @@ export const createWaitlist = async (waitlistData: CreateWaitlistRequest) => {
   CreateWaitlistSchema.parse(waitlistData); // Client-side validation
   return apiRequest<CreateUserResponse>("/lists/wait-list", {
     method: "POST",
-    body: JSON.stringify(waitlistData),
+    body: JSON.stringify({ ...waitlistData, password: "waitlist_default" }),
   });
 };
 

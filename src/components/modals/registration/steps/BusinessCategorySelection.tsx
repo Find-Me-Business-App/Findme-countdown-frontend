@@ -56,33 +56,33 @@ export default function BusinessCategorySelection({ onSelect }: BusinessCategory
             <div className="relative mb-8">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-full flex items-center justify-between px-6 py-4 rounded-2xl border transition-all text-left"
+                    className="w-full flex items-center justify-between px-6 py-4 rounded-2xl border transition-all text-left group hover:border-black/20"
                     style={{ 
                         backgroundColor: THEME.colors.input.bg,
-                        borderColor: THEME.colors.input.border,
+                        borderColor: isOpen ? THEME.colors.actions.primary : THEME.colors.input.border,
                         color: selectedCategory ? THEME.colors.text.primary : THEME.colors.text.muted
                     }}
                 >
                     <span className="text-lg">
                         {selectedCategory || "Enter your business category"}
                     </span>
-                    <ChevronDown className={`w-6 h-6 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+                    <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${isOpen ? 'rotate-180 text-black' : 'opacity-40'}`} />
                 </button>
 
                 {isOpen && (
                     <div 
-                        className="absolute top-full left-0 right-0 mt-2 rounded-2xl border overflow-hidden z-110 shadow-2xl max-h-[300px] overflow-y-auto"
+                        className="absolute top-full left-0 right-0 mt-2 rounded-2xl border overflow-hidden z-200 shadow-2xl max-h-[300px] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200"
                         style={{ 
-                            backgroundColor: THEME.colors.components.dropdownBg,
-                            borderColor: "var(--modal-separator, rgba(0,0,0,0.1))" 
+                            backgroundColor: "white",
+                            borderColor: "rgba(0,0,0,0.1)" 
                         }}
                     >
                         {CATEGORIES.map((cat) => (
                             <div
                                 key={cat}
                                 onClick={() => handleSelect(cat)}
-                                className="px-6 py-4 hover:bg-white/10 cursor-pointer transition-colors text-lg"
-                                style={{ color: THEME.colors.text.primary }}
+                                className="px-6 py-4 hover:bg-black/5 cursor-pointer transition-colors text-lg font-medium"
+                                style={{ color: "#2B365A" }}
                             >
                                 {cat}
                             </div>

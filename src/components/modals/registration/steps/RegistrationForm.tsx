@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useCreateUser } from "@/hooks/useCreateUser";
+import { CreateUserRequest } from "@/services/api";
 import { SectionType } from "@/config/modal-configs";
 import { THEME } from "@/config/theme";
 
@@ -40,7 +41,13 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        mutate({ ...formData, section }, {
+        // Omit empty optional fields to avoid validation errors
+        const submissionData: CreateUserRequest = { ...formData, section };
+        if (!submissionData.referralCode) delete submissionData.referralCode;
+        // Festival participants don't enter a password, so provide a default for the backend
+        if (!submissionData.password) submissionData.password = "festival_default";
+
+        mutate(submissionData, {
             onSuccess: () => {
                 if ((section === "business" || section === "festival") && onNext) {
                     onNext({ name: formData.name, email: formData.email, role: formData.role });

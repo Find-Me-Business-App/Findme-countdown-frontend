@@ -45,7 +45,7 @@ export default function BusinessNameSelection({ onSelect }: BusinessNameSelectio
                         value={name}
                         onChange={(e) => setName(e.target.value)}
                         placeholder="Type your business name"
-                        className="w-full px-8 py-5 rounded-[24px] border transition-all text-xl focus:outline-none"
+                        className="w-full px-8 py-5 rounded-[24px] border transition-all text-xl focus:outline-none focus:ring-2 focus:ring-[#2B365A]/10 focus:border-[#2B365A]/40"
                         style={{ 
                             backgroundColor: THEME.colors.input.bg,
                             borderColor: THEME.colors.input.border,
