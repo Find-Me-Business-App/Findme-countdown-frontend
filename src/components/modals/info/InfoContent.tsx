@@ -23,7 +23,7 @@ interface InfoContentProps {
 export default function InfoContent({ config, section }: InfoContentProps) {
     return (
         <div className="relative flex flex-col md:flex-row w-full h-full min-h-0 overflow-hidden">
-            
+
             {/* 1. Mobile Image area (Hidden on Desktop) */}
             <div className="relative w-full h-[28vh] min-h-[180px] md:hidden flex-shrink-0 bg-[#0f172a]/20">
                 <Image
@@ -37,15 +37,15 @@ export default function InfoContent({ config, section }: InfoContentProps) {
 
             {/* 1. Content Wrapper (Flex-Row on Desktop) */}
             <div className="relative z-10 flex flex-1 flex-col md:flex-row w-full min-h-0 overflow-hidden">
-                
+
                 {/* Text Area (Left) */}
                 <div className="flex flex-col w-full md:w-[60%] min-h-0 pt-6 md:pt-14 pb-8 md:pb-14 pl-6 pr-6 md:pl-16 md:pr-4 self-stretch">
                     {/* Header (Indigo Bar ABOVE text) */}
                     <div className="flex-shrink-0 mb-4 md:mb-6 flex flex-col items-center md:items-start">
                         <InfoHeader accentColor={config.accentColor} />
-                        <h2 
+                        <h2
                             className="font-extrabold tracking-[0.03em] leading-[39px] text-[#2B365A] text-center md:text-left mx-auto md:mx-0"
-                            style={{ 
+                            style={{
                                 fontSize: '24px',
                                 width: '251px',
                                 height: '39px',
@@ -126,8 +126,8 @@ function InfoBody({ description }: { description: string | string[] }) {
     return (
         <div className="flex flex-col gap-6 md:gap-8 mb-10 w-full text-center md:text-left pr-4">
             {paragraphs.map((p, i) => (
-                <p 
-                    key={i} 
+                <p
+                    key={i}
                     className="text-white/70 text-sm md:text-lg leading-[1.6] font-medium"
                 >
                     {p}
@@ -165,9 +165,9 @@ function InfoFooter({ subDescription, section }: { subDescription: string, secti
                     <div className="w-56 md:w-64 h-[2px] bg-[#1e3a8a] rounded-full origin-left opacity-60" />
                 </div>
             )}
-            
+
             {!cta && <div className="w-full h-[2px] bg-white/10 mb-8 max-w-xs" />}
-            
+
             <p className="text-white/40 text-[11px] md:text-sm leading-relaxed max-w-md font-medium text-center md:text-left">
                 {subDescription}
             </p>

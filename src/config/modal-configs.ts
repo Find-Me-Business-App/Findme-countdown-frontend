@@ -111,7 +111,7 @@ export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
         titleColor: "text-[#1e3a8a]"
     },
     festival: {
-        title: "About Launch Festival",
+        title: "Launch Festival",
         description: [
             "FindMe Launch Festival is a 3-day open festival of dance, music and technologies marking the launch of AGI what we boldly believe is one of the most useful apps in the world. This day also marks the start of our annual mega festival events globally and other subsequent events that would be taking place from time to time But this is bigger than an app.",
             "FindMe Festival is where music, dance, culture, and technology collide to celebrate Africa, our journey, our creativity, our resilience, and our future. It’s about honoring how far we’ve come and stepping confidently into what’s next.",
