@@ -62,15 +62,21 @@ export default function RegistrationModal() {
 
 
     // Compute container sizing based on current view
+    const isCompactStep = view === "account_info" || view === "owner_verification" || view === "ai" || view === "account_type" || view === "festival_business_name" || view === "category" || view === "business_name" || view === "owner_info" || view === "verification" || view === "success";
     const containerClass = view === "ai"
-        ? "max-w-[420px] md:max-w-[860px]"
-        : isSubStep
-            ? `max-w-[420px] md:max-w-[680px] shadow-2xl border`
-            : "max-w-[420px] md:max-w-[760px]";
+        ? "w-full md:w-[777px] md:h-[444px] shadow-2xl border"
+        : isCompactStep
+            ? "w-full md:w-[777px] md:h-[444px] shadow-2xl border"
+            : isSubStep
+                ? `max-w-[420px] md:max-w-[680px] shadow-2xl border`
+                : "max-w-[420px] md:max-w-[760px]";
 
     const containerStyle = {
         ...(isFestivalVerification ? { backgroundColor: "rgba(140, 140, 140, 0.4)" } : {}),
-        maxHeight: "85vh"
+        ...(isCompactStep
+            ? { maxHeight: "90vh" } // height set via Tailwind class above
+            : { maxHeight: "85vh" }
+        ),
     };
 
     const handleBack = () => {
@@ -103,7 +109,8 @@ export default function RegistrationModal() {
 
             <ModalContainer
                 type="registration"
-                className={`${containerClass} px-5 py-4 md:px-12 md:py-10 flex flex-col md:flex-row gap-6 md:gap-12 shrink-0`}
+                overflow={isCompactStep ? "overflow-hidden" : "overflow-y-auto"}
+                className={`${containerClass} px-5 py-4 ${isCompactStep ? 'md:px-8 md:py-6' : 'md:px-12 md:py-10'} flex flex-col md:flex-row gap-6 md:gap-12 shrink-0`}
                 style={containerStyle}
             >
                 <ModalCloseButton

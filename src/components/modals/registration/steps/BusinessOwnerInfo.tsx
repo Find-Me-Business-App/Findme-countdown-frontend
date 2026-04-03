@@ -8,7 +8,7 @@ interface BusinessOwnerInfoProps {
 
 export default function BusinessOwnerInfo({ onSelect }: BusinessOwnerInfoProps) {
     return (
-        <div className="flex flex-col w-full min-h-[350px] md:h-[450px] relative px-2 py-4">
+        <div className="flex flex-col w-full h-full relative px-2 py-4">
             {/* Header Section */}
             <div className="mb-12">
                 <div

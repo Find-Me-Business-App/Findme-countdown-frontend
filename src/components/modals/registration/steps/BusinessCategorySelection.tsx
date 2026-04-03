@@ -26,92 +26,100 @@ export default function BusinessCategorySelection({ onSelect }: BusinessCategory
     const handleSelect = (category: string) => {
         setSelectedCategory(category);
         setIsOpen(false);
-        // We could technically call onSelect(category) here if we want to proceed immediately
-        // but typically categories might need a "Continue" button or similar.
-        // For now, let's just close the modal as per user instructions eventually.
         onSelect(category);
     };
 
     return (
-        <div className="flex flex-col w-full max-w-2xl mx-auto">
-            <div className="mb-8">
+        <div className="flex flex-col w-full h-full relative overflow-hidden">
+            {/* ── Header (fixed) ─────────────────────────── */}
+            <div className="shrink-0 mb-4 pt-1 md:pt-2">
                 <div
-                    className="w-24 h-[3px] mb-6 opacity-90"
+                    className="w-12 md:w-16 h-[3.5px] mb-4 opacity-95 rounded-full"
                     style={{ backgroundColor: THEME.colors.text.primary }}
                 />
                 <h2
-                    className="text-2xl md:text-3xl font-bold mb-2 tracking-tight"
+                    className="text-lg md:text-2xl font-bold mb-0.5 tracking-tight"
                     style={{ color: THEME.colors.text.primary }}
                 >
                     Choose your business category
                 </h2>
                 <p
-                    className="text-base md:text-lg opacity-70"
+                    className="text-sm md:text-base opacity-70 mb-3"
                     style={{ color: THEME.colors.text.secondary }}
                 >
                     Select the business category that suits your business
                 </p>
             </div>
 
-            <div className="relative mb-8">
-                <button
-                    onClick={() => setIsOpen(!isOpen)}
-                    className="w-full flex items-center justify-between px-6 py-4 rounded-2xl border transition-all text-left group hover:border-black/20"
-                    style={{ 
-                        backgroundColor: THEME.colors.input.bg,
-                        borderColor: isOpen ? THEME.colors.actions.primary : THEME.colors.input.border,
-                        color: selectedCategory ? THEME.colors.text.primary : THEME.colors.text.muted
-                    }}
-                >
-                    <span className="text-lg">
-                        {selectedCategory || "Enter your business category"}
-                    </span>
-                    <ChevronDown className={`w-6 h-6 transition-transform duration-300 ${isOpen ? 'rotate-180 text-black' : 'opacity-40'}`} />
-                </button>
-
-                {isOpen && (
-                    <div 
-                        className="absolute top-full left-0 right-0 mt-2 rounded-2xl border overflow-hidden z-200 shadow-2xl max-h-[300px] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200"
+            {/* ── Scrollable Content ─────────────────────── */}
+            <div className="flex-1 overflow-y-auto pb-12 no-scrollbar custom-scrollbar pr-1">
+                <div className="relative mb-6">
+                    <button
+                        onClick={() => setIsOpen(!isOpen)}
+                        className="w-full flex items-center justify-between px-5 py-3.5 rounded-2xl border transition-all text-left group hover:border-black/20 shadow-sm"
                         style={{ 
-                            backgroundColor: "white",
-                            borderColor: "rgba(0,0,0,0.1)" 
+                            backgroundColor: THEME.colors.input.bg,
+                            borderColor: isOpen ? THEME.colors.actions.primary : THEME.colors.input.border,
+                            color: selectedCategory ? THEME.colors.text.primary : THEME.colors.text.muted
                         }}
                     >
-                        {CATEGORIES.map((cat) => (
-                            <div
-                                key={cat}
-                                onClick={() => handleSelect(cat)}
-                                className="px-6 py-4 hover:bg-black/5 cursor-pointer transition-colors text-lg font-medium"
-                                style={{ color: "#2B365A" }}
+                        <span className="text-base md:text-lg font-bold">
+                            {selectedCategory || "Enter your business category"}
+                        </span>
+                        <ChevronDown className={`w-5 h-5 transition-transform duration-300 ${isOpen ? 'rotate-180 text-black' : 'opacity-40'}`} />
+                    </button>
+
+                    {isOpen && (
+                        <div 
+                            className="absolute top-full left-0 right-0 mt-1.5 rounded-2xl border overflow-hidden z-200 shadow-2xl max-h-[220px] overflow-y-auto animate-in fade-in slide-in-from-top-2 duration-200"
+                            style={{ 
+                                backgroundColor: "white",
+                                borderColor: "rgba(0,0,0,0.1)" 
+                            }}
+                        >
+                            {CATEGORIES.map((cat) => (
+                                <div
+                                    key={cat}
+                                    onClick={() => handleSelect(cat)}
+                                    className="px-5 py-3.5 hover:bg-black/5 cursor-pointer transition-colors text-base font-bold"
+                                    style={{ color: "#2B365A" }}
+                                >
+                                    {cat}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                <div className="flex flex-col gap-3">
+                    <p 
+                        className="text-[11px] font-bold uppercase tracking-wider mb-1"
+                        style={{ color: THEME.colors.text.muted }}
+                    >
+                        Example : Ride hailing
+                    </p>
+                    <div className="flex flex-col gap-1.5 pl-8 md:pl-12 opacity-50">
+                        {CATEGORIES.slice(1, 8).map((example) => (
+                            <p 
+                                key={example}
+                                className="text-base font-bold"
+                                style={{ color: THEME.colors.text.secondary }}
                             >
-                                {cat}
-                            </div>
+                                {example}
+                            </p>
                         ))}
                     </div>
-                )}
-            </div>
-
-            <div className="flex flex-col gap-2">
-                <p 
-                    className="text-sm font-medium mb-1"
-                    style={{ color: THEME.colors.text.muted }}
-                >
-                    Example : Ride hailing
-                </p>
-                <div className="flex flex-col gap-1 pl-12">
-                    {CATEGORIES.slice(1, 8).map((example) => (
-                        <p 
-                            key={example}
-                            className="text-sm opacity-60"
-                            style={{ color: THEME.colors.text.secondary }}
-                        >
-                            {example}
-                        </p>
-                    ))}
                 </div>
             </div>
 
-
+            <style jsx>{`
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                .custom-scrollbar::-webkit-scrollbar { width: 4px; }
+                .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
+            `}</style>
         </div>
     );
 }

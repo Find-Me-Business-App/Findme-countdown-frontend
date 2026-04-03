@@ -50,48 +50,45 @@ export default function FestivalOwnerInfo({ ownershipType, onSubmit }: FestivalO
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
-        
-        // Simulate a small delay for premium feedback
         setTimeout(() => {
             onSubmit(formData);
             setIsSubmitting(false);
         }, 1200);
     };
 
-    // Close dropdown on click outside
     useEffect(() => {
         const handleClickOutside = () => setIsTypeOpen(false);
         if (isTypeOpen) window.addEventListener('click', handleClickOutside);
         return () => window.removeEventListener('click', handleClickOutside);
     }, [isTypeOpen]);
 
-    const inputClasses = "w-full rounded-2xl px-5 py-4 focus:outline-none transition-all border font-bold text-base md:text-lg shadow-sm";
-    const labelClasses = "text-[12px] md:text-[13px] font-bold ml-1 uppercase tracking-wider opacity-60";
+    const inputClasses = "w-full rounded-xl px-4 h-[45px] focus:outline-none transition-all border font-bold text-sm shadow-sm";
+    const labelClasses = "text-[11px] font-bold ml-1 uppercase tracking-wider opacity-60";
 
     return (
-        <div className="flex flex-col w-full h-full md:h-[600px] relative overflow-hidden">
+        <div className="flex flex-col w-full h-full relative overflow-hidden">
             {/* Header section (fixed) */}
-            <div className="flex flex-col mb-4 pt-2 md:pt-4">
+            <div className="shrink-0 mb-4 pt-1 md:pt-2">
                 <div
-                    className="w-16 md:w-20 h-1 mb-6 opacity-95 rounded-full"
+                    className="w-12 md:w-16 h-[3px] mb-4 opacity-95 rounded-full"
                     style={{ backgroundColor: THEME.colors.text.primary }}
                 />
                 <h2
-                    className="text-xl md:text-3xl font-bold mb-1 tracking-tight"
+                    className="text-lg md:text-2xl font-bold mb-0.5 tracking-tight"
                     style={{ color: THEME.colors.text.primary }}
                 >
                     Personal Information
                 </h2>
                 <p
-                    className="text-base md:text-xl opacity-70 mb-4 md:mb-6"
+                    className="text-sm md:text-base opacity-70 mb-2"
                     style={{ color: THEME.colors.text.secondary }}
                 >
                     Owners Information
                 </p>
 
-                <div className="bg-black/5 rounded-2xl p-4 border border-black/5 mb-2">
+                <div className="bg-black/5 rounded-xl p-3 border border-black/5 mb-1 max-w-[315px]">
                     <p 
-                        className="text-[13px] font-medium opacity-60 leading-relaxed"
+                        className="text-[11px] font-medium opacity-60 leading-tight"
                         style={{ color: "#2B365A" }}
                     >
                         Owner has full authorization and business key would be sent to the email address provided.
@@ -99,103 +96,104 @@ export default function FestivalOwnerInfo({ ownershipType, onSubmit }: FestivalO
                 </div>
             </div>
 
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto pb-32 no-scrollbar custom-scrollbar md:pr-2">
-                <form id="owner-form" onSubmit={handleSubmit} className="flex flex-col gap-6">
-                    {/* Ownership Type Section */}
-                    <div className="flex flex-col gap-2 relative">
-                        <label className={labelClasses} style={{ color: "#2B365A" }}>
-                            Ownership type
-                        </label>
-                        <div className="flex flex-row items-center gap-3">
-                            <div className="relative flex-1">
-                                <button
-                                    type="button" 
-                                    onClick={(e) => { e.stopPropagation(); setIsTypeOpen(!isTypeOpen); }}
-                                    className={`${inputClasses} flex items-center justify-between bg-white text-left`}
-                                    style={{ 
-                                        borderColor: isTypeOpen ? THEME.colors.actions.primary : THEME.colors.input.border,
-                                        color: "#2B365A" 
-                                    }}
-                                >
-                                    <span>{formData.ownershipType}</span>
-                                    <ChevronDown className={`w-5 h-5 transition-transform ${isTypeOpen ? 'rotate-180' : 'opacity-40'}`} />
-                                </button>
-
-                                {isTypeOpen && (
-                                    <div 
-                                        className="absolute top-[calc(100%+8px)] left-0 right-0 rounded-2xl overflow-hidden z-[150] shadow-2xl border bg-white animate-in fade-in slide-in-from-top-2 duration-200"
-                                        style={{ borderColor: "rgba(0,0,0,0.1)" }}
+            {/* ── Constrained Inputs Container (w-315 h-339) ── */}
+            <div className="w-full md:w-[315px] md:h-[339px] flex flex-col overflow-hidden">
+                {/* Scrollable Content */}
+                <div className="flex-1 overflow-y-auto pb-16 no-scrollbar custom-scrollbar pr-1">
+                    <form id="owner-form" onSubmit={handleSubmit} className="flex flex-col gap-4">
+                        {/* Ownership Type Section */}
+                        <div className="flex flex-col gap-1 relative">
+                            <label className={labelClasses} style={{ color: "#2B365A" }}>
+                                Ownership type
+                            </label>
+                            <div className="flex flex-row items-center gap-2">
+                                <div className="relative flex-1">
+                                    <button
+                                        type="button" 
+                                        onClick={(e) => { e.stopPropagation(); setIsTypeOpen(!isTypeOpen); }}
+                                        className={`${inputClasses} flex items-center justify-between bg-white text-left`}
+                                        style={{ 
+                                            borderColor: isTypeOpen ? THEME.colors.actions.primary : THEME.colors.input.border,
+                                            color: "#2B365A" 
+                                        }}
                                     >
-                                        <div className="max-h-[200px] overflow-y-auto no-scrollbar py-2">
-                                            {OWNERSHIP_TYPES.map((type) => (
-                                                <div
-                                                    key={type}
-                                                    onClick={() => handleTypeSelect(type)}
-                                                    className="px-6 py-3 hover:bg-black/5 cursor-pointer transition-colors text-base font-bold flex items-center justify-between group"
-                                                    style={{ color: "#2B365A" }}
-                                                >
-                                                    <span>{type}</span>
-                                                    {formData.ownershipType === type && <Check size={18} className="opacity-40" />}
-                                                </div>
-                                            ))}
+                                        <span className="truncate">{formData.ownershipType}</span>
+                                        <ChevronDown className={`w-4 h-4 flex-shrink-0 transition-transform ${isTypeOpen ? 'rotate-180' : 'opacity-40'}`} />
+                                    </button>
+
+                                    {isTypeOpen && (
+                                        <div 
+                                            className="absolute top-[calc(100%+4px)] left-0 right-0 rounded-xl overflow-hidden z-[150] shadow-2xl border bg-white animate-in fade-in slide-in-from-top-1 duration-200"
+                                            style={{ borderColor: "rgba(0,0,0,0.1)" }}
+                                        >
+                                            <div className="max-h-[140px] overflow-y-auto no-scrollbar py-1">
+                                                {OWNERSHIP_TYPES.map((type) => (
+                                                    <div
+                                                        key={type}
+                                                        onClick={() => handleTypeSelect(type)}
+                                                        className="px-4 py-2 hover:bg-black/5 cursor-pointer transition-colors text-xs font-bold flex items-center justify-between group"
+                                                        style={{ color: "#2B365A" }}
+                                                    >
+                                                        <span>{type}</span>
+                                                        {formData.ownershipType === type && <Check size={14} className="opacity-40" />}
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )}
+                                </div>
+
+                                <button 
+                                    type="button" 
+                                    className="shrink-0 w-[45px] h-[45px] rounded-xl bg-white border-2 border-dashed flex items-center justify-center opacity-40 hover:opacity-100 hover:border-black/20 transition-all active:scale-95 group"
+                                    style={{ borderColor: THEME.colors.input.border }}
+                                >
+                                    <Plus className="w-5 h-5" style={{ color: "#2B365A" }} />
+                                </button>
                             </div>
-
-                            <button 
-                                type="button" 
-                                className="flex-shrink-0 w-14 h-14 rounded-2xl bg-white border-2 border-dashed flex items-center justify-center opacity-40 hover:opacity-100 hover:border-black/20 transition-all active:scale-95 group"
-                                style={{ borderColor: THEME.colors.input.border }}
-                            >
-                                <Plus className="w-6 h-6" style={{ color: "#2B365A" }} />
-                            </button>
                         </div>
-                    </div>
 
-                    {/* Name Field */}
-                    <div className="flex flex-col gap-2">
-                        <label className={labelClasses} style={{ color: "#2B365A" }}>Full Name</label>
-                        <div className="relative">
-                            <User size={20} className="absolute left-6 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
-                            <input
-                                type="text"
-                                name="name"
-                                value={formData.name}
-                                onChange={handleChange}
-                                placeholder="Alan Watson"
-                                required
-                                className={`${inputClasses} pl-16 bg-white`}
-                                style={{ borderColor: THEME.colors.input.border, color: "#2B365A" }}
-                            />
+                        {/* Name Field */}
+                        <div className="flex flex-col gap-1">
+                            <label className={labelClasses} style={{ color: "#2B365A" }}>Full Name</label>
+                            <div className="relative">
+                                <User size={16} className="absolute left-5 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
+                                <input
+                                    type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    placeholder="Alan Watson"
+                                    required
+                                    className={`${inputClasses} pl-12 bg-white`}
+                                    style={{ borderColor: THEME.colors.input.border, color: "#2B365A" }}
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Email Field */}
-                    <div className="flex flex-col gap-2">
-                        <label className={labelClasses} style={{ color: "#2B365A" }}>Email Address</label>
-                        <div className="relative">
-                            <Mail size={20} className="absolute left-6 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
-                            <input
-                                type="email"
-                                name="email"
-                                value={formData.email}
-                                onChange={handleChange}
-                                placeholder="alanwatson@gmail.com"
-                                required
-                                className={`${inputClasses} pl-16 bg-white`}
-                                style={{ borderColor: THEME.colors.input.border, color: "#2B365A" }}
-                            />
+                        {/* Email Field */}
+                        <div className="flex flex-col gap-1">
+                            <label className={labelClasses} style={{ color: "#2B365A" }}>Email Address</label>
+                            <div className="relative">
+                                <Mail size={16} className="absolute left-5 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    placeholder="alanwatson@gmail.com"
+                                    required
+                                    className={`${inputClasses} pl-12 bg-white`}
+                                    style={{ borderColor: THEME.colors.input.border, color: "#2B365A" }}
+                                />
+                            </div>
                         </div>
-                    </div>
 
-                    {/* Phone & Ownership Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="flex flex-col gap-2">
+                        {/* Phone Field */}
+                        <div className="flex flex-col gap-1">
                             <label className={labelClasses} style={{ color: "#2B365A" }}>Phone Number</label>
                             <div className="relative">
-                                <Phone size={18} className="absolute left-6 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
+                                <Phone size={16} className="absolute left-5 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
                                 <input
                                     type="tel"
                                     name="phone"
@@ -203,64 +201,57 @@ export default function FestivalOwnerInfo({ ownershipType, onSubmit }: FestivalO
                                     onChange={handleChange}
                                     placeholder="09036925536"
                                     required
-                                    className={`${inputClasses} pl-16 bg-white`}
+                                    className={`${inputClasses} pl-12 bg-white`}
                                     style={{ borderColor: THEME.colors.input.border, color: "#2B365A" }}
                                 />
                             </div>
                         </div>
-                        <div className="flex flex-col gap-2">
-                            <label className={labelClasses} style={{ color: "#2B365A" }}>Ownership Percentage</label>
+
+                        {/* Ownership Percentage */}
+                        <div className="flex flex-col gap-1">
+                            <label className={labelClasses} style={{ color: "#2B365A" }}>Ownership %</label>
                             <div className="relative">
-                                <Percent size={18} className="absolute left-6 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
+                                <Percent size={16} className="absolute left-5 top-1/2 -translate-y-1/2 opacity-20 pointer-events-none" style={{ color: "#2B365A" }} />
                                 <input
                                     type="text"
                                     name="ownershipShare"
                                     value={formData.ownershipShare}
                                     onChange={handleChange}
-                                    className={`${inputClasses} pl-16 bg-white`}
+                                    className={`${inputClasses} pl-12 bg-white`}
                                     style={{ borderColor: THEME.colors.input.border, color: "#2B365A" }}
                                 />
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
 
             {/* Action Buttons Container (fixed) */}
-            <div className="absolute bottom-4 left-0 right-0 flex items-center justify-end pointer-events-none z-[160] px-1 md:px-0">
+            <div className="absolute bottom-3 right-0 flex items-center justify-end pointer-events-none z-[160] px-1">
                 <div className="pointer-events-auto">
                     <button
                         type="submit"
                         form="owner-form"
                         disabled={isSubmitting}
-                        className="w-14 h-14 md:w-16 md:h-16 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-105 active:scale-95 group relative"
-                        style={{ backgroundColor: THEME.colors.actions.primary }}
+                        className="w-12 h-12 md:w-14 md:h-14 rounded-full flex items-center justify-center shadow-xl transition-all hover:scale-105 active:scale-95 group relative overflow-hidden"
+                        style={{ backgroundColor: "#2B365A" }}
                     >
                         {isSubmitting ? (
-                            <div className="w-8 h-8 md:w-10 md:h-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                            <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />
                         ) : (
-                            <ChevronRight className="w-8 h-8 text-white group-hover:translate-x-0.5 transition-transform" strokeWidth={3} />
+                            <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:translate-x-0.5 transition-transform" strokeWidth={3} />
                         )}
                     </button>
                 </div>
             </div>
 
             <style jsx>{`
-                .no-scrollbar::-webkit-scrollbar {
-                    display: none;
-                }
-                .no-scrollbar {
-                    -ms-overflow-style: none;
-                    scrollbar-width: none;
-                }
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 4px;
-                }
+                .no-scrollbar::-webkit-scrollbar { display: none; }
+                .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                .custom-scrollbar::-webkit-scrollbar { width: 4px; }
                 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(0, 0, 0, 0.05);
-                    border-radius: 10px;
-                }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.1); border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.2); }
             `}</style>
         </div>
     );
