@@ -7,13 +7,13 @@ import { useGetWaitlist } from "@/hooks/useGetWaitlist";
 import { THEME } from "@/config/theme";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ChevronLeft, Layout, Info, User as UserIcon, Building2, MessageSquare, Clock, ArrowRight, RefreshCcw } from "lucide-react";
+import { ChevronLeft, Info, User as UserIcon, Building2, MessageSquare, Clock, RefreshCcw } from "lucide-react";
 import { useState } from "react";
 import { Business, RegisteredUser, ContactRecord, WaitlistRecord } from "@/services/api";
 
 type ViewType = "businesses" | "users" | "contacts" | "waitlist";
 
-const FINDME_BLUE = "#3b82f6";
+const FINDME_BLUE = "#2B365A"; // Navy Blue
 
 export default function BusinessesPage() {
     const [view, setView] = useState<ViewType>("businesses");
@@ -72,13 +72,13 @@ export default function BusinessesPage() {
 
     return (
         <div 
-            className="min-h-screen w-full relative flex flex-col p-4 md:p-8 lg:p-12 text-white overflow-hidden selection:bg-blue-500/30 font-mulish"
+            className="min-h-screen w-full relative flex flex-col p-4 md:p-8 lg:p-12 text-white overflow-hidden selection:bg-blue-500/30"
             style={{ fontFamily: "var(--font-mulish), sans-serif" }}
         >
             {/* Background Style */}
             <div className="fixed inset-0 -z-20 bg-[#060606]" />
             <div 
-                className="fixed inset-0 -z-10 opacity-15 blur-[120px]"
+                className="fixed inset-0 -z-10 opacity-10 blur-[120px]"
                 style={{
                     background: `radial-gradient(circle at 50% 50%, ${FINDME_BLUE}, transparent 80%)`
                 }}
@@ -87,41 +87,41 @@ export default function BusinessesPage() {
             {/* Main Dashboard Container */}
             <div className="max-w-7xl w-full mx-auto relative z-10 flex flex-col h-full">
                 {/* FindMe Header */}
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-16">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-10 mb-12 sm:mb-16 px-2 sm:px-0">
                     <div className="flex flex-col gap-2">
                         <Link 
                             href="/" 
                             className="inline-flex items-center gap-2 opacity-40 hover:opacity-100 transition-all text-[10px] font-extrabold uppercase tracking-[0.4em] mb-4"
                         >
                             <ChevronLeft size={14} />
-                            Exit to Home
+                            Exit Registry
                         </Link>
-                        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter uppercase italic leading-[0.9]">
+                        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter uppercase italic leading-[0.9]">
                             FindMe <span style={{ color: FINDME_BLUE }}>Registry</span>
                         </h1>
-                        <p className="text-white/40 text-sm max-w-md mt-6 font-medium leading-relaxed tracking-wide">
+                        <p className="text-white/40 text-sm max-w-md mt-4 sm:mt-6 font-medium leading-relaxed tracking-wide">
                             A real-time directory of all participants and businesses 
                             within the FindMe ecosystem.
                         </p>
                     </div>
 
-                    <div className="flex flex-col gap-6 items-end">
-                        {/* Tab Switcher - FindMe Brand Styling */}
-                        <div className="flex bg-white/[0.04] p-1.5 rounded-2xl border border-white/[0.08] shadow-2xl backdrop-blur-3xl">
+                    <div className="flex flex-col gap-4 sm:gap-6 items-start md:items-end">
+                        {/* Tab Switcher - Now more mobile responsive */}
+                        <div className="flex flex-wrap bg-white/[0.04] p-1 rounded-xl sm:rounded-2xl border border-white/[0.08] backdrop-blur-3xl">
                             {(["businesses", "users", "contacts", "waitlist"] as ViewType[]).map((tab) => (
                                 <button
                                     key={tab}
                                     onClick={() => setView(tab)}
-                                    className={`px-6 py-3 rounded-xl text-[11px] font-bold uppercase tracking-[0.2em] transition-all relative ${
+                                    className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg sm:rounded-xl text-[9px] sm:text-[11px] font-bold uppercase tracking-[0.2em] transition-all relative ${
                                         view === tab ? "text-white" : "text-white/20 hover:text-white/40"
                                     }`}
                                 >
-                                    <span className="relative z-10">{tab === "waitlist" ? "FindMe Waitlist" : `FindMe ${tab}`}</span>
+                                    <span className="relative z-10">{tab === "waitlist" ? "Waitlist" : tab}</span>
                                     {view === tab && (
                                         <motion.div 
                                             layoutId="registry-pill"
-                                            className="absolute inset-0 bg-blue-600 shadow-[0_4px_20px_rgba(37,99,235,0.4)]"
-                                            style={{ borderRadius: "12px" }}
+                                            className="absolute inset-0"
+                                            style={{ backgroundColor: FINDME_BLUE, borderRadius: "8px" }}
                                             transition={{ type: "spring", bounce: 0.15, duration: 0.6 }}
                                         />
                                     )}
@@ -131,16 +131,16 @@ export default function BusinessesPage() {
 
                         <button 
                             onClick={() => refetch()}
-                            className="px-8 py-3 bg-white/[0.06] border border-white/[0.1] rounded-2xl font-bold text-xs uppercase tracking-[0.25em] hover:bg-white/[0.12] transition-all hover:scale-[1.02] active:scale-[0.98] flex items-center gap-3 group"
+                            className="px-6 sm:px-8 py-2 sm:py-3 bg-white/[0.06] border border-white/[0.1] rounded-xl sm:rounded-2xl font-bold text-[10px] sm:text-xs uppercase tracking-[0.25em] hover:bg-white/[0.12] transition-all flex items-center gap-3 group"
                         >
-                            <RefreshCcw size={16} className="opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" />
-                            Refresh Registry
+                            <RefreshCcw size={14} className="opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" />
+                            Refresh
                         </button>
                     </div>
                 </div>
 
                 {/* Registry View */}
-                <div className="flex-1 min-h-[500px]">
+                <div className="flex-1">
                     <AnimatePresence mode="wait">
                         {isLoading ? (
                             <motion.div 
@@ -148,91 +148,90 @@ export default function BusinessesPage() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="space-y-4"
+                                className="space-y-[1px] bg-white/[0.05]"
                             >
-                                {[1, 2, 3, 4, 5, 6, 7].map((i) => (
-                                    <div key={i} className="h-16 bg-white/[0.03] rounded-2xl border border-white/[0.05] animate-pulse" />
+                                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
+                                    <div key={i} className="h-14 sm:h-16 bg-[#080808] animate-pulse" />
                                 ))}
                             </motion.div>
                         ) : isError ? (
                             <motion.div 
                                 key="error"
-                                initial={{ opacity: 0, scale: 0.98 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                className="flex flex-col items-center justify-center p-24 bg-white/[0.02] border border-white/[0.05] rounded-[48px] text-center"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="flex flex-col items-center justify-center py-24 sm:py-32 bg-[#080808] border border-white/10 text-center"
                             >
-                                <div className="w-20 h-20 bg-blue-600/10 rounded-full flex items-center justify-center mb-8 border border-blue-600/20 shadow-[0_0_30px_rgba(37,99,235,0.1)]">
-                                    <Info className="w-10 h-10 text-blue-500 opacity-60" />
+                                <div className="w-10 h-10 rounded-full flex items-center justify-center mb-6 border border-white/20 shadow-[0_0_30px_rgba(43,54,90,0.1)]">
+                                    <Info className="w-6 h-6 opacity-60" style={{ color: FINDME_BLUE }} />
                                 </div>
-                                <h3 className="text-2xl font-extrabold mb-4 uppercase italic tracking-widest">Registry Sync Error</h3>
-                                <p className="text-white/30 text-sm max-w-sm mb-10 leading-relaxed font-medium">Unable to refresh the latest records from the registry server.</p>
-                                <button onClick={() => refetch()} className="bg-blue-600 px-10 py-4 rounded-2xl font-extrabold uppercase text-xs tracking-[0.3em] hover:bg-blue-500 transition-all hover:shadow-[0_4px_25px_rgba(37,99,235,0.4)]">Retry Sync</button>
+                                <h3 className="text-xl font-extrabold mb-2 uppercase italic tracking-widest">Registry Sync Error</h3>
+                                <p className="text-white/30 text-sm max-w-xs mb-8">Unable to refresh records.</p>
+                                <button onClick={() => refetch()} className="px-8 py-3 rounded-lg font-extrabold uppercase text-[10px] tracking-[0.3em] hover:opacity-90" style={{ backgroundColor: FINDME_BLUE }}>Retry</button>
                             </motion.div>
                         ) : (
                             <motion.div
                                 key={view}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                exit={{ opacity: 0, y: -20 }}
-                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                                className="w-full bg-white/[0.02] border border-white/[0.06] rounded-[40px] overflow-hidden backdrop-blur-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                className="w-full bg-[#080808] border border-white/10"
                             >
                                 <div className="overflow-x-auto custom-scrollbar">
                                     <table className="w-full border-collapse">
                                         <thead>
-                                            <tr className="border-b border-white/[0.06] bg-white/[0.03]">
+                                            <tr className="border-b border-white/10 bg-white/[0.02]">
                                                 {view === "businesses" && (
                                                     <>
-                                                        <Th>FindMe Business</Th>
+                                                        <Th>Name</Th>
                                                         <Th>Category</Th>
-                                                        <Th>Type</Th>
-                                                        <Th>Core Offering</Th>
-                                                        <Th>Registry Date</Th>
+                                                        <Th>Ownership</Th>
+                                                        <Th>Offering</Th>
+                                                        <Th>Registered</Th>
                                                     </>
                                                 )}
                                                 {view === "users" && (
                                                     <>
-                                                        <Th>Participant Name</Th>
-                                                        <Th>Contact Email</Th>
+                                                        <Th>Participant</Th>
+                                                        <Th>Email</Th>
                                                         <Th>Phone</Th>
-                                                        <Th>Interest Area</Th>
-                                                        <Th>Joined Finder</Th>
+                                                        <Th>Section</Th>
+                                                        <Th>Joined</Th>
                                                     </>
                                                 )}
                                                 {view === "contacts" && (
                                                     <>
-                                                        <Th>Sender Name</Th>
-                                                        <Th>Email Address</Th>
-                                                        <Th>Inquiry Content</Th>
+                                                        <Th>Name</Th>
+                                                        <Th>Email</Th>
+                                                        <Th>Message</Th>
                                                         <Th>Origin</Th>
-                                                        <Th>Received On</Th>
+                                                        <Th>Date</Th>
                                                     </>
                                                 )}
                                                 {view === "waitlist" && (
                                                     <>
-                                                        <Th>Subscriber Email</Th>
-                                                        <Th>Access Priority</Th>
-                                                        <Th>Waitlist ID</Th>
-                                                        <Th>Requested On</Th>
+                                                        <Th>Email</Th>
+                                                        <Th>Priority</Th>
+                                                        <Th>ID</Th>
+                                                        <Th>Joined</Th>
                                                     </>
                                                 )}
                                             </tr>
                                         </thead>
-                                        <tbody className="divide-y divide-white/[0.04]">
+                                        <tbody className="divide-y divide-white/10">
                                             {view === "businesses" ? (
-                                                businessesData?.data?.records?.map((record, i) => (
+                                                businessesData?.data?.records?.map((record) => (
                                                     <BusinessRow key={record._id} record={record} />
                                                 ))
                                             ) : view === "users" ? (
-                                                usersData?.data?.records?.map((record, i) => (
+                                                usersData?.data?.records?.map((record) => (
                                                     <UserRow key={record._id} record={record} />
                                                 ))
                                             ) : view === "contacts" ? (
-                                                contactsData?.data?.records?.map((record, i) => (
+                                                contactsData?.data?.records?.map((record) => (
                                                     <ContactRow key={record._id} record={record} />
                                                 ))
                                             ) : (
-                                                waitlistData?.data?.records?.map((record, i) => (
+                                                waitlistData?.data?.records?.map((record) => (
                                                     <WaitlistRow key={record._id} record={record} />
                                                 ))
                                             )}
@@ -245,11 +244,8 @@ export default function BusinessesPage() {
                                   (view === "users" && !usersData?.data?.records?.length) ||
                                   (view === "contacts" && !contactsData?.data?.records?.length) ||
                                   (view === "waitlist" && !waitlistData?.data?.records?.length)) && (
-                                    <div className="py-40 text-center flex flex-col items-center">
-                                        <div className="w-16 h-16 bg-white/[0.03] rounded-full flex items-center justify-center mb-6">
-                                            <Info className="opacity-10" />
-                                        </div>
-                                        <p className="text-white/20 font-extrabold uppercase text-[11px] tracking-[0.5em]">No FindMe records found</p>
+                                    <div className="py-32 text-center flex flex-col items-center">
+                                        <p className="text-white/20 font-extrabold uppercase text-[10px] tracking-[0.5em]">No FindMe records found</p>
                                     </div>
                                 )}
                             </motion.div>
@@ -258,22 +254,20 @@ export default function BusinessesPage() {
                 </div>
 
                 {/* Footer Insight */}
-                <div className="mt-20 py-10 border-t border-white/[0.06] flex flex-col md:flex-row items-center justify-between gap-6 opacity-30 text-[10px] uppercase font-bold tracking-[0.4em]">
-                    <div className="flex items-center gap-4">
-                        <div className="w-2 h-2 bg-blue-500 rounded-full shadow-[0_0_10px_#3b82f6]" />
-                        Registry Operational
+                <div className="mt-16 py-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 opacity-30 text-[9px] uppercase font-bold tracking-[0.4em] px-2 sm:px-0">
+                    <div className="flex items-center gap-3">
+                        <div className="w-1.5 h-1.5 bg-blue-500 rounded-full" />
+                        Registry Active
                     </div>
-                    <div className="flex items-center gap-6">
-                        <span>FindMe Registry &bull; 2026 Directory</span>
-                    </div>
+                    <span>FindMe Registry &bull; 2026</span>
                 </div>
             </div>
 
             <style jsx global>{`
-                .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+                .custom-scrollbar::-webkit-scrollbar { height: 4px; width: 4px; }
                 .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
             `}</style>
         </div>
     );
@@ -283,7 +277,7 @@ export default function BusinessesPage() {
 
 function Th({ children }: { children: React.ReactNode }) {
     return (
-        <th className="px-10 py-6 text-left text-[11px] font-extrabold uppercase tracking-[0.3em] text-white/50 border-r border-white/[0.04] last:border-r-0">
+        <th className="px-4 sm:px-6 md:px-10 py-4 sm:py-5 text-left text-[10px] font-extrabold uppercase tracking-[0.2em] text-white/40 border-r border-white/10 last:border-r-0 whitespace-nowrap">
             {children}
         </th>
     );
@@ -291,7 +285,7 @@ function Th({ children }: { children: React.ReactNode }) {
 
 function Td({ children, className = "" }: { children: React.ReactNode, className?: string }) {
     return (
-        <td className={`px-10 py-6 text-sm font-semibold border-r border-white/[0.04] last:border-r-0 ${className}`}>
+        <td className={`px-4 sm:px-6 md:px-10 py-4 sm:py-5 text-xs sm:text-sm font-semibold border-r border-white/10 last:border-r-0 whitespace-nowrap overflow-hidden text-ellipsis ${className}`}>
             {children}
         </td>
     );
@@ -299,24 +293,18 @@ function Td({ children, className = "" }: { children: React.ReactNode, className
 
 function BusinessRow({ record }: { record: Business }) {
     return (
-        <tr className="hover:bg-blue-600/[0.08] transition-all duration-300 group cursor-default">
-            <Td className="text-white group-hover:text-blue-400 transition-colors">
-                <div className="flex items-center gap-4">
-                    <div className="w-8 h-8 rounded-lg bg-white/[0.05] flex items-center justify-center border border-white/[0.05] group-hover:scale-110 transition-transform">
-                        <Building2 size={16} className="text-blue-500 opacity-60" />
-                    </div>
-                    <span className="font-extrabold tracking-tight underline decoration-blue-500/20 underline-offset-4">{record.businessName}</span>
+        <tr className="hover:bg-white/5 transition-all group cursor-default">
+            <Td className="text-white font-extrabold tracking-tight">
+                <div className="flex items-center gap-3">
+                    <Building2 size={14} className="opacity-40 shrink-0" style={{ color: FINDME_BLUE }} />
+                    {record.businessName}
                 </div>
             </Td>
             <Td className="text-white/60">{record.mainCategory}</Td>
-            <Td>
-                <span className="text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 bg-white/[0.05] rounded-lg text-white/40 border border-white/[0.05]">
-                    {record.ownershipType}
-                </span>
-            </Td>
+            <Td className="text-white/40 text-[10px] uppercase font-bold tracking-widest">{record.ownershipType}</Td>
             <Td className="text-white/80">{record.majorOffering}</Td>
-            <Td className="text-white/30 text-[12px] font-bold tabular-nums">
-                {new Date(record.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+            <Td className="text-white/20 text-[11px] font-bold tabular-nums">
+                {new Date(record.createdAt).toLocaleDateString()}
             </Td>
         </tr>
     );
@@ -324,22 +312,22 @@ function BusinessRow({ record }: { record: Business }) {
 
 function UserRow({ record }: { record: RegisteredUser }) {
     return (
-        <tr className="hover:bg-blue-600/[0.08] transition-all duration-300 group cursor-default">
-            <Td className="text-white group-hover:text-blue-400 transition-colors">
-                <div className="flex items-center gap-4 italic font-extrabold lowercase tracking-tight">
-                    <UserIcon size={16} className="text-blue-500 opacity-40" />
+        <tr className="hover:bg-white/5 transition-all group cursor-default">
+            <Td className="text-white italic font-extrabold lowercase tracking-tight">
+                <div className="flex items-center gap-3">
+                    <UserIcon size={14} className="opacity-40 shrink-0" style={{ color: FINDME_BLUE }} />
                     {record.name}
                 </div>
             </Td>
-            <Td className="text-white/60 lowercase font-medium">{record.email}</Td>
-            <Td className="text-white/40 font-bold tabular-nums tracking-wider">{record.phone}</Td>
+            <Td className="text-white/60 lowercase">{record.email}</Td>
+            <Td className="text-white/40 font-bold tabular-nums">{record.phone}</Td>
             <Td>
-                <span className="text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 bg-blue-600/10 text-blue-400 rounded-xl border border-blue-600/20">
+                <span className="text-[9px] font-extrabold uppercase tracking-widest px-2 py-1 text-white border border-white/10" style={{ backgroundColor: FINDME_BLUE }}>
                     {record.section}
                 </span>
             </Td>
-            <Td className="text-white/20 text-[12px] font-bold tabular-nums">
-                {new Date(record.createdAt).toLocaleDateString(undefined, { month: 'short', day: 'numeric' })}
+            <Td className="text-white/20 text-[11px] font-bold tabular-nums">
+                {new Date(record.createdAt).toLocaleDateString()}
             </Td>
         </tr>
     );
@@ -347,20 +335,20 @@ function UserRow({ record }: { record: RegisteredUser }) {
 
 function ContactRow({ record }: { record: ContactRecord }) {
     return (
-        <tr className="hover:bg-blue-600/[0.08] transition-all duration-300 group cursor-default text-white/90">
-            <Td className="group-hover:text-blue-400">
-                <div className="flex items-center gap-4 font-extrabold uppercase tracking-tighter">
-                    <div className="w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_8px_#3b82f6]" />
+        <tr className="hover:bg-white/5 transition-all group cursor-default">
+            <Td className="text-white font-extrabold uppercase tracking-tighter">
+                <div className="flex items-center gap-3">
+                    <MessageSquare size={14} className="opacity-40 shrink-0" style={{ color: FINDME_BLUE }} />
                     {record.name}
                 </div>
             </Td>
             <Td className="text-white/50 lowercase">{record.email}</Td>
-            <Td className="text-white/60 italic font-medium max-w-sm truncate pr-10">
-                &ldquo;{record.message}&rdquo;
+            <Td className="text-white/60 italic max-w-[200px] sm:max-w-xs overflow-hidden text-ellipsis">
+                {record.message}
             </Td>
-            <Td className="text-white/30 uppercase text-[10px] font-extrabold tracking-widest">{record.section}</Td>
-            <Td className="text-white/20 text-[12px] font-bold tabular-nums">
-                {new Date(record.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })}
+            <Td className="text-white/30 uppercase text-[9px] font-extrabold">{record.section}</Td>
+            <Td className="text-white/20 text-[11px] font-bold tabular-nums">
+                {new Date(record.createdAt).toLocaleDateString()}
             </Td>
         </tr>
     );
@@ -368,16 +356,16 @@ function ContactRow({ record }: { record: ContactRecord }) {
 
 function WaitlistRow({ record }: { record: WaitlistRecord }) {
     return (
-        <tr className="hover:bg-blue-600/[0.08] transition-all duration-300 group cursor-default">
-            <Td className="text-white group-hover:text-blue-400 transition-colors">
-                <div className="flex items-center gap-4 italic lowercase font-bold tracking-tight">
-                    <Clock size={16} className="text-blue-500 opacity-40 shrink-0" />
-                    <span className="truncate">{record.email}</span>
+        <tr className="hover:bg-white/5 transition-all group cursor-default">
+            <Td className="text-white italic font-bold tracking-tight">
+                <div className="flex items-center gap-3">
+                    <Clock size={14} className="opacity-40 shrink-0" style={{ color: FINDME_BLUE }} />
+                    {record.email}
                 </div>
             </Td>
-            <Td className="text-white/40 uppercase text-[10px] font-extrabold tracking-[0.2em]">{record.section}</Td>
-            <Td className="text-white/20 tabular-nums text-[11px] font-mono tracking-widest uppercase">ID_{record._id.slice(-6)}</Td>
-            <Td className="text-white/20 text-[12px] font-bold tabular-nums">
+            <Td className="text-white/40 uppercase text-[10px] font-extrabold">{record.section}</Td>
+            <Td className="text-white/20 font-mono text-[10px] uppercase">ID_{record._id.slice(-6)}</Td>
+            <Td className="text-white/20 text-[11px] font-bold tabular-nums">
                 {new Date(record.createdAt).toLocaleDateString()}
             </Td>
         </tr>
