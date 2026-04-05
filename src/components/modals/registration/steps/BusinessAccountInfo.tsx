@@ -4,10 +4,12 @@ import { useState, useEffect } from "react";
 import { ChevronDown, Info as InfoIcon, X as XIcon, Plus as PlusIcon, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import { THEME } from "@/config/theme";
+import { useCreateBusiness } from "@/hooks/useCreateBusiness";
 
 interface BusinessAccountInfoProps {
     businessName: string;
     category: string;
+    userId: string;
     onBack?: () => void;
     onComplete: (ownershipType: string) => void;
 }
@@ -27,7 +29,7 @@ const MAJOR_OFFERINGS = ["Product and services", "Digital Products", "Physical G
 // Desktop: w-[315px] h-[45px] | Mobile: w-full h-[45px]
 const INPUT_CLASS = "w-full md:w-[315px] h-[45px]";
 
-export default function BusinessAccountInfo({ businessName, category, onBack, onComplete }: BusinessAccountInfoProps) {
+export default function BusinessAccountInfo({ businessName, category, userId, onBack, onComplete }: BusinessAccountInfoProps) {
     const [ownership, setOwnership] = useState("Self owned");
     const [selectedCategory, setSelectedCategory] = useState(category || "Texile Manufacturing company");
     const [subCategory, setSubCategory] = useState("Industry");
@@ -40,7 +42,8 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
 
     // Dropdown states
     const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [apiError, setApiError] = useState<string | null>(null);
+    const { mutate: createBusiness, isPending: isSubmitting } = useCreateBusiness();
 
     const isComplete = about.trim().length >= 10;
 
@@ -66,11 +69,31 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
     };
 
     const handleComplete = () => {
-        setIsSubmitting(true);
-        setTimeout(() => {
-            onComplete(ownership);
-            setIsSubmitting(false);
-        }, 1200);
+        if (!userId) {
+            setApiError("User ID is missing. Please go back and complete registration first.");
+            return;
+        }
+        setApiError(null);
+        createBusiness(
+            {
+                userId,
+                businessName,
+                ownershipType: ownership,
+                mainCategory: mainCategory,
+                subCategory: subCategory,
+                tags,
+                majorOffering: majorOffering,
+                description: about,
+            },
+            {
+                onSuccess: () => {
+                    onComplete(ownership);
+                },
+                onError: (error) => {
+                    setApiError(error.message || "Failed to create business. Please try again.");
+                },
+            }
+        );
     };
 
     // Close dropdowns on click outside
@@ -369,6 +392,15 @@ export default function BusinessAccountInfo({ businessName, category, onBack, on
                     </div>
                 </div>
             </div>
+
+            {/* ── API Error Message ─────────────────────── */}
+            {apiError && (
+                <div className="px-1 pb-1">
+                    <p className="text-xs font-bold text-red-500 animate-in fade-in duration-300">
+                        {apiError}
+                    </p>
+                </div>
+            )}
 
             {/* ── Action Buttons (absolute footer) ──────── */}
             <div className="absolute bottom-3 left-0 right-0 flex items-center justify-between pointer-events-none z-[120] px-1">

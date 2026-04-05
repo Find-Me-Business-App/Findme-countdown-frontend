@@ -40,7 +40,7 @@ export type RegistrationView =
  * Each sub-step is a standalone component imported from landing-page.
  */
 export default function RegistrationModal() {
-    const { section, closeModal, openModal, data } = useModalStore();
+    const { section, closeModal, openModal, data, userId, setUserId } = useModalStore();
     const fromEarlyBird = data?.fromEarlyBird === true;
     const config = REGISTRATION_CONFIGS[section as keyof typeof REGISTRATION_CONFIGS];
     const [view, setView] = useState<RegistrationView>("form");
@@ -129,6 +129,8 @@ export default function RegistrationModal() {
                     setBusinessName,
                     userName,
                     setUserName,
+                    userId,
+                    setUserId,
                     selectedCategory,
                     setSelectedCategory,
                     selectedOwnership,
@@ -151,6 +153,8 @@ interface ViewRouterProps {
     setBusinessName: (n: string) => void;
     userName: string;
     setUserName: (n: string) => void;
+    userId: string;
+    setUserId: (id: string) => void;
     selectedCategory: string;
     setSelectedCategory: (c: string) => void;
     selectedOwnership: string;
@@ -162,6 +166,7 @@ function renderView({
     view, setView, section, config,
     businessName, setBusinessName,
     userName, setUserName,
+    userId, setUserId,
     selectedCategory, setSelectedCategory,
     selectedOwnership, setSelectedOwnership,
     closeModal,
@@ -206,6 +211,7 @@ function renderView({
                 <BusinessAccountInfo
                     businessName={businessName}
                     category={selectedCategory}
+                    userId={userId}
                     onComplete={(type) => {
                         setSelectedOwnership(type);
                         setView("owner_verification");
@@ -236,7 +242,6 @@ function renderView({
                 <RegistrationSuccess
                     userName={userName}
                     businessName={businessName}
-                    onDone={closeModal}
                 />
             );
         case "festival_category":
@@ -268,17 +273,13 @@ function renderView({
                 <RegistrationFormView
                     config={config}
                     section={section as SectionType}
-                    onAMEClick={() => {
-                        if (section === "business") {
-                            setView("ai");
-                        }
-                    }}
                     onNext={
                         section === "business"
-                            ? (data) => { if (data?.name) setUserName(data.name); setView("ai"); }
+                            ? (data) => { if (data?.name) setUserName(data.name); if (data?.userId) setUserId(data.userId); setView("ai"); }
                             : section === "festival"
                                 ? (data) => {
                                     if (data?.name) setUserName(data.name);
+                                    if (data?.userId) setUserId(data.userId);
                                     if (data?.role === "Business") {
                                         setView("festival_category");
                                     } else {

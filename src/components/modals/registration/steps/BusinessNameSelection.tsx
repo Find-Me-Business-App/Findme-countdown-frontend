@@ -1,24 +1,60 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { THEME } from "@/config/theme";
+import { useGetBusinesses } from "@/hooks/useGetBusinesses";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface BusinessNameSelectionProps {
     onSelect: (name: string) => void;
 }
 
+const MOCK_BUSINESSES = [
+    "Casablanca Enterprise",
+    "CasaDiEmO Inc.",
+    "Casadipoka Ent.",
+    "Casala Foods Ltd",
+    "Casa Bella Designs",
+    "Casa del Sol"
+];
+
 export default function BusinessNameSelection({ onSelect }: BusinessNameSelectionProps) {
     const [name, setName] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+    const { data: businessesData } = useGetBusinesses();
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    // Combine real data with mock examples for demonstration
+    const allBusinesses = useMemo(() => {
+        const realNames = businessesData?.data?.records?.map(b => b.businessName) || [];
+        return Array.from(new Set([...MOCK_BUSINESSES, ...realNames]));
+    }, [businessesData]);
+
+    const filteredSuggestions = useMemo(() => {
+        if (!name.trim()) return [];
+        return allBusinesses.filter(b => 
+            b.toLowerCase().includes(name.toLowerCase()) && 
+            b.toLowerCase() !== name.toLowerCase()
+        );
+    }, [name, allBusinesses]);
+
+    useEffect(() => {
+        setIsOpen(filteredSuggestions.length > 0);
+    }, [filteredSuggestions]);
+
+    const handleSubmit = (e?: React.FormEvent) => {
+        e?.preventDefault();
         if (name.trim()) {
             onSelect(name.trim());
         }
     };
 
+    const handleSelectSuggestion = (suggestion: string) => {
+        setName(suggestion);
+        onSelect(suggestion);
+    };
+
     return (
-        <div className="flex flex-col w-full h-full relative overflow-hidden">
+        <div className="flex flex-col w-full h-full relative overflow-visible">
             {/* ── Header (fixed) ─────────────────────────── */}
             <div className="shrink-0 mb-4 pt-1 md:pt-2">
                 <div
@@ -41,22 +77,56 @@ export default function BusinessNameSelection({ onSelect }: BusinessNameSelectio
 
             {/* ── Content ────────────────────────────────── */}
             <div className="flex-1 flex flex-col pt-4">
-                <form onSubmit={handleSubmit} className="relative mb-8">
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        placeholder="Type your business name"
-                        className="w-full px-8 py-5 rounded-[24px] border transition-all text-xl focus:outline-none focus:ring-2 focus:ring-[#2B365A]/10 focus:border-[#2B365A]/40 shadow-sm"
-                        style={{ 
-                            backgroundColor: THEME.colors.input.bg,
-                            borderColor: THEME.colors.input.border,
-                            color: THEME.colors.text.primary
-                        }}
-                        autoFocus
-                    />
-                    <input type="submit" className="hidden" />
-                </form>
+                <div className="relative w-full max-w-xl">
+                    <form onSubmit={handleSubmit} className="relative z-30">
+                        <input
+                            type="text"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            onFocus={() => name.length > 0 && setIsOpen(filteredSuggestions.length > 0)}
+                            placeholder="Type your business name"
+                            className={`w-full px-8 py-5 transition-all text-xl focus:outline-none shadow-sm ${
+                                isOpen ? "rounded-t-[24px] border-x border-t" : "rounded-[24px] border"
+                            }`}
+                            style={{ 
+                                backgroundColor: "#E0E0E0",
+                                borderColor: isOpen ? "rgba(0,0,0,0.05)" : THEME.colors.input.border,
+                                color: "#2B365A"
+                            }}
+                            autoFocus
+                        />
+                    </form>
+
+                    <AnimatePresence>
+                        {isOpen && (
+                            <motion.div
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                className="absolute top-full left-0 right-0 bg-white border-x border-b rounded-b-[24px] shadow-2xl z-20 overflow-hidden"
+                                style={{ borderColor: "rgba(0,0,0,0.05)" }}
+                            >
+                                <div className="max-h-[220px] overflow-y-auto custom-scrollbar">
+                                    {filteredSuggestions.map((suggestion, index) => (
+                                        <div
+                                            key={index}
+                                            onClick={() => handleSelectSuggestion(suggestion)}
+                                            className="px-8 py-4 cursor-pointer hover:bg-gray-50 transition-colors first:pt-6 last:pb-6"
+                                        >
+                                            <span 
+                                                className={`text-lg font-medium transition-colors ${
+                                                    index === 0 ? "text-[#2B365A]" : "text-gray-400"
+                                                }`}
+                                            >
+                                                {suggestion}
+                                            </span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
 
                 <div className="mt-auto pb-4">
                     <p 
@@ -67,6 +137,23 @@ export default function BusinessNameSelection({ onSelect }: BusinessNameSelectio
                     </p>
                 </div>
             </div>
+
+            <style jsx>{`
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 6px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: transparent;
+                    margin: 20px 0;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: #9CA3AF;
+                    border-radius: 10px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: #6B7280;
+                }
+            `}</style>
         </div>
     );
 }

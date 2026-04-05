@@ -7,10 +7,9 @@ import { THEME } from "@/config/theme";
 interface RegistrationSuccessProps {
     userName: string;
     businessName: string;
-    onDone: () => void;
 }
 
-export default function RegistrationSuccess({ userName, businessName, onDone }: RegistrationSuccessProps) {
+export default function RegistrationSuccess({ userName, businessName }: RegistrationSuccessProps) {
     return (
         <div className="flex flex-col w-full h-full relative overflow-hidden items-center justify-center text-center">
             {/* ── Header (fixed top-left) ─────────────────── */}
@@ -118,21 +117,6 @@ export default function RegistrationSuccess({ userName, businessName, onDone }: 
                 </div>
             </div>
 
-            {/* ── Footer Action (bottom-right) ───────────── */}
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 1.8 }}
-                className="absolute bottom-6 md:bottom-10 right-6 md:right-10 pt-2"
-            >
-                <button
-                    onClick={onDone}
-                    className="group flex items-center gap-3 bg-[#2B365A] text-white px-8 md:px-10 py-3 md:py-3.5 rounded-2xl md:rounded-[20px] font-bold text-base md:text-lg transition-all hover:scale-[1.03] active:scale-95 shadow-2xl hover:shadow-[#2B365A]/30 overflow-hidden relative"
-                >
-                    <span className="relative z-10">Done</span>
-                    <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity" />
-                </button>
-            </motion.div>
 
             {/* Decorative background element to balance the 777 width */}
             <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-white/5 blur-3xl rounded-full" />

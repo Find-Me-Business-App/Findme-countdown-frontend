@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useImperativeHandle, forwardRef } from "react";
 import { useCreateUser } from "@/hooks/useCreateUser";
 import { CreateUserRequest } from "@/services/api";
 import { SectionType } from "@/config/modal-configs";
@@ -9,15 +9,26 @@ import { THEME } from "@/config/theme";
 interface RegistrationFormProps {
     section: SectionType;
     onSuccess?: () => void;
-    onNext?: (data: { name: string; email: string; role: string }) => void;
+    onNext?: (data: { name: string; email: string; role: string; userId: string }) => void;
+}
+
+export interface RegistrationFormHandle {
+    submit: () => void;
 }
 
 const ROLES = ["Sponsor", "Guest", "Artist", "Festival Artisan", "Business", "Volunteer"];
 
-export default function RegistrationForm({ section, onSuccess, onNext }: RegistrationFormProps) {
+const RegistrationForm = forwardRef<RegistrationFormHandle, RegistrationFormProps>(function RegistrationForm({ section, onSuccess, onNext }, ref) {
     const { mutate, isPending, isError, error, isSuccess } = useCreateUser();
     const isFestival = section === "festival";
     const [isRoleOpen, setIsRoleOpen] = useState(false);
+    const formRef = useRef<HTMLFormElement>(null);
+
+    useImperativeHandle(ref, () => ({
+        submit: () => {
+            formRef.current?.requestSubmit();
+        },
+    }));
 
     const [formData, setFormData] = useState({
         name: "",
@@ -48,9 +59,9 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
         if (!submissionData.password) submissionData.password = "festival_default";
 
         mutate(submissionData, {
-            onSuccess: () => {
+            onSuccess: (response) => {
                 if ((section === "business" || section === "festival") && onNext) {
-                    onNext({ name: formData.name, email: formData.email, role: formData.role });
+                    onNext({ name: formData.name, email: formData.email, role: formData.role, userId: response.data.user._id });
                 }
                 if (onSuccess) onSuccess();
             }
@@ -69,7 +80,7 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 md:gap-4 scrollbar-hide">
+        <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-2 md:gap-4 scrollbar-hide">
             <div className="flex flex-col gap-1 md:gap-1.5">
                 <label
                     className={labelClasses}
@@ -136,11 +147,11 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
                         </div>
 
                         {isRoleOpen && (
-                            <div 
+                            <div
                                 className="absolute top-full left-0 right-0 mt-2 border rounded-xl overflow-hidden z-[110] shadow-2xl"
-                                style={{ 
+                                style={{
                                     backgroundColor: THEME.colors.components.dropdownBg,
-                                    borderColor: "var(--modal-separator, rgba(0,0,0,0.1))" 
+                                    borderColor: "var(--modal-separator, rgba(0,0,0,0.1))"
                                 }}
                             >
                                 {ROLES.map((role) => (
@@ -265,5 +276,6 @@ export default function RegistrationForm({ section, onSuccess, onNext }: Registr
             </div>
         </form>
     );
-}
+});
 
+export default RegistrationForm;

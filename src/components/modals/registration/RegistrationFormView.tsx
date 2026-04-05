@@ -1,22 +1,31 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
-import RegistrationForm from "./steps/RegistrationForm";
+import RegistrationForm, { RegistrationFormHandle } from "./steps/RegistrationForm";
 import { SectionType, RegistrationSectionConfig } from "@/config/modal-configs";
 import { THEME } from "@/config/theme";
 
 interface RegistrationFormViewProps {
     config: RegistrationSectionConfig;
     section: SectionType;
-    onNext?: (data: { name?: string; email?: string; role?: string }) => void;
+    onNext?: (data: { name?: string; email?: string; role?: string; userId?: string }) => void;
     onAMEClick?: () => void;
 }
 
 /**
  * RegistrationFormView — the initial two-column layout with form + icon.
- * Extracted from the default branch of the old RegistrationModal.
+ * Clicking the AME icon now triggers form submission (user creation) first,
+ * then proceeds via onNext — ensuring userId is always captured.
  */
-export default function RegistrationFormView({ config, section, onNext, onAMEClick }: RegistrationFormViewProps) {
+export default function RegistrationFormView({ config, section, onNext }: RegistrationFormViewProps) {
+    const formRef = useRef<RegistrationFormHandle>(null);
+
+    const handleAMEClick = () => {
+        if (section === "business" && formRef.current) {
+            formRef.current.submit();
+        }
+    };
 
     return (
         <>
@@ -47,11 +56,11 @@ export default function RegistrationFormView({ config, section, onNext, onAMECli
                     </p>
                 </div>
 
-                <RegistrationForm section={section} onNext={onNext} />
+                <RegistrationForm ref={formRef} section={section} onNext={onNext} />
             </div>
 
             {/* Right Side: Icon Section */}
-            <RegistrationIconBanner section={section} onAMEClick={onAMEClick} />
+            <RegistrationIconBanner section={section} onAMEClick={handleAMEClick} />
         </>
     );
 }

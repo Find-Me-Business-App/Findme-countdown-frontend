@@ -61,16 +61,18 @@ export interface CreateUserResponse {
   error: boolean;
   message: string;
   data: {
-    name: string;
-    email: string;
-    phone: string;
-    referralCode: string;
-    password: string;
-    section: string;
-    _id: string;
-    createdAt: string;
-    updatedAt: string;
-    __v: number;
+    user: {
+      name: string;
+      email: string;
+      phone: string;
+      referralCode?: string;
+      password?: string;
+      section: string;
+      _id: string;
+      createdAt: string;
+      updatedAt: string;
+      __v: number;
+    };
   };
 }
 
@@ -89,6 +91,38 @@ export const CreateContactSchema = z.object({
 });
 
 export type CreateContactRequest = z.infer<typeof CreateContactSchema>;
+
+export const CreateBusinessSchema = z.object({
+  userId: z.string().min(1, "User ID is required"),
+  businessName: z.string().min(1, "Business name is required"),
+  ownershipType: z.string().min(1, "Ownership type is required"),
+  mainCategory: z.string().min(1, "Main category is required"),
+  subCategory: z.string().min(1, "Sub category is required"),
+  tags: z.array(z.string()).optional(),
+  majorOffering: z.string().min(1, "Major offering is required"),
+  description: z.string().min(10, "Description must be at least 10 characters"),
+});
+
+export type CreateBusinessRequest = z.infer<typeof CreateBusinessSchema>;
+
+export interface CreateBusinessResponse {
+  error: boolean;
+  message: string;
+  data: {
+    user: string;
+    businessName: string;
+    ownershipType: string;
+    mainCategory: string;
+    subCategory: string;
+    tags: string[];
+    majorOffering: string;
+    description: string;
+    _id: string;
+    createdAt: string;
+    updatedAt: string;
+    __v: number;
+  };
+}
 
 /* ────────────────────────────────────────────────────────────── */
 /* ─── API Methods ─── */
@@ -115,5 +149,55 @@ export const createContact = async (contactData: CreateContactRequest) => {
   return apiRequest<CreateUserResponse>("/lists/contact", {
     method: "POST",
     body: JSON.stringify(contactData),
+  });
+};
+
+export const createBusiness = async (businessData: CreateBusinessRequest) => {
+  CreateBusinessSchema.parse(businessData); // Client-side validation
+  return apiRequest<CreateBusinessResponse>("/businesses/", {
+    method: "POST",
+    body: JSON.stringify(businessData),
+  });
+};
+
+/* ────────────────────────────────────────────────────────────── */
+/* ─── Get All Businesses ─── */
+/* ────────────────────────────────────────────────────────────── */
+
+export interface Business {
+  _id: string;
+  user: string;
+  businessName: string;
+  ownershipType: string;
+  mainCategory: string;
+  subCategory: string;
+  tags: string[];
+  majorOffering: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface GetBusinessesResponse {
+  error: boolean;
+  message: string;
+  data: {
+    pagination: {
+      currentPage: number;
+      hasNext: boolean;
+      hasPrev: boolean;
+      nextPage: number | null;
+      prevPage: number | null;
+      totalPages: number;
+      totalRecords: number;
+    };
+    records: Business[];
+  };
+}
+
+export const getBusinesses = async () => {
+  return apiRequest<GetBusinessesResponse>("/businesses/", {
+    method: "GET",
   });
 };
