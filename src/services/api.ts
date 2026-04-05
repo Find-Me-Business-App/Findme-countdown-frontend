@@ -201,3 +201,116 @@ export const getBusinesses = async () => {
     method: "GET",
   });
 };
+
+/* ────────────────────────────────────────────────────────────── */
+/* ─── Get All Users ─── */
+/* ────────────────────────────────────────────────────────────── */
+
+export interface RegisteredUser {
+  name: string;
+  email: string;
+  phone: string;
+  referralCode?: string;
+  section: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface GetUsersResponse {
+  error: boolean;
+  message: string;
+  data: {
+    pagination: {
+      currentPage: number;
+      hasNext: boolean;
+      hasPrev: boolean;
+      nextPage: number | null;
+      prevPage: number | null;
+      totalPages: number;
+      totalRecords: number;
+    };
+    records: RegisteredUser[];
+  };
+}
+
+export const getUsers = async () => {
+  return apiRequest<GetUsersResponse>("/lists/user", {
+    method: "GET",
+  });
+};
+
+/* ────────────────────────────────────────────────────────────── */
+/* ─── Get All Contacts ─── */
+/* ────────────────────────────────────────────────────────────── */
+
+export interface ContactRecord {
+  name: string;
+  email: string;
+  message: string;
+  section: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface GetContactsResponse {
+  error: boolean;
+  message: string;
+  data: {
+    pagination: {
+      currentPage: number;
+      hasNext: boolean;
+      hasPrev: boolean;
+      nextPage: number | null;
+      prevPage: number | null;
+      totalPages: number;
+      totalRecords: number;
+    };
+    records: ContactRecord[];
+  };
+}
+
+export const getContacts = async () => {
+  return apiRequest<GetContactsResponse>("/lists/contact", {
+    method: "GET",
+  });
+};
+
+/* ────────────────────────────────────────────────────────────── */
+/* ─── Get All Waitlist ─── */
+/* ────────────────────────────────────────────────────────────── */
+
+export interface WaitlistRecord {
+  email: string;
+  section: string;
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: number;
+}
+
+export interface GetWaitlistResponse {
+  error: boolean;
+  message: string;
+  data: {
+    pagination: {
+      currentPage: number;
+      hasNext: boolean;
+      hasPrev: boolean;
+      nextPage: number | null;
+      prevPage: number | null;
+      totalPages: number;
+      totalRecords: number;
+    };
+    records: WaitlistRecord[];
+  };
+}
+
+export const getWaitlist = async () => {
+  return apiRequest<GetWaitlistResponse>("/lists/wait-list", {
+    method: "GET",
+  });
+};
