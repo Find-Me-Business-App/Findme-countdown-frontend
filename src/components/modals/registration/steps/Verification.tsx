@@ -2,6 +2,8 @@
 
 import { ChevronRight } from "lucide-react";
 import { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import { THEME } from "@/config/theme";
 
 interface VerificationProps {
@@ -10,14 +12,18 @@ interface VerificationProps {
 
 export default function Verification({ onSubmit }: VerificationProps) {
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [isSuccessStep, setIsSuccessStep] = useState(false);
     const [regCode, setRegCode] = useState("");
 
     const handleConfirm = () => {
         setIsSubmitting(true);
         setTimeout(() => {
-            onSubmit();
             setIsSubmitting(false);
-        }, 1500);
+            setIsSuccessStep(true);
+            setTimeout(() => {
+                onSubmit();
+            }, 800);
+        }, 1200);
     };
 
     const labelClasses = "text-[12px] font-bold ml-1 uppercase tracking-wider opacity-60";
@@ -78,7 +84,33 @@ export default function Verification({ onSubmit }: VerificationProps) {
                         style={{ backgroundColor: "#2B365A" }}
                     >
                         {isSubmitting ? (
-                            <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                            <motion.div
+                                animate={{ rotate: 360 }}
+                                transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
+                                className="flex items-center justify-center"
+                            >
+                                <Image 
+                                    src="/icons/signup-ai.svg" 
+                                    alt="Spinning Star" 
+                                    width={24} 
+                                    height={24}
+                                    className="object-contain"
+                                />
+                            </motion.div>
+                        ) : isSuccessStep ? (
+                            <motion.div
+                                initial={{ scale: 0, rotate: -45 }}
+                                animate={{ scale: 1, rotate: 0 }}
+                                transition={{ type: "spring", stiffness: 200, damping: 12 }}
+                            >
+                                <Image 
+                                    src="/icons/bussines-suc.svg" 
+                                    alt="Success" 
+                                    width={28} 
+                                    height={28}
+                                    className="object-contain"
+                                />
+                            </motion.div>
                         ) : (
                             <ChevronRight className="w-6 h-6 md:w-7 md:h-7 text-white group-hover:translate-x-0.5 transition-transform" strokeWidth={3} />
                         )}

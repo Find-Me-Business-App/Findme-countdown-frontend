@@ -44,10 +44,10 @@ export default function RegistrationSuccess({ userName, businessName }: Registra
             {/* ── Central Content Area ────────────────────── */}
             <div className="flex flex-col items-center justify-center gap-10 md:gap-14 mt-12 md:mt-24">
                 {/* Success Icon Group */}
-                <motion.div 
+                <motion.div
                     initial={{ scale: 0, rotate: -45 }}
                     animate={{ scale: 1, rotate: 0 }}
-                    transition={{ 
+                    transition={{
                         type: "spring",
                         stiffness: 260,
                         damping: 20,
@@ -61,9 +61,9 @@ export default function RegistrationSuccess({ userName, businessName }: Registra
                         transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
                         className="absolute inset-[-15px] z-0 opacity-20"
                     >
-                        <Image 
-                            src="/icons/Ellipse 715.svg" 
-                            alt="Halo" 
+                        <Image
+                            src="/icons/Ellipse 715.svg"
+                            alt="Halo"
                             fill
                             className="object-contain"
                         />
@@ -72,31 +72,31 @@ export default function RegistrationSuccess({ userName, businessName }: Registra
                     {/* Main Success Checkmark */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
-                        animate={{ 
-                            opacity: 1, 
-                            scale: 1, 
-                            rotate: 360 
+                        animate={{
+                            opacity: 1,
+                            scale: 1,
+                            rotate: 360
                         }}
-                        transition={{ 
+                        transition={{
                             opacity: { duration: 0.4, delay: 1.0 },
                             scale: { duration: 0.5, delay: 1.0, type: "spring" },
                             rotate: { duration: 10, delay: 1.0, repeat: Infinity, ease: "linear" }
                         }}
                         className="relative z-10 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center drop-shadow-2xl"
                     >
-                        <Image 
-                            src="/icons/success.svg" 
-                            alt="Success" 
-                            width={96} 
+                        <Image
+                            src="/icons/success.svg"
+                            alt="Success"
+                            width={96}
                             height={96}
                             className="object-contain"
                         />
                     </motion.div>
                 </motion.div>
-                
+
                 {/* Status Message */}
                 <div className="flex flex-col gap-3 md:gap-4 relative z-10">
-                    <motion.h3 
+                    <motion.h3
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 1.2, ease: "easeOut" }}
@@ -105,7 +105,7 @@ export default function RegistrationSuccess({ userName, businessName }: Registra
                     >
                         Registration complete
                     </motion.h3>
-                    <motion.p 
+                    <motion.p
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 1.4, ease: "easeOut" }}
