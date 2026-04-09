@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useCreateWaitlist } from "@/hooks/useCreateWaitlist";
+import { useModalStore } from "@/store/useModalStore";
 import { SectionType } from "@/config/modal-configs";
 import { THEME } from "@/config/theme";
 
@@ -10,12 +11,28 @@ interface WaitlistFormProps {
 }
 
 export default function WaitlistForm({ section }: WaitlistFormProps) {
+    const { closeModal, waitlistSubmissions, addWaitlistSubmission } = useModalStore();
     const [email, setEmail] = useState("");
     const { mutate, isPending, isError, error, isSuccess } = useCreateWaitlist();
 
+    const isAlreadySubmitted = waitlistSubmissions.includes(email);
+
+    useEffect(() => {
+        if (isSuccess) {
+            const timer = setTimeout(() => {
+                closeModal();
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [isSuccess, closeModal]);
+
     const handleSubmit = () => {
-        if (!email) return;
-        mutate({ email, section });
+        if (!email || isPending || isSuccess || isAlreadySubmitted) return;
+        mutate({ email, section }, {
+            onSuccess: () => {
+                addWaitlistSubmission(email);
+            }
+        });
     };
 
     return (
@@ -41,7 +58,7 @@ export default function WaitlistForm({ section }: WaitlistFormProps) {
                 />
                 <button
                     onClick={handleSubmit}
-                    disabled={isPending}
+                    disabled={isPending || isSuccess || isAlreadySubmitted}
                     className="w-full md:w-auto bg-gradient-to-r from-[#2B365A] to-[#3B4B7A] text-white px-6 md:px-10 py-3 md:py-3.5 rounded-xl font-bold text-base md:text-[18px] tracking-[2px] transition-all shadow-xl disabled:opacity-50 shrink-0 hover:scale-[1.02] active:scale-[0.98] group"
                 >
                     <span className="group-hover:brightness-125 transition-all">
@@ -59,7 +76,12 @@ export default function WaitlistForm({ section }: WaitlistFormProps) {
             )}
             {isSuccess && (
                 <p className="text-green-500 text-xs mt-1">
-                    Check your email to confirm registration!
+                    Check your email to confirm registration! Closing in 2s...
+                </p>
+            )}
+            {isAlreadySubmitted && email && (
+                <p className="text-yellow-500 text-xs mt-1">
+                    You have already joined the waitlist with this email.
                 </p>
             )}
         </div>

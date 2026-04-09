@@ -59,7 +59,7 @@ export default function MobileMenu({ isOpen, onClose, activeSection, onContactCl
     return (
         <AnimatePresence>
             {isOpen && (
-                <div className="fixed inset-0 z-[100] flex items-end justify-center">
+                <div className="fixed inset-0 z-100 flex items-end justify-center">
                     {/* Backdrop */}
                     <motion.div
                         initial={{ opacity: 0 }}

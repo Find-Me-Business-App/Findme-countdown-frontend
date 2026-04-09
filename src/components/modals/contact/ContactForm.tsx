@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
 import { useCreateContact } from "@/hooks/useCreateContact";
+import { useModalStore } from "@/store/useModalStore";
 import { SectionType } from "@/config/modal-configs";
 import FormField from "./FormField";
 
@@ -11,6 +12,7 @@ interface ContactFormProps {
 }
 
 export default function ContactForm({ section }: ContactFormProps) {
+    const { closeModal, contactSubmissions, addContactSubmission } = useModalStore();
     const { mutate, isPending, isError, error, isSuccess } = useCreateContact();
 
     const [formData, setFormData] = useState({
@@ -24,9 +26,24 @@ export default function ContactForm({ section }: ContactFormProps) {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
+    const isAlreadySubmitted = contactSubmissions.includes(formData.email);
+    
+    useEffect(() => {
+        if (isSuccess) {
+            const timer = setTimeout(() => {
+                closeModal();
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [isSuccess, closeModal]);
+
     const handleSubmit = () => {
-        if (!formData.email || !formData.message) return;
-        mutate({ ...formData, section });
+        if (!formData.email || !formData.message || isPending || isSuccess || isAlreadySubmitted) return;
+        mutate({ ...formData, section }, {
+            onSuccess: () => {
+                addContactSubmission(formData.email);
+            }
+        });
     };
 
     return (
@@ -70,7 +87,7 @@ export default function ContactForm({ section }: ContactFormProps) {
                         />
                         <button
                             onClick={handleSubmit}
-                            disabled={isPending}
+                            disabled={isPending || isSuccess || isAlreadySubmitted}
                             className="flex items-start justify-center pl-3 md:pl-4 pr-1 pt-3 md:pt-4 transition-transform hover:translate-x-1 disabled:opacity-50"
                         >
                             {isPending ? (
@@ -84,6 +101,11 @@ export default function ContactForm({ section }: ContactFormProps) {
 
                 {isError && <p className="text-red-500 text-xs mt-1 px-1">{error.message}</p>}
                 {isSuccess && <p className="text-green-500 text-xs mt-1 px-1">Message sent successfully!</p>}
+                {isAlreadySubmitted && formData.email && (
+                    <p className="text-yellow-500 text-xs mt-1 px-1">
+                        You have already submitted a message with this email. Please wait for our response.
+                    </p>
+                )}
             </div>
         </div>
     );
