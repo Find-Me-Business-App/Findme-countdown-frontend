@@ -39,7 +39,6 @@ export default function Verification({ onSubmit }: VerificationProps) {
     };
 
     const labelClasses = "text-[12px] font-bold ml-1 uppercase tracking-wider opacity-60";
-    const inputClasses = "w-full rounded-xl px-5 h-[46px] focus:outline-none transition-all border font-bold text-sm shadow-sm";
 
     return (
         <div className="flex flex-col w-full h-full relative overflow-hidden">

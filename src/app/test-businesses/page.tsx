@@ -4,7 +4,6 @@ import { useGetBusinesses } from "@/hooks/useGetBusinesses";
 import { useGetUsers } from "@/hooks/useGetUsers";
 import { useGetContacts } from "@/hooks/useGetContacts";
 import { useGetWaitlist } from "@/hooks/useGetWaitlist";
-import { THEME } from "@/config/theme";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ChevronLeft, Info, User as UserIcon, Building2, MessageSquare, Clock, RefreshCcw } from "lucide-react";
@@ -22,7 +21,6 @@ export default function BusinessesPage() {
         data: businessesData, 
         isLoading: isBusinessesLoading, 
         isError: isBusinessesError, 
-        error: businessesError, 
         refetch: refetchBusinesses 
     } = useGetBusinesses();
 
@@ -30,7 +28,6 @@ export default function BusinessesPage() {
         data: usersData, 
         isLoading: isUsersLoading, 
         isError: isUsersError, 
-        error: usersError, 
         refetch: refetchUsers 
     } = useGetUsers();
 
@@ -38,7 +35,6 @@ export default function BusinessesPage() {
         data: contactsData,
         isLoading: isContactsLoading,
         isError: isContactsError,
-        error: contactsError,
         refetch: refetchContacts
     } = useGetContacts();
 
@@ -46,7 +42,6 @@ export default function BusinessesPage() {
         data: waitlistData,
         isLoading: isWaitlistLoading,
         isError: isWaitlistError,
-        error: waitlistError,
         refetch: refetchWaitlist
     } = useGetWaitlist();
 
@@ -59,11 +54,6 @@ export default function BusinessesPage() {
         : view === "users" ? isUsersError 
         : view === "contacts" ? isContactsError
         : isWaitlistError;
-
-    const error = view === "businesses" ? businessesError 
-        : view === "users" ? usersError 
-        : view === "contacts" ? contactsError
-        : waitlistError;
 
     const refetch = view === "businesses" ? refetchBusinesses 
         : view === "users" ? refetchUsers 
@@ -107,7 +97,7 @@ export default function BusinessesPage() {
 
                     <div className="flex flex-col gap-4 sm:gap-6 items-start md:items-end">
                         {/* Tab Switcher - Now more mobile responsive */}
-                        <div className="flex flex-wrap bg-white/[0.04] p-1 rounded-xl sm:rounded-2xl border border-white/[0.08] backdrop-blur-3xl">
+                        <div className="flex flex-wrap bg-white/5 p-1.5 rounded-2xl border border-white/10 backdrop-blur-3xl">
                             {(["businesses", "users", "contacts", "waitlist"] as ViewType[]).map((tab) => (
                                 <button
                                     key={tab}
@@ -131,7 +121,7 @@ export default function BusinessesPage() {
 
                         <button 
                             onClick={() => refetch()}
-                            className="px-6 sm:px-8 py-2 sm:py-3 bg-white/[0.06] border border-white/[0.1] rounded-xl sm:rounded-2xl font-bold text-[10px] sm:text-xs uppercase tracking-[0.25em] hover:bg-white/[0.12] transition-all flex items-center gap-3 group"
+                            className="px-6 sm:px-8 py-2 sm:py-3 bg-white/5 border border-white/10 rounded-xl sm:rounded-2xl font-bold text-[10px] sm:text-xs uppercase tracking-[0.25em] hover:bg-white/10 transition-all flex items-center gap-3 group"
                         >
                             <RefreshCcw size={14} className="opacity-40 group-hover:opacity-100 group-hover:rotate-180 transition-all duration-500" />
                             Refresh
@@ -148,7 +138,7 @@ export default function BusinessesPage() {
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
-                                className="space-y-[1px] bg-white/[0.05]"
+                                className="space-y-px bg-white/5"
                             >
                                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((i) => (
                                     <div key={i} className="h-14 sm:h-16 bg-[#080808] animate-pulse" />
@@ -179,7 +169,7 @@ export default function BusinessesPage() {
                                 <div className="overflow-x-auto custom-scrollbar">
                                     <table className="w-full border-collapse">
                                         <thead>
-                                            <tr className="border-b border-white/10 bg-white/[0.02]">
+                                            <tr className="border-b border-white/10 bg-white/5">
                                                 {view === "businesses" && (
                                                     <>
                                                         <Th>Name</Th>

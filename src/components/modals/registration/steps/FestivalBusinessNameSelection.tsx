@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { Search, Check, Info } from "lucide-react";
+import { Search, Check } from "lucide-react";
 import { THEME } from "@/config/theme";
 import { useGetBusinesses } from "@/hooks/useGetBusinesses";
 import { motion, AnimatePresence } from "framer-motion";

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { Search, ChevronDown, Check } from "lucide-react";
+import { Search, Check } from "lucide-react";
 import { THEME } from "@/config/theme";
 import { motion, AnimatePresence } from "framer-motion";
 

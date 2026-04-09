@@ -22,8 +22,8 @@ export default function RegistrationFormView({ config, section, onNext }: Regist
     const formRef = useRef<RegistrationFormHandle>(null);
 
     const handleAMEClick = () => {
-        if (section === "business" && formRef.current) {
-            formRef.current.submit();
+        if (section === "business" && onNext) {
+            onNext({});
         }
     };
 
