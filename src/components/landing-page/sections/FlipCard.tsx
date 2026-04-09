@@ -51,7 +51,7 @@ const FlipCard = React.memo(({ value, label }: FlipCardProps) => {
             <div className="relative w-16 h-18 md:w-24 md:h-28 perspective-1000 transform-gpu transition-transform duration-500 group-hover:scale-105">
                 {/* 1. Static Top Half (Target Value) */}
                 <div className="absolute inset-0 flex flex-col">
-                    <div className="h-1/2 bg-white/20 backdrop-blur-2xl border-t border-x border-white/20 rounded-t-2xl overflow-hidden flex items-end justify-center relative">
+                    <div className="h-1/2 bg-white/20 backdrop-blur-[12px] md:backdrop-blur-[40px] border-t border-x border-white/20 rounded-t-xl md:rounded-t-2xl overflow-hidden flex items-end justify-center relative">
                         {/* Specular highlight */}
                         <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
                         <span className="text-white text-3xl md:text-5xl font-bold translate-y-1/2 select-none tracking-tighter drop-shadow-2xl">
@@ -63,7 +63,7 @@ const FlipCard = React.memo(({ value, label }: FlipCardProps) => {
                 {/* 2. Static Bottom Half (Current settled value) */}
                 <div className="absolute inset-0 flex flex-col">
                     <div className="h-1/2 bg-transparent" />
-                    <div className="h-1/2 bg-white/5 backdrop-blur-[40px] border-b border-x border-white/20 rounded-b-2xl overflow-hidden flex items-start justify-center relative">
+                    <div className="h-1/2 bg-white/5 backdrop-blur-[12px] md:backdrop-blur-[40px] border-b border-x border-white/20 rounded-b-xl md:rounded-b-2xl overflow-hidden flex items-start justify-center relative">
                         {/* Ambient shadow */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                         <span className="text-white text-3xl md:text-5xl font-bold -translate-y-1/2 select-none tracking-tighter drop-shadow-2xl">
@@ -81,8 +81,8 @@ const FlipCard = React.memo(({ value, label }: FlipCardProps) => {
                                 initial={{ rotateX: 0 }}
                                 animate={{ rotateX: -180 }}
                                 transition={{ duration: 0.6, ease: [0.45, 0.05, 0.55, 0.95] }}
-                                style={{ transformOrigin: "bottom" }}
-                                className="h-1/2 bg-white/10 backdrop-blur-[40px] border-t border-x border-white/20 rounded-t-2xl overflow-hidden flex items-end justify-center backface-hidden preserve-3d shadow-2xl"
+                                style={{ transformOrigin: "bottom", willChange: "transform" }}
+                                className="h-1/2 bg-white/10 backdrop-blur-[12px] md:backdrop-blur-[40px] border-t border-x border-white/20 rounded-t-xl md:rounded-t-2xl overflow-hidden flex items-end justify-center backface-hidden preserve-3d shadow-md md:shadow-2xl"
                             >
                                 <span className="text-white text-3xl md:text-5xl font-bold translate-y-1/2 select-none tracking-tighter">
                                     {prevDisplay}
@@ -94,8 +94,8 @@ const FlipCard = React.memo(({ value, label }: FlipCardProps) => {
                                 initial={{ rotateX: 180 }}
                                 animate={{ rotateX: 0 }}
                                 transition={{ duration: 0.6, ease: [0.45, 0.05, 0.55, 0.95] }}
-                                style={{ transformOrigin: "top" }}
-                                className="h-1/2 bg-white/5 backdrop-blur-[40px] border-b border-x border-white/20 rounded-b-2xl overflow-hidden flex items-start justify-center backface-hidden preserve-3d shadow-2xl"
+                                style={{ transformOrigin: "top", willChange: "transform" }}
+                                className="h-1/2 bg-white/5 backdrop-blur-[12px] md:backdrop-blur-[40px] border-b border-x border-white/20 rounded-b-xl md:rounded-b-2xl overflow-hidden flex items-start justify-center backface-hidden preserve-3d shadow-md md:shadow-2xl"
                             >
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                                 <span className="text-white text-3xl md:text-5xl font-bold -translate-y-1/2 select-none tracking-tighter">
@@ -108,8 +108,9 @@ const FlipCard = React.memo(({ value, label }: FlipCardProps) => {
 
                 {/* Decorative Mechanical Details */}
                 <div className="absolute top-1/2 left-0 w-full h-[1.5px] bg-black/50 z-40 transform -translate-y-1/2 shadow-sm" />
-                <div className="absolute top-1/2 -left-1 w-2 h-4 bg-white/30 rounded-full z-50 transform -translate-y-1/2 backdrop-blur-md shadow-lg" />
-                <div className="absolute top-1/2 -right-1 w-2 h-4 bg-white/30 rounded-full z-50 transform -translate-y-1/2 backdrop-blur-md shadow-lg" />
+                {/* Side pins - simplified on mobile */}
+                <div className="absolute top-1/2 -left-1 w-1.5 h-3 md:w-2 md:h-4 bg-white/30 rounded-full z-50 transform -translate-y-1/2 md:backdrop-blur-md md:shadow-lg" />
+                <div className="absolute top-1/2 -right-1 w-1.5 h-3 md:w-2 md:h-4 bg-white/30 rounded-full z-50 transform -translate-y-1/2 md:backdrop-blur-md md:shadow-lg" />
             </div>
             
             {label && (
