@@ -25,7 +25,7 @@ export default function InfoContent({ config, section }: InfoContentProps) {
         <div className="relative flex flex-col md:flex-row w-full h-full min-h-0 overflow-hidden">
 
             {/* 1. Mobile Image area (Hidden on Desktop) */}
-            <div className="relative w-full h-[28vh] min-h-[180px] md:hidden flex-shrink-0 bg-[#0f172a]/20">
+            <div className="relative w-full h-[28vh] min-h-[180px] md:hidden flex-shrink-0">
                 <Image
                     src={config.imagePath}
                     alt="Illustration"
@@ -41,16 +41,12 @@ export default function InfoContent({ config, section }: InfoContentProps) {
                 {/* Text Area (Left) */}
                 <div className="flex flex-col w-full md:w-[60%] min-h-0 pt-6 md:pt-14 pb-8 md:pb-14 pl-6 pr-6 md:pl-16 md:pr-4 self-stretch">
                     {/* Fixed Modal Label (Indigo Bar + "More Information") */}
-                    <div className="flex-shrink-0 mb-2 invisible md:visible">
+                    <div className="flex-shrink-0 mb-2">
                         <InfoHeader accentColor={config.accentColor} />
                     </div>
 
                     {/* Scrollable Body (Refined for airy mockup look) */}
                     <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide pt-1 pb-14 info-scroll-mask">
-                        {/* Mobile Header (Hidden on Desktop) */}
-                        <div className="md:hidden flex flex-col items-center mb-6">
-                            <InfoHeader accentColor={config.accentColor} />
-                        </div>
 
                         {/* Scrolling Title (Always scrolls with body) */}
                         <div className="mb-6 flex flex-col items-center md:items-start">
