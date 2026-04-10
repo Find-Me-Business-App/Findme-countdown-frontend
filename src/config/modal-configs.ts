@@ -106,7 +106,7 @@ export const INFO_CONFIGS: Record<SectionType, InfoSectionConfig> = {
             "FindMe also tracks ecological impact while providing strategic insights, automated updates, and localized field support from trained FindMe Agents. Try FindMe today and kickstart your journey into meaning by registering your business now on the website and a notification would be sent to your email when your dashboard is ready. Thank You"
         ],
         subDescription: "Create, manage and automate all astacking.",
-        imagePath: "/more-info2.png",
+        imagePath: "/icons/replace.svg",
         accentColor: "bg-[#1e3a8a]",
         titleColor: "text-[#1e3a8a]"
     },

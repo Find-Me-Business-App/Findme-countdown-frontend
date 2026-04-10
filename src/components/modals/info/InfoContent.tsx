@@ -25,12 +25,12 @@ export default function InfoContent({ config, section }: InfoContentProps) {
         <div className="relative flex flex-col md:flex-row w-full h-full min-h-0 overflow-hidden">
 
             {/* 1. Mobile Image area (Hidden on Desktop) */}
-            <div className="relative w-full h-[28vh] min-h-[180px] md:hidden flex-shrink-0">
+            <div className="relative w-full h-[26vh] min-h-[160px] md:hidden flex-shrink-0">
                 <Image
                     src={config.imagePath}
                     alt="Illustration"
                     fill
-                    className="object-contain p-4"
+                    className="object-contain object-bottom p-2 pt-4"
                     priority
                 />
             </div>
@@ -74,7 +74,7 @@ export default function InfoContent({ config, section }: InfoContentProps) {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative w-full h-[120%] -mb-[10%] -mr-[10%]" /* Slight overflow for dynamic look */
+                        className="relative w-[75%] h-[85%] -mb-[8%] -mr-[2%]" /* Significantly smaller as requested */
                     >
                         <Image
                             src={config.imagePath}
@@ -161,13 +161,13 @@ function InfoFooter({ subDescription, section }: { subDescription: string, secti
                         onClick={cta.action}
                         className="flex items-center gap-3 mb-3 hover:opacity-80 transition-all active:scale-95"
                     >
-                        <span className="text-[#3b82f6] text-lg md:text-2xl font-black tracking-tight">
+                        <span className="text-[#1e3a8a] text-[13px] md:text-base font-bold tracking-tight">
                             {cta.label}
                         </span>
-                        <span className="text-white/60 text-2xl group-hover:translate-x-1 group-hover:text-[#3b82f6] transition-all">→</span>
+                        <span className="text-[#1e3a8a] text-lg md:text-xl group-hover:translate-x-1 transition-all">→</span>
                     </button>
                     {/* Horizontal Divider Line matching mockup */}
-                    <div className="w-56 md:w-64 h-[2px] bg-[#1e3a8a] rounded-full origin-left opacity-60" />
+                    <div className="w-32 md:w-48 h-[2px] bg-[#1e3a8a] rounded-full origin-left opacity-60" />
                 </div>
             )}
 
