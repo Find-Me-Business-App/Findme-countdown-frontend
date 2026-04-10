@@ -9,7 +9,7 @@ import { THEME } from "@/config/theme";
 interface RegistrationFormViewProps {
     config: RegistrationSectionConfig;
     section: SectionType;
-    onNext?: (data: { name?: string; email?: string; role?: string; userId?: string }) => void;
+    onNext?: (data: { name?: string; email?: string; role?: string; userId?: string; isAME?: boolean }) => void;
     onAMEClick?: () => void;
 }
 
@@ -23,7 +23,7 @@ export default function RegistrationFormView({ config, section, onNext }: Regist
 
     const handleAMEClick = () => {
         if (section === "business" && onNext) {
-            onNext({});
+            onNext({ isAME: true });
         }
     };
 

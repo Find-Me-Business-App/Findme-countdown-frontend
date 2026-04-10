@@ -7,6 +7,9 @@ import RegistrationFormView from "./RegistrationFormView";
 import { ModalBackdrop, ModalContainer, ModalCloseButton } from "../shared";
 
 // Sub-step components
+import { AmeFlow } from "./ame";
+import type { AmeCollectedData } from "./ame";
+import { useAmeRegistration } from "@/hooks/useAmeRegistration";
 import RegistrationAI from "./steps/RegistrationAI";
 import AccountTypeSelection from "./steps/AccountTypeSelection";
 import BusinessCategorySelection from "./steps/BusinessCategorySelection";
@@ -32,7 +35,8 @@ export type RegistrationView =
     | "success"
     | "festival_category"
     | "festival_business_name"
-    | "festival_verification";
+    | "festival_verification"
+    | "ame";
 
 /**
  * RegistrationModal — multi-step registration wizard.
@@ -48,25 +52,46 @@ export default function RegistrationModal() {
     const [userName, setUserName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedOwnership, setSelectedOwnership] = useState("");
+    const [flowType, setFlowType] = useState<"manual" | "ame">("manual");
 
+    // AME registration API hook (handles loading, error, submission)
+    const { submit: submitAme, isLoading, error, clearError } = useAmeRegistration();
 
     // Reset to form view when modal re-opens
     useEffect(() => {
         setView("form");
-    }, []);
+        clearError();
+    }, [clearError]);
+
+    // Auto-clear error after 10 seconds
+    useEffect(() => {
+        if (error) {
+            const timer = setTimeout(() => clearError(), 10000);
+            return () => clearTimeout(timer);
+        }
+    }, [error, clearError]);
 
     if (!config) return null;
 
-    const isSubStep = view !== "form" && view !== "ai";
+    const isAmeView = view === "ame";
+    const isSubStep = view !== "form" && view !== "ai" && !isAmeView;
     const isFestivalVerification = view === "festival_verification";
 
-
+    const handleAmeComplete = async (ameData: AmeCollectedData) => {
+        const result = await submitAme(ameData);
+        if (result) {
+            setUserId(result.userId);
+            setUserName(result.userName);
+            setBusinessName(result.businessName);
+            setView("success");
+        }
+    };
     // Compute container sizing based on current view
-    const isCompactStep = view === "account_info" || view === "owner_verification" || view === "ai" || view === "account_type" || view === "festival_business_name" || view === "category" || view === "business_name" || view === "owner_info" || view === "verification" || view === "success";
-    const containerClass = view === "ai"
-        ? "w-full md:w-[777px] md:h-[444px] shadow-2xl border"
+    const isCompactStep = view === "account_info" || view === "owner_verification" || view === "ai" || view === "account_type" || view === "festival_business_name" || view === "category" || view === "business_name" || view === "owner_info" || view === "verification" || view === "success" || isAmeView;
+    const containerClass = view === "ai" || isAmeView
+        ? "w-full md:w-[777px] h-[550px] md:h-[444px] shadow-2xl border"
         : isCompactStep
-            ? "w-full md:w-[777px] md:h-[444px] shadow-2xl border"
+            ? "w-full md:w-[777px] h-[550px] md:h-[444px] shadow-2xl border"
             : isSubStep
                 ? `max-w-[420px] md:max-w-[680px] shadow-2xl border`
                 : "max-w-[420px] md:max-w-[760px]";
@@ -87,7 +112,7 @@ export default function RegistrationModal() {
 
         switch (view) {
             case "ai": setView("form"); break;
-            case "account_type": setView("ai"); break;
+            case "account_type": setView("form"); break; // If manual flow, go back to form
             case "category": setView("account_type"); break;
             case "business_name": setView("category"); break;
             case "account_info": setView("business_name"); break;
@@ -97,6 +122,9 @@ export default function RegistrationModal() {
             case "festival_category": setView("form"); break;
             case "festival_business_name": setView("festival_category"); break;
             case "festival_verification": setView("festival_business_name"); break;
+
+            // AME Back Logic
+            case "ame": setView("form"); break;
             default: break;
         }
     };
@@ -110,15 +138,28 @@ export default function RegistrationModal() {
             <ModalContainer
                 type="registration"
                 overflow={isCompactStep ? "overflow-hidden" : "overflow-y-auto"}
-                className={`${containerClass} px-5 py-4 ${isCompactStep ? 'md:px-8 md:py-6' : 'md:px-12 md:py-10'} flex flex-col md:flex-row gap-6 md:gap-12 shrink-0`}
+                className={`${containerClass} px-5 py-4 ${isCompactStep ? 'md:px-8 md:py-6' : 'md:px-12 md:py-10'} flex flex-col md:flex-row gap-6 md:gap-12 shrink-0 relative`}
                 style={containerStyle}
             >
+                {isLoading && (
+                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-50 flex flex-col items-center justify-center gap-4 rounded-3xl">
+                        <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                        <p className="text-white font-medium">Securing your account...</p>
+                    </div>
+                )}
+
                 <ModalCloseButton
                     onClick={closeModal}
                     onBack={showBack && !fromEarlyBird ? handleBack : undefined}
                     className={`top-4 right-4 md:top-10 md:right-10 ${isFestivalVerification ? 'text-white/80 hover:text-white' : ''}`}
                     style={isFestivalVerification ? { color: 'white' } : {}}
                 />
+
+                {error && (
+                    <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-red-500/90 text-white px-4 py-2 rounded-full text-xs font-bold z-50 animate-bounce">
+                        {error}
+                    </div>
+                )}
 
                 {renderView({
                     view,
@@ -135,7 +176,9 @@ export default function RegistrationModal() {
                     setSelectedCategory,
                     selectedOwnership,
                     setSelectedOwnership,
+                    setFlowType,
                     closeModal,
+                    handleAmeComplete,
                 })}
             </ModalContainer>
         </div>
@@ -159,7 +202,9 @@ interface ViewRouterProps {
     setSelectedCategory: (c: string) => void;
     selectedOwnership: string;
     setSelectedOwnership: (o: string) => void;
+    setFlowType: (t: "manual" | "ame") => void;
     closeModal: () => void;
+    handleAmeComplete: (data: AmeCollectedData) => void;
 }
 
 function renderView({
@@ -169,9 +214,18 @@ function renderView({
     userId, setUserId,
     selectedCategory, setSelectedCategory,
     selectedOwnership, setSelectedOwnership,
+    setFlowType,
     closeModal,
+    handleAmeComplete,
 }: ViewRouterProps) {
     switch (view) {
+        case "ame":
+            return (
+                <AmeFlow 
+                    onComplete={handleAmeComplete}
+                    onBack={() => setView("form")}
+                />
+            );
         case "ai":
             return (
                 <RegistrationAI
@@ -275,7 +329,18 @@ function renderView({
                     section={section as SectionType}
                     onNext={
                         section === "business"
-                            ? (data) => { if (data?.name) setUserName(data.name); if (data?.userId) setUserId(data.userId); setView("ai"); }
+                            ? (data) => {
+                                if (data?.name) setUserName(data.name);
+                                if (data?.userId) setUserId(data.userId);
+
+                                if (data?.isAME) {
+                                    setFlowType("ame");
+                                    setView("ame");
+                                } else {
+                                    setFlowType("manual");
+                                    setView("account_type");
+                                }
+                            }
                             : section === "festival"
                                 ? (data) => {
                                     if (data?.name) setUserName(data.name);

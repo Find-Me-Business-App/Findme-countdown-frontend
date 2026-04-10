@@ -1,0 +1,12 @@
+/* ─── AME Flow Shared Utilities ──────────────────────────────── */
+/* Consolidates scrollbar-hiding CSS previously duplicated in       */
+/* PromptsView, UserInfoView, and AmeFlow via <style jsx> blocks.  */
+
+.ame-no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.ame-no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

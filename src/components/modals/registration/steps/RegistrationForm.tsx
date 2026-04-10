@@ -9,7 +9,7 @@ import { THEME } from "@/config/theme";
 interface RegistrationFormProps {
     section: SectionType;
     onSuccess?: () => void;
-    onNext?: (data: { name: string; email: string; role: string; userId: string }) => void;
+    onNext?: (data: { name: string; email: string; role: string; userId: string; isAME?: boolean }) => void;
 }
 
 export interface RegistrationFormHandle {
@@ -61,7 +61,13 @@ const RegistrationForm = forwardRef<RegistrationFormHandle, RegistrationFormProp
         mutate(submissionData, {
             onSuccess: (response) => {
                 if ((section === "business" || section === "festival") && onNext) {
-                    onNext({ name: formData.name, email: formData.email, role: formData.role, userId: response.data.user._id });
+                    onNext({ 
+                        name: formData.name, 
+                        email: formData.email, 
+                        role: formData.role, 
+                        userId: response.data.user._id,
+                        isAME: false 
+                    });
                 }
                 if (onSuccess) onSuccess();
             }

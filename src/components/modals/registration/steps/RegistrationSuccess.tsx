@@ -1,7 +1,8 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { THEME } from "@/config/theme";
 
 interface RegistrationSuccessProps {
@@ -10,6 +11,14 @@ interface RegistrationSuccessProps {
 }
 
 export default function RegistrationSuccess({ userName, businessName }: RegistrationSuccessProps) {
+    const [showBusiness, setShowBusiness] = useState(false);
+
+    // Orchestrate the sequential animation
+    useEffect(() => {
+        const timer = setTimeout(() => setShowBusiness(true), 2000);
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className="flex flex-col w-full h-full relative overflow-hidden items-center justify-center text-center">
             {/* ── Header (fixed top-left) ─────────────────── */}
@@ -44,17 +53,7 @@ export default function RegistrationSuccess({ userName, businessName }: Registra
             {/* ── Central Content Area ────────────────────── */}
             <div className="flex flex-col items-center justify-center gap-10 md:gap-14 mt-12 md:mt-24">
                 {/* Success Icon Group */}
-                <motion.div
-                    initial={{ scale: 0, rotate: -45 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{
-                        type: "spring",
-                        stiffness: 260,
-                        damping: 20,
-                        delay: 0.6
-                    }}
-                    className="w-24 h-24 md:w-36 md:h-36 flex items-center justify-center relative shadow-3xl rounded-full overflow-visible"
-                >
+                <div className="w-24 h-24 md:w-36 md:h-36 flex items-center justify-center relative shadow-3xl rounded-full overflow-visible">
                     {/* Spinning background halo */}
                     <motion.div
                         animate={{ rotate: 360 }}
@@ -69,30 +68,57 @@ export default function RegistrationSuccess({ userName, businessName }: Registra
                         />
                     </motion.div>
 
-                    {/* Main Success Checkmark */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5, rotate: -45 }}
-                        animate={{
-                            opacity: 1,
-                            scale: 1,
-                            rotate: 360
-                        }}
-                        transition={{
-                            opacity: { duration: 0.4, delay: 1.0 },
-                            scale: { duration: 0.5, delay: 1.0, type: "spring" },
-                            rotate: { duration: 10, delay: 1.0, repeat: Infinity, ease: "linear" }
-                        }}
-                        className="relative z-10 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center drop-shadow-2xl"
-                    >
-                        <Image
-                            src="/icons/success.svg"
-                            alt="Success"
-                            width={96}
-                            height={96}
-                            className="object-contain"
-                        />
-                    </motion.div>
-                </motion.div>
+                    <AnimatePresence mode="wait">
+                        {!showBusiness ? (
+                            <motion.div
+                                key="star"
+                                initial={{ scale: 0, rotate: -180 }}
+                                animate={{ 
+                                    scale: 1, 
+                                    rotate: 1440 // Multiple fast spins
+                                }}
+                                exit={{ scale: 0, opacity: 0, rotate: 1800 }}
+                                transition={{
+                                    scale: { duration: 0.4, type: "spring" },
+                                    rotate: { duration: 2, ease: "easeInOut" }
+                                }}
+                                className="relative z-10 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center drop-shadow-2xl"
+                            >
+                                <Image
+                                    src="/icons/success.svg"
+                                    alt="Processing"
+                                    width={96}
+                                    height={96}
+                                    className="object-contain"
+                                />
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                key="business"
+                                initial={{ scale: 0, rotate: -45, opacity: 0 }}
+                                animate={{ 
+                                    scale: 1, 
+                                    rotate: 0,
+                                    opacity: 1
+                                }}
+                                transition={{
+                                    type: "spring",
+                                    stiffness: 260,
+                                    damping: 20
+                                }}
+                                className="relative z-10 w-16 h-16 md:w-24 md:h-24 flex items-center justify-center drop-shadow-2xl"
+                            >
+                                <Image
+                                    src="/icons/bussiness-created.svg"
+                                    alt="Success"
+                                    width={96}
+                                    height={96}
+                                    className="object-contain"
+                                />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
 
                 {/* Status Message */}
                 <div className="flex flex-col gap-3 md:gap-4 relative z-10">

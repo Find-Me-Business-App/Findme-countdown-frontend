@@ -1,0 +1,15 @@
+<svg width="98" height="98" viewBox="0 0 98 98" fill="none" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="49.4142" cy="48.4053" rx="32.6276" ry="33.4053" stroke="#2B365A" stroke-width="30" stroke-miterlimit="3.8637" stroke-dasharray="3 4"/>
+<ellipse cx="29" cy="30" rx="29" ry="30" transform="matrix(0.983593 -0.180403 0.19751 0.980301 9.73779 27.5314)" stroke="#E82525" stroke-width="30" stroke-miterlimit="3.8637" stroke-dasharray="3 4"/>
+<ellipse cx="34.9482" cy="31.0831" rx="34.9482" ry="31.0831" transform="matrix(0.529178 0.848511 -0.869625 0.493713 57.7236 7.24963)" stroke="#999999" stroke-width="24" stroke-miterlimit="3.8637" stroke-dasharray="3 4"/>
+<foreignObject x="-18.9444" y="-20.506" width="140.242" height="137.193"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(18.45px);clip-path:url(#bgblur_0_1090_717_clip_path);height:100%;width:100%"></div></foreignObject><ellipse data-figma-bg-blur-radius="36.9" cx="51.1767" cy="48.0906" rx="33.2211" ry="31.6966" fill="black" fill-opacity="0.84"/>
+<line x1="17.9556" y1="47.8907" x2="84.6334" y2="47.8907" stroke="url(#paint0_linear_1090_717)" stroke-width="0.4"/>
+<defs>
+<clipPath id="bgblur_0_1090_717_clip_path" transform="translate(18.9444 20.506)"><ellipse cx="51.1767" cy="48.0906" rx="33.2211" ry="31.6966"/>
+</clipPath><linearGradient id="paint0_linear_1090_717" x1="17.9556" y1="48.5907" x2="84.6334" y2="48.5907" gradientUnits="userSpaceOnUse">
+<stop offset="0.0228459" stop-color="#D9D9D9" stop-opacity="0.72"/>
+<stop offset="0.412195" stop-color="#999999"/>
+<stop offset="0.964787" stop-color="#D9D9D9"/>
+</linearGradient>
+</defs>
+</svg>

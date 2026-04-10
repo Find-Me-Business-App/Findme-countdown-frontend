@@ -14,6 +14,24 @@ export const metadata: Metadata = {
     icon: "/logo1.svg",
     apple: "/logo1.svg",
   },
+  openGraph: {
+    title: "FindMe",
+    description: "FindMe - Limitless Possibilities",
+    images: [
+      {
+        url: "/icons/Seo.svg",
+        width: 1200,
+        height: 630,
+        alt: "FindMe SEO Image",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FindMe",
+    description: "FindMe - Limitless Possibilities",
+    images: ["/icons/Seo.svg"],
+  },
 };
 
 import QueryProvider from "@/components/QueryProvider";
