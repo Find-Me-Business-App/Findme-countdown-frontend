@@ -10,62 +10,53 @@ interface CategoryViewProps {
 
 const CATEGORIES = [
     "Tech & IT", "Logistics", "Services", "Food & Beverage", "Retail", "Healthcare", "Education"
-];
+] as const;
 
 export default function CategoryView({ onSelect }: CategoryViewProps) {
-    const [selected, setSelected] = useState("");
-    const [custom, setCustom] = useState("");
     const [inputText, setInputText] = useState("");
 
-    const handleConfirm = () => {
-        const value = custom || selected || inputText;
-        if (value) onSelect(value);
+    const handleTextSubmit = () => {
+        if (inputText.trim()) {
+            onSelect(inputText.trim());
+        }
     };
 
     return (
         <AmeStepLayout>
-            {/* Center: AI Message & Controls */}
-            <div className="flex-1 flex flex-col items-center justify-center gap-4 px-6 max-w-2xl w-full">
-                <p className="text-sm md:text-base leading-relaxed text-white text-center font-medium mb-2">
-                    What category does your business fall under?
+            <div className="flex-1 flex flex-col items-center justify-center gap-6 md:gap-8 px-6 w-full max-w-2xl mx-auto">
+                <p className="text-sm md:text-base leading-relaxed text-white text-center font-medium">
+                    What category does your business fall into?
                 </p>
 
-                <div className="flex flex-col gap-3 w-full max-w-xs">
+                <div className="w-full max-w-xs relative group">
                     <select
-                        value={selected}
-                        onChange={(e) => { setSelected(e.target.value); setCustom(""); }}
-                        className="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500/30 transition-all appearance-none cursor-pointer text-sm"
+                        onChange={(e) => e.target.value && onSelect(e.target.value)}
+                        className="w-full bg-white/10 border border-white/10 rounded-xl px-5 py-3.5 text-white text-sm focus:outline-none focus:border-blue-500/30 transition-all appearance-none cursor-pointer"
                     >
                         <option value="" className="bg-neutral-900 text-white/50">Select a category...</option>
                         {CATEGORIES.map((cat) => (
                             <option key={cat} value={cat} className="bg-neutral-900 text-white">{cat}</option>
                         ))}
                     </select>
-
-                    <div className="flex items-center gap-3">
-                        <div className="h-px flex-1 bg-white/10" />
-                        <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">or</span>
-                        <div className="h-px flex-1 bg-white/10" />
+                    {/* Custom Arrow */}
+                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none opacity-40">
+                        <span className="text-xs">▼</span>
                     </div>
-
-                    <input
-                        type="text"
-                        value={custom}
-                        onChange={(e) => { setCustom(e.target.value); setSelected(""); }}
-                        className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-3 text-white text-sm focus:outline-none focus:border-blue-500/30 transition-all shadow-inner"
-                        placeholder="Type a custom category..."
-                    />
                 </div>
-            </div>
 
-            {/* Bottom: Textarea */}
-            <AmeTextarea
-                value={inputText}
-                onChange={setInputText}
-                onSubmit={handleConfirm}
-                placeholder="Type here..."
-                disabled={!(selected || custom || inputText)}
-            />
+                <div className="flex items-center gap-3 w-full max-w-xs">
+                    <div className="h-px flex-1 bg-white/10" />
+                    <span className="text-[10px] uppercase tracking-widest text-white/40 font-bold">or</span>
+                    <div className="h-px flex-1 bg-white/10" />
+                </div>
+
+                <AmeTextarea
+                    value={inputText}
+                    onChange={setInputText}
+                    onSubmit={handleTextSubmit}
+                    placeholder="Type a custom category..."
+                />
+            </div>
         </AmeStepLayout>
     );
 }

@@ -15,18 +15,15 @@ export default function SelectionView({ initialValue = "", onNext }: SelectionVi
 
     return (
         <AmeStepLayout>
-            {/* Center: AI Orb */}
-            <div className="flex-1 flex items-center justify-center py-4">
+            <div className="flex-1 flex flex-col items-center justify-center gap-8 w-full max-w-2xl px-2">
                 <AiOrb />
+                <AmeTextarea
+                    value={promptText}
+                    onChange={setPromptText}
+                    onSubmit={() => onNext(promptText)}
+                    placeholder="I want to create a store for my resturant business..."
+                />
             </div>
-
-            {/* Bottom: Textarea */}
-            <AmeTextarea
-                value={promptText}
-                onChange={setPromptText}
-                onSubmit={() => onNext(promptText)}
-                placeholder="I want to create a store for my resturant business..."
-            />
         </AmeStepLayout>
     );
 }

@@ -3,56 +3,39 @@
 import { useState } from "react";
 import AmeStepLayout from "./shared/AmeStepLayout";
 import AmeTextarea from "./shared/AmeTextarea";
+import AmeOptionPills from "./shared/AmeOptionPills";
 
 interface Followup3ViewProps {
     onSelect: (count: string) => void;
 }
 
+const OPTIONS = ["1-5", "6-20", "21-50", "50+"] as const;
+
 export default function Followup3View({ onSelect }: Followup3ViewProps) {
     const [inputText, setInputText] = useState("");
 
-    const extractNumber = (text: string) => {
-        const match = text.match(/\d+/);
-        return match ? match[0] : "";
-    };
-
     const handleSend = () => {
-        const count = extractNumber(inputText);
-        if (count) {
-            onSelect(count);
-        } else if (inputText.toLowerCase().includes("no") || inputText.toLowerCase().includes("none")) {
-            onSelect("0");
+        if (inputText.trim()) {
+            onSelect(inputText.trim());
         }
     };
 
     return (
         <AmeStepLayout>
-            {/* Center: AI Message & Input */}
-            <div className="flex-1 flex flex-col items-center justify-center gap-6 px-6 max-w-2xl w-full">
+            <div className="flex-1 flex flex-col items-center justify-center gap-6 md:gap-8 px-6 w-full max-w-2xl mx-auto">
                 <p className="text-sm md:text-base leading-relaxed text-white text-center font-medium">
-                    Alright you have a great business setup so far . Lets finish it up. How many staff are working in your business?
+                    Alright, you have a great business setup so far. Let&apos;s finish it up. How many people work in your business?
                 </p>
 
-                <div className="flex flex-col items-center gap-2">
-                    <input
-                        type="number"
-                        value={extractNumber(inputText)}
-                        readOnly
-                        className="w-full max-w-[120px] bg-white/10 border border-blue-500/30 rounded-2xl px-4 py-4 text-white text-center focus:outline-none transition-all shadow-lg text-2xl font-bold"
-                        placeholder="0"
-                    />
-                    <p className="text-[10px] uppercase tracking-widest text-white/30 font-bold">Extracted Count</p>
-                </div>
-            </div>
+                <AmeOptionPills options={OPTIONS} onSelect={onSelect} />
 
-            {/* Bottom: Textarea */}
-            <AmeTextarea
-                value={inputText}
-                onChange={setInputText}
-                onSubmit={handleSend}
-                placeholder="Type here (e.g. 'We are 70')"
-                disabled={!inputText}
-            />
+                <AmeTextarea
+                    value={inputText}
+                    onChange={setInputText}
+                    onSubmit={handleSend}
+                    placeholder="Type here (e.g. 'We are 70')"
+                />
+            </div>
         </AmeStepLayout>
     );
 }
