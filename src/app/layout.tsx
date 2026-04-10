@@ -62,6 +62,9 @@ export const metadata: Metadata = {
     },
   },
   category: 'technology',
+  verification: {
+    google: "googled01df674b0a92509",
+  },
 };
 
 import QueryProvider from "@/components/QueryProvider";
