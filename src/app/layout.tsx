@@ -8,15 +8,28 @@ const mulish = Mulish({
 });
 
 export const metadata: Metadata = {
-  title: "FindMe",
-  description: "FindMe - Limitless Possibilities",
+  metadataBase: new URL("https://findmeonline.com.ng"),
+  title: {
+    default: "FindMe | Limitless Possibilities",
+    template: "%s | FindMe"
+  },
+  description: "Explore a world of unlimited features with FindMe. The ultimate platform for business management, social connection, and festival networking.",
+  keywords: ["FindMe", "Social Networking", "Business Management", "Festival App", "Networking App Nigeria", "Uyo Events", "FindMe Online"],
+  authors: [{ name: "FindMe Team", url: "https://findmeonline.com.ng" }],
+  creator: "FindMe Team",
+  publisher: "FindMe",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
   icons: {
     icon: "/logo1.svg",
     apple: "/logo1.svg",
   },
   openGraph: {
-    title: "FindMe",
-    description: "FindMe - Limitless Possibilities",
+    title: "FindMe | Limitless Possibilities",
+    description: "Explore a world of unlimited features with FindMe. Join the waitlist for the ultimate business and social networking experience.",
     url: "https://findmeonline.com.ng",
     siteName: "FindMe",
     images: [
@@ -24,7 +37,7 @@ export const metadata: Metadata = {
         url: "/icons/Seo.png",
         width: 1200,
         height: 630,
-        alt: "FindMe SEO Image",
+        alt: "FindMe | Limitless Possibilities",
       },
     ],
     locale: "en_US",
@@ -32,10 +45,23 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "FindMe",
-    description: "FindMe - Limitless Possibilities",
+    title: "FindMe | Limitless Possibilities",
+    description: "Explore a world of unlimited features with FindMe. Join the waitlist now.",
     images: ["/icons/Seo.png"],
+    creator: "@findme",
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  category: 'technology',
 };
 
 import QueryProvider from "@/components/QueryProvider";
@@ -45,8 +71,28 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "FindMe",
+    "url": "https://findmeonline.com.ng",
+    "logo": "https://findmeonline.com.ng/logo1.svg",
+    "sameAs": [
+      "https://twitter.com/findme",
+      "https://facebook.com/findme",
+      "https://instagram.com/findme"
+    ],
+    "description": "Explore a world of unlimited features with FindMe. The ultimate platform for business management, social connection, and festival networking."
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${mulish.variable} antialiased`}
         suppressHydrationWarning

@@ -116,7 +116,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                 </div>
 
                 {/* ── Title: FINDME LAUNCH ── */}
-                <div className="text-4xl md:text-7xl font-black tracking-tight mb-4 md:mb-8 drop-shadow-lg">
+                <h2 className="text-4xl md:text-7xl font-black tracking-tight mb-4 md:mb-8 drop-shadow-lg">
                     <motion.div
                         initial="hidden"
                         whileInView="visible"
@@ -150,7 +150,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                             LAUNCH
                         </motion.span>
                     </motion.div>
-
+ 
                     {/* ── Title: FESTIVAL ── */}
                     <motion.div
                         initial="hidden"
@@ -173,7 +173,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                             </motion.span>
                         ))}
                     </motion.div>
-                </div>
+                </h2>
 
                 {/* ── Tagline ── */}
                 <motion.div

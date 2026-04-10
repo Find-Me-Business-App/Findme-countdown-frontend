@@ -8,11 +8,12 @@ interface RevealMorphProps {
     children: ReactNode;
     className?: string;
     delay?: number;
+    as?: any;
 }
 
-export default function RevealMorph({ children, className = "", delay = 0 }: RevealMorphProps) {
+export default function RevealMorph({ children, className = "", delay = 0, as: Component = motion.div }: RevealMorphProps) {
     return (
-        <motion.div
+        <Component
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -25,6 +26,7 @@ export default function RevealMorph({ children, className = "", delay = 0 }: Rev
             }}
             className={className}
         >
+            {/* logic remains same */}
             {typeof children === "string" ? (
                 children.split(" ").map((word, i) => (
                     <motion.span
@@ -49,6 +51,6 @@ export default function RevealMorph({ children, className = "", delay = 0 }: Rev
                     {children}
                 </motion.span>
             )}
-        </motion.div>
+        </Component>
     );
 }

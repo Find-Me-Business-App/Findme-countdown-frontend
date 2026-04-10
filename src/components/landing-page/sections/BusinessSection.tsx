@@ -74,7 +74,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
             <div className="relative z-10 flex flex-col items-center text-center px-6 w-full max-w-6xl h-auto mt-[-10vh] md:mt-0">
                 <AnimatePresence mode="wait">
                     <div key={currentIndex} className="flex flex-col items-center w-full">
-                        <RevealMorph delay={0.3} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 md:mb-6 md:whitespace-nowrap">
+                        <RevealMorph as={motion.h2} delay={0.3} className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight mb-4 md:mb-6 md:whitespace-nowrap">
                             {BUSINESS_STEPS[currentIndex].titleStyled}
                         </RevealMorph>
                         <RevealMorph delay={0.55} className="text-[#334155] text-sm md:text-lg font-medium max-w-2xl leading-relaxed opacity-90 px-4">

@@ -19,7 +19,7 @@ export default function Hero() {
             </motion.p>
 
             {/* Heading — word-by-word deblur reveal from bottom */}
-            <motion.div
+            <motion.h1
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true }}
@@ -57,7 +57,7 @@ export default function Hero() {
                         {word}
                     </motion.span>
                 ))}
-            </motion.div>
+            </motion.h1>
         </div>
     );
 }
