@@ -24,24 +24,49 @@ export default function InfoContent({ config, section }: InfoContentProps) {
     return (
         <div className="relative flex flex-col md:flex-row w-full h-full min-h-0 overflow-hidden">
 
-            {/* 1. Mobile Image area (Hidden on Desktop) */}
-            <div className="relative w-full h-[26vh] min-h-[160px] md:hidden flex-shrink-0">
-                <Image
-                    src={config.imagePath}
-                    alt="Illustration"
-                    fill
-                    className="object-contain object-bottom p-2 pt-4"
-                    priority
-                />
+            {/* 1. Mobile Integrated Header (Illustration + Fixed Label) */}
+            <div className="relative w-full md:hidden flex-shrink-0 flex flex-col items-center pt-4 overflow-visible">
+                {/* 1a. The Image Area */}
+                <div className="relative w-full h-[22vh] min-h-[140px] flex items-end justify-center px-6 overflow-visible">
+                    {/* The Header Accent Line that the image "comes out of" */}
+                    <motion.div 
+                        initial={{ scaleX: 0, opacity: 0 }}
+                        animate={{ scaleX: 1, opacity: 1 }}
+                        transition={{ duration: 1, ease: "circOut" }}
+                        className={`absolute bottom-0 w-[60%] h-1.5 ${config.accentColor.includes('bg-') ? config.accentColor : 'bg-[#1e3a8a]'} rounded-full shadow-lg z-10 shadow-indigo-500/10`}
+                    />
+                    
+                    {/* The Illustration emerging from the line */}
+                    <motion.div
+                        initial={{ y: 20, opacity: 0, scale: 0.9 }}
+                        animate={{ y: 0, opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
+                        className="relative w-full h-[120%] -mb-1"
+                    >
+                        <Image
+                            src={config.imagePath}
+                            alt="Illustration"
+                            fill
+                            className="object-contain object-bottom select-none"
+                            priority
+                        />
+                    </motion.div>
+                </div>
+
+                {/* 1b. The "More Information" Text (Fixed below the line) */}
+                <div className="py-4">
+                    <span className="text-white font-bold text-base tracking-wide opacity-90 transition-opacity">
+                        More Information
+                    </span>
+                </div>
             </div>
 
             {/* 1. Content Wrapper (Flex-Row on Desktop) */}
             <div className="relative z-10 flex flex-1 flex-col md:flex-row w-full min-h-0 overflow-hidden">
-
                 {/* Text Area (Left) */}
-                <div className="flex flex-col w-full md:w-[60%] min-h-0 pt-6 md:pt-14 pb-8 md:pb-14 pl-6 pr-6 md:pl-16 md:pr-4 self-stretch">
-                    {/* Fixed Modal Label (Indigo Bar + "More Information") */}
-                    <div className="flex-shrink-0 mb-2">
+                <div className="flex flex-col w-full md:w-[60%] min-h-0 pt-2 md:pt-14 pb-8 md:pb-14 pl-6 pr-6 md:pl-16 md:pr-4 self-stretch">
+                    {/* Fixed Modal Label (Desktop only) */}
+                    <div className="flex-shrink-0 mb-2 hidden md:block">
                         <InfoHeader accentColor={config.accentColor} />
                     </div>
 
