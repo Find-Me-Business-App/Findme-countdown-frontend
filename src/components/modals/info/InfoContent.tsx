@@ -27,7 +27,7 @@ export default function InfoContent({ config, section }: InfoContentProps) {
             {/* 1. Mobile Integrated Header (Illustration + Fixed Label) */}
             <div className="relative w-full md:hidden flex-shrink-0 flex flex-col items-center pt-4 overflow-visible">
                 {/* 1a. The Image Area */}
-                <div className="relative w-full h-[22vh] min-h-[140px] flex items-end justify-center px-6 overflow-visible">
+                <div className={`relative w-full ${section === 'business' ? 'h-[18vh]' : 'h-[22vh]'} min-h-[140px] flex items-end justify-center px-6 overflow-visible`}>
                     {/* The Header Accent Line that the image "comes out of" */}
                     <motion.div 
                         initial={{ scaleX: 0, opacity: 0 }}
@@ -41,7 +41,7 @@ export default function InfoContent({ config, section }: InfoContentProps) {
                         initial={{ y: 20, opacity: 0, scale: 0.9 }}
                         animate={{ y: 0, opacity: 1, scale: 1 }}
                         transition={{ duration: 1, ease: "easeOut", delay: 0.3 }}
-                        className="relative w-full h-[120%] -mb-1"
+                        className={`relative w-full ${section === 'business' ? 'h-[100%]' : 'h-[120%]'} -mb-1`}
                     >
                         <Image
                             src={config.imagePath}
@@ -101,7 +101,7 @@ export default function InfoContent({ config, section }: InfoContentProps) {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
-                        className="relative w-[75%] h-[85%] -mb-[8%] -mr-[2%]" /* Significantly smaller as requested */
+                        className={`relative w-[75%] ${section === 'business' ? 'h-[65%]' : 'h-[85%]'} -mb-[8%] -mr-[2%]`} /* Significantly smaller for business as requested */
                     >
                         <Image
                             src={config.imagePath}

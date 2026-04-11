@@ -66,7 +66,7 @@ export default function BusinessSection({ onOpenWaitlist }: BusinessSectionProps
                     alt="BUSINESS"
                     width={800}
                     height={400}
-                    className="w-[120%] max-w-none md:w-full md:max-w-4xl h-auto object-contain"
+                    className="w-[110%] md:w-full max-w-none md:max-w-4xl h-auto max-h-[20vh] md:max-h-[35vh] object-contain"
                 />
             </motion.div>
 
