@@ -72,37 +72,37 @@ export default function UserInfoView({ onSubmit }: UserInfoViewProps) {
     return (
         <AmeStepLayout align="items-start">
             {/* Center: AI Message & Form */}
-            <div className="flex-1 flex flex-col items-start justify-center gap-3 md:gap-4 px-1 md:px-2 w-full overflow-y-auto ame-no-scrollbar py-2">
-                <div className="flex flex-col gap-0.5 md:gap-1 text-left mb-1 md:mb-2 ml-2">
-                    <p className="text-[15px] md:text-lg font-bold text-white leading-tight">
+            <div className="flex-1 flex flex-col items-start justify-center gap-2 md:gap-4 px-0.5 md:px-2 w-full overflow-y-auto ame-no-scrollbar py-1">
+                <div className="flex flex-col gap-0.5 md:gap-1 text-left mb-1 md:mb-2 ml-1">
+                    <p className="text-[14px] md:text-lg font-bold text-white leading-tight">
                         Finally, let&apos;s secure your account
                     </p>
-                    <p className="text-[11px] md:text-xs text-white/50">Complete your details to finish registration</p>
+                    <p className="text-[10px] md:text-xs text-white/50">Complete your details to finish registration</p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 md:gap-y-3 w-full max-w-lg">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-1.5 md:gap-y-3 w-full max-w-lg">
                     <div className="flex flex-col">
                         <label className={labelClasses}>Full Name</label>
                         <input name="name" value={formData.name} onChange={handleChange} className={`${inputClasses} ${getInputBorderClass("name")}`} placeholder="John Doe" />
-                        {errors.name && <span className="text-red-400 text-[10px] mt-1 ml-2">{errors.name}</span>}
+                        {errors.name && <span className="text-red-400 text-[9px] mt-0.5 ml-2">{errors.name}</span>}
                     </div>
                     <div className="flex flex-col">
                         <label className={labelClasses}>Email Address</label>
                         <input name="email" value={formData.email} onChange={handleChange} className={`${inputClasses} ${getInputBorderClass("email")}`} placeholder="john@example.com" />
-                        {errors.email && <span className="text-red-400 text-[10px] mt-1 ml-2">{errors.email}</span>}
+                        {errors.email && <span className="text-red-400 text-[9px] mt-0.5 ml-2">{errors.email}</span>}
                     </div>
                     <div className="flex flex-col">
                         <label className={labelClasses}>Password</label>
                         <input name="password" type="password" value={formData.password} onChange={handleChange} className={`${inputClasses} ${getInputBorderClass("password")}`} placeholder="••••••••" />
-                        {errors.password && <span className="text-red-400 text-[10px] mt-1 ml-2">{errors.password}</span>}
+                        {errors.password && <span className="text-red-400 text-[9px] mt-0.5 ml-2">{errors.password}</span>}
                     </div>
                     <div className="flex flex-col">
                         <label className={labelClasses}>Phone Number</label>
                         <input name="phone" value={formData.phone} onChange={handleChange} className={`${inputClasses} ${getInputBorderClass("phone")}`} placeholder="+1..." />
-                        {errors.phone && <span className="text-red-400 text-[10px] mt-1 ml-2">{errors.phone}</span>}
+                        {errors.phone && <span className="text-red-400 text-[9px] mt-0.5 ml-2">{errors.phone}</span>}
                     </div>
 
-                    <div className="md:col-span-2 flex flex-col md:flex-row items-stretch md:items-end gap-4 mt-1 md:mt-2">
+                    <div className="md:col-span-2 flex flex-col md:flex-row items-stretch md:items-end gap-3 mt-1.5 md:mt-2">
                         <div className="flex flex-col w-full md:w-[240px]">
                             <label className={labelClasses}>Referral Code (Optional)</label>
                             <input name="referralCode" value={formData.referralCode} onChange={handleChange} className={`${inputClasses} border-white/10`} placeholder="Findme-XXXX" />
@@ -112,7 +112,7 @@ export default function UserInfoView({ onSubmit }: UserInfoViewProps) {
                             onClick={handleSubmit}
                             whileHover={{ scale: 1.02, boxShadow: "0 0 20px rgba(59, 130, 246, 0.4)" }}
                             whileTap={{ scale: 0.98 }}
-                            className="w-full md:w-auto px-8 py-3.5 md:py-3 rounded-xl font-bold text-[10px] md:text-xs tracking-widest uppercase relative overflow-hidden group shadow-xl h-[45px] md:h-auto"
+                            className="w-full md:w-auto px-4 md:px-8 py-3 md:py-3 rounded-xl font-bold text-[9px] md:text-xs tracking-widest uppercase relative overflow-hidden group shadow-xl h-[42px] md:h-auto"
                             style={{
                                 backgroundColor: THEME.colors.actions.primary,
                                 color: THEME.colors.text.primary

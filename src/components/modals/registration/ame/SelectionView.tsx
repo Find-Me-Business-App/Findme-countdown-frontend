@@ -15,7 +15,7 @@ export default function SelectionView({ initialValue = "", onNext }: SelectionVi
 
     return (
         <AmeStepLayout>
-            <div className="flex-1 flex flex-col items-center justify-center gap-8 w-full max-w-2xl px-2">
+            <div className="flex-1 flex flex-col items-center justify-center gap-4 md:gap-8 w-full max-w-2xl px-2">
                 <AiOrb />
                 <AmeTextarea
                     value={promptText}

@@ -41,14 +41,14 @@ export default function AmeTextarea({
     };
 
     return (
-        <div className="w-full max-w-lg mx-auto relative group shrink-0 px-4 pb-8 md:pb-12">
+        <div className="w-full max-w-lg mx-auto relative group shrink-0 px-2 pb-4 md:pb-12">
             <div className="relative bg-white/5 border border-white/10 rounded-2xl md:rounded-[24px] overflow-hidden focus-within:border-white/20 transition-all">
                 <textarea
                     ref={textareaRef}
                     value={value}
                     onChange={(e) => onChange(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    className="w-full bg-transparent px-5 py-4 md:px-6 md:py-4 pr-12 text-sm focus:outline-none transition-all resize-none overflow-y-auto ame-no-scrollbar min-h-[58px] md:min-h-[64px]"
+                    className="w-full bg-transparent px-4 py-3 md:px-6 md:py-4 pr-10 text-[13px] md:text-sm focus:outline-none transition-all resize-none overflow-y-auto ame-no-scrollbar min-h-[50px] md:min-h-[64px]"
                     style={{
                         color: THEME.colors.text.primary,
                         lineHeight: "1.5",
@@ -56,7 +56,7 @@ export default function AmeTextarea({
                     placeholder={placeholder}
                 />
                 
-                <div className="absolute top-1/2 -translate-y-1/2 right-4 z-20">
+                <div className="absolute top-1/2 -translate-y-1/2 right-3 z-20">
                     <button
                         onClick={onSubmit}
                         disabled={disabled}
@@ -65,8 +65,8 @@ export default function AmeTextarea({
                         <Image
                             src={THEME.assets.icons.contact.send}
                             alt="Submit"
-                            width={40}
-                            height={30}
+                            width={32}
+                            height={24}
                             className="md:w-12 md:h-9"
                         />
                     </button>

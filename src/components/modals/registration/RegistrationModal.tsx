@@ -89,9 +89,9 @@ export default function RegistrationModal() {
     // Compute container sizing based on current view
     const isCompactStep = view === "account_info" || view === "owner_verification" || view === "ai" || view === "account_type" || view === "festival_business_name" || view === "category" || view === "business_name" || view === "owner_info" || view === "verification" || view === "success" || isAmeView;
     const containerClass = view === "ai" || isAmeView
-        ? "w-full md:w-[777px] h-[550px] md:h-[444px] shadow-2xl border"
+        ? "w-[333px] md:w-[777px] h-[621px] md:h-[444px] shadow-2xl border"
         : isCompactStep
-            ? "w-full md:w-[777px] h-[550px] md:h-[444px] shadow-2xl border"
+            ? "w-[333px] md:w-[777px] h-[621px] md:h-[444px] shadow-2xl border"
             : isSubStep
                 ? `max-w-[420px] md:max-w-[680px] shadow-2xl border`
                 : "max-w-[420px] md:max-w-[760px]";
@@ -99,7 +99,7 @@ export default function RegistrationModal() {
     const containerStyle = {
         ...(isFestivalVerification ? { backgroundColor: "rgba(140, 140, 140, 0.4)" } : {}),
         ...(isCompactStep
-            ? { maxHeight: "90vh" } // height set via Tailwind class above
+            ? { maxHeight: "95vh" } // height set via Tailwind class above
             : { maxHeight: "85vh" }
         ),
     };

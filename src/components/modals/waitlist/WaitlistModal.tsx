@@ -24,7 +24,7 @@ export default function WaitlistModal() {
 
             <ModalContainer
                 type="waitlist"
-                className="px-10 py-10 md:p-14 relative w-[333px] h-[621px] max-h-none md:w-[777px] md:h-[444px] md:max-h-none"
+                className="px-6 py-10 md:p-14 relative w-[333px] h-[621px] max-h-none md:w-[777px] md:h-[444px] md:max-h-none"
                 overflow="overflow-hidden"
                 style={{
                     borderRadius: "40px",

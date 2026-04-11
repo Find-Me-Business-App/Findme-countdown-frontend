@@ -22,8 +22,8 @@ export default function ContactModal() {
 
             <ModalContainer 
                 type="registration"
-                className="p-4 md:p-5 w-full md:w-[777px] min-h-[400px] md:h-[444px] md:min-h-[444px] flex flex-col justify-center"
-                maxWidth="max-w-[420px] md:max-w-[777px]"
+                className="p-4 md:p-5 w-[333px] h-[621px] md:w-[777px] md:h-[444px] flex flex-col justify-center shadow-2xl border"
+                maxWidth="max-w-[777px]"
             >
                 <ModalCloseButton 
                     onClick={closeModal} 

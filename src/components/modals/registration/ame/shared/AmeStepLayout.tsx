@@ -19,15 +19,15 @@ export default function AmeStepLayout({ children, align = "items-center" }: AmeS
     return (
         <div className={`flex flex-col w-full h-full relative overflow-hidden ${align} justify-between font-sans`}>
             {/* ─── Header (compact) ─── */}
-            <div className="shrink-0 pt-0.5 md:pt-1 w-full text-left">
+            <div className="shrink-0 pt-0 w-full text-left">
                 <div
-                    className="w-10 md:w-14 h-[2px] mb-2 opacity-95 rounded-full"
+                    className="w-10 md:w-14 h-[2px] mb-1.5 md:mb-2 opacity-95 rounded-full"
                     style={{ backgroundColor: THEME.colors.text.primary }}
                 />
-                <h2 className="text-base md:text-xl font-bold mb-0 tracking-tight text-white leading-tight">
+                <h2 className="text-sm md:text-xl font-bold mb-0 tracking-tight text-white leading-tight">
                     Business registration
                 </h2>
-                <p className="text-[10px] md:text-xs leading-snug max-w-xl opacity-70 text-white/70 mt-0.5">
+                <p className="text-[9px] md:text-xs leading-snug max-w-xl opacity-70 text-white/70 mt-0.5">
                     Let{" "}
                     <span style={{ color: THEME.colors.text.accent }}>AM</span>
                     <span style={{ color: THEME.colors.text.danger }}>E</span>{" "}

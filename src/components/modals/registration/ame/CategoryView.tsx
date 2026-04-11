@@ -23,7 +23,7 @@ export default function CategoryView({ onSelect }: CategoryViewProps) {
 
     return (
         <AmeStepLayout>
-            <div className="flex-1 flex flex-col items-center justify-center gap-6 md:gap-8 px-6 w-full max-w-2xl mx-auto">
+            <div className="flex-1 flex flex-col items-center justify-center gap-6 md:gap-8 px-2 md:px-6 w-full max-w-2xl mx-auto">
                 <p className="text-sm md:text-base leading-relaxed text-white text-center font-medium">
                     What category does your business fall into?
                 </p>

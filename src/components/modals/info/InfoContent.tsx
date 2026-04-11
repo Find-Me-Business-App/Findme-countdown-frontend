@@ -64,7 +64,7 @@ export default function InfoContent({ config, section }: InfoContentProps) {
             {/* 1. Content Wrapper (Flex-Row on Desktop) */}
             <div className="relative z-10 flex flex-1 flex-col md:flex-row w-full min-h-0 overflow-hidden">
                 {/* Text Area (Left) */}
-                <div className="flex flex-col w-full md:w-[60%] min-h-0 pt-2 md:pt-14 pb-8 md:pb-14 pl-6 pr-6 md:pl-16 md:pr-4 self-stretch">
+                <div className="flex flex-col w-full md:w-[60%] min-h-0 pt-2 md:pt-14 pb-8 md:pb-14 px-4 md:pl-16 md:pr-4 self-stretch">
                     {/* Fixed Modal Label (Desktop only) */}
                     <div className="flex-shrink-0 mb-2 hidden md:block">
                         <InfoHeader accentColor={config.accentColor} />
@@ -79,8 +79,10 @@ export default function InfoContent({ config, section }: InfoContentProps) {
                                 className="font-extrabold tracking-[0.03em] leading-[39px] text-[#2B365A] text-center md:text-left mx-auto md:mx-0"
                                 style={{
                                     fontSize: '24px',
-                                    width: '251px',
-                                    height: '39px',
+                                    maxWidth: '251px',
+                                    width: '100%',
+                                    height: 'auto',
+                                    minHeight: '39px',
                                 }}
                             >
                                 {config.title}

@@ -25,7 +25,7 @@ export default function InfoModal() {
 
             <ModalContainer
                 type="info"
-                className="flex flex-col md:flex-row overflow-hidden scrollbar-hide md:h-[520px]"
+                className="flex flex-col md:flex-row overflow-hidden scrollbar-hide w-[333px] h-[621px] md:w-[777px] md:h-[444px] shadow-2xl border"
                 style={{
                     msOverflowStyle: 'none',
                     scrollbarWidth: 'none',

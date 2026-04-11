@@ -14,7 +14,7 @@ export default function BusinessNameView({ onNext, suggestedName }: BusinessName
 
     return (
         <AmeStepLayout>
-            <div className="flex-1 flex flex-col items-center justify-center gap-6 md:gap-8 px-6 w-full max-w-2xl">
+            <div className="flex-1 flex flex-col items-center justify-center gap-6 md:gap-8 px-2 md:px-6 w-full max-w-2xl">
                 <p className="text-base md:text-lg leading-relaxed text-white text-center font-medium">
                     Awesome. To get started, what is the name of your business?
                 </p>

@@ -135,7 +135,7 @@ export default function RegistrationSuccess({ userName, businessName }: Registra
                         initial={{ opacity: 0, y: 15 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.7, delay: 1.4, ease: "easeOut" }}
-                        className="text-base md:text-xl font-medium max-w-[340px] md:max-w-lg mx-auto"
+                        className="text-base md:text-xl font-medium max-w-[260px] md:max-w-lg mx-auto"
                         style={{ color: "rgba(255, 255, 255, 0.75)" }}
                     >
                         Congrats! <span className="font-bold text-white tracking-wide">{businessName || "CasaDiEmO"}</span> is now a business on <span className="font-bold tracking-tight" style={{ color: "#2B365A" }}>Find</span><span className="font-bold tracking-tight" style={{ color: "#FF5722" }}>Me</span>.

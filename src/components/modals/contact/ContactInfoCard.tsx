@@ -11,7 +11,7 @@ interface ContactInfoCardProps {
 export default function ContactInfoCard({ config, section }: ContactInfoCardProps) {
     return (
         <div 
-            className={`w-[309px] md:w-[300px] h-[402px] md:h-full flex-shrink-0 p-5 md:p-7 rounded-[32px] md:rounded-[36px] border border-white/10 relative overflow-hidden shadow-xl flex flex-col bg-center bg-no-repeat md:bg-[length:115%_115%] ${
+            className={`max-w-[309px] w-full md:w-[300px] h-[402px] md:h-full flex-shrink-0 p-5 md:p-7 rounded-[32px] md:rounded-[36px] border border-white/10 relative overflow-hidden shadow-xl flex flex-col bg-center bg-no-repeat md:bg-[length:115%_115%] ${
                 section === "home" 
                     ? "bg-[linear-gradient(135deg,#1f2a44_0%,#121417_50%,#000000_100%)] md:bg-[url('/icons/hero-info.svg')]"
                     : section === "business"

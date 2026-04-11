@@ -30,21 +30,15 @@ export default function PromptsView({ onSelect, onNext }: PromptsViewProps) {
     return (
         <div className="flex flex-col w-full h-full relative overflow-hidden">
             {/* Header */}
-            <div className="shrink-0 mb-4 pt-1 md:pt-2">
+            <div className="shrink-0 mb-3 pt-0 w-full text-left">
                 <div
-                    className="w-12 md:w-16 h-[3px] mb-3 opacity-95 rounded-full"
+                    className="w-10 md:w-14 h-[2px] mb-1.5 md:mb-2 opacity-95 rounded-full"
                     style={{ backgroundColor: THEME.colors.text.primary }}
                 />
-                <h2
-                    className="text-lg md:text-2xl font-bold mb-0.5 tracking-tight"
-                    style={{ color: THEME.colors.text.primary }}
-                >
+                <h2 className="text-sm md:text-xl font-bold mb-0 tracking-tight text-white leading-tight">
                     Register your business
                 </h2>
-                <p
-                    className="text-xs md:text-sm leading-relaxed max-w-xl opacity-70"
-                    style={{ color: THEME.colors.text.secondary }}
-                >
+                <p className="text-[9px] md:text-xs leading-snug max-w-xl opacity-70 text-white/70 mt-0.5">
                     Start your journey today with <span style={{ color: THEME.colors.text.accent }}>AM</span><span style={{ color: THEME.colors.text.danger }}>E</span> and register your business how you want it.
                 </p>
             </div>
