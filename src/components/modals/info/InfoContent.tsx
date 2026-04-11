@@ -33,7 +33,7 @@ export default function InfoContent({ config, section }: InfoContentProps) {
                         initial={{ scaleX: 0, opacity: 0 }}
                         animate={{ scaleX: 1, opacity: 1 }}
                         transition={{ duration: 1, ease: "circOut" }}
-                        className={`absolute bottom-0 w-[60%] h-1.5 ${config.accentColor.includes('bg-') ? config.accentColor : 'bg-[#1e3a8a]'} rounded-full shadow-lg z-10 shadow-indigo-500/10`}
+                        className={`absolute bottom-[-6px] w-[60%] h-1.5 ${config.accentColor.includes('bg-') ? config.accentColor : 'bg-[#1e3a8a]'} rounded-full shadow-lg z-10 shadow-indigo-500/10`}
                     />
                     
                     {/* The Illustration emerging from the line */}
@@ -144,7 +144,7 @@ function InfoHeader({ accentColor }: { accentColor: string }) {
     return (
         <div className="mb-4 flex flex-col items-center md:items-start text-center md:text-left group">
             {/* The primary indigo/blue accent bar on TOP */}
-            <div className={`w-32 md:w-44 h-1.5 ${barColor} mb-4 rounded-full shadow-lg shadow-indigo-500/10`} />
+            <div className={`w-32 md:w-44 h-1.5 ${barColor} mt-4 mb-4 rounded-full shadow-lg shadow-indigo-500/10`} />
             <span className="text-white font-bold text-base md:text-xl tracking-wide opacity-90 transition-opacity group-hover:opacity-100">
                 More Information
             </span>
