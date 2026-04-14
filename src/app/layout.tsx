@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "FindMe",
     images: [
       {
-        url: "/Footer-logo.png",
+        url: "/icons/Seo.png",
         width: 1200,
         height: 630,
         alt: "FindMe | Limitless Possibilities",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FindMe | Limitless Possibilities",
     description: "Explore a world of unlimited features with FindMe. Join the waitlist now.",
-    images: ["/Footer-logo.png"],
+    images: ["/icons/Seo.png"],
     creator: "@findme",
   },
   robots: {

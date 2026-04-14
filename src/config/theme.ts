@@ -108,7 +108,7 @@ export const THEME = {
             },
             nav: {
                 menu: "/menu-button.svg",
-                logo: "/Footer-logo.png",
+                logo: "/logo1.svg",
                 phone: "/Phone.svg",
             },
             contact: {
