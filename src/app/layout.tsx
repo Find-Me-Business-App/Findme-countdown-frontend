@@ -25,8 +25,8 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: "/logo1.svg",
-    apple: "/logo1.svg",
+    icon: "/Footer-logo.png",
+    apple: "/Footer-logo.png",
   },
   openGraph: {
     title: "FindMe | Limitless Possibilities",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     siteName: "FindMe",
     images: [
       {
-        url: "/icons/Seo.png",
+        url: "/Footer-logo.png",
         width: 1200,
         height: 630,
         alt: "FindMe | Limitless Possibilities",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "FindMe | Limitless Possibilities",
     description: "Explore a world of unlimited features with FindMe. Join the waitlist now.",
-    images: ["/icons/Seo.png"],
+    images: ["/Footer-logo.png"],
     creator: "@findme",
   },
   robots: {
@@ -80,7 +80,7 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "FindMe",
     "url": "https://findmeonline.com.ng",
-    "logo": "https://findmeonline.com.ng/logo1.svg",
+    "logo": "https://findmeonline.com.ng/Footer-logo.png",
     "sameAs": [
       "https://twitter.com/findme",
       "https://facebook.com/findme",
