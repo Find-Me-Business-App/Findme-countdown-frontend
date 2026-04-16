@@ -66,6 +66,9 @@ export const metadata: Metadata = {
   verification: {
     google: "googled01df674b0a92509",
   },
+  alternates: {
+    canonical: '/',
+  },
 };
 
 import QueryProvider from "@/components/QueryProvider";
