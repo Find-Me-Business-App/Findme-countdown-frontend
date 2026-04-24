@@ -89,10 +89,10 @@ export default function Verification({ onSubmit }: VerificationProps) {
                                 transition={{ duration: 0.6, repeat: Infinity, ease: "linear" }}
                                 className="flex items-center justify-center"
                             >
-                                <Image 
-                                    src="/icons/signup-ai.svg" 
-                                    alt="Spinning Star" 
-                                    width={24} 
+                                <Image
+                                    src="/icons/signup-ai.svg"
+                                    alt="Spinning Star"
+                                    width={24}
                                     height={24}
                                     className="object-contain"
                                 />
@@ -103,10 +103,10 @@ export default function Verification({ onSubmit }: VerificationProps) {
                                 animate={{ scale: 1, rotate: 0 }}
                                 transition={{ type: "spring", stiffness: 200, damping: 12 }}
                             >
-                                <Image 
-                                    src="/icons/bussines-suc.svg" 
-                                    alt="Success" 
-                                    width={28} 
+                                <Image
+                                    src="/icons/bussines-suc.svg"
+                                    alt="Success"
+                                    width={28}
                                     height={28}
                                     className="object-contain"
                                 />

@@ -8,7 +8,7 @@ const smoothEase = [0.22, 1, 0.36, 1] as const;
 
 /**
  * Countdown Section
- * Displays a premium 3D flip timer targeting April 27, 3:00 PM.
+ * Displays a premium 3D flip timer targeting May 27, 3:00 PM.
  */
 export default function Countdown() {
     const [timeLeft, setTimeLeft] = useState<{
@@ -19,7 +19,7 @@ export default function Countdown() {
     }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     const calculateTimeLeft = useCallback(() => {
-        const targetDate = new Date("2026-04-27T15:00:00");
+        const targetDate = new Date("2026-05-27T15:00:00");
         const now = new Date();
         const difference = targetDate.getTime() - now.getTime();
 
