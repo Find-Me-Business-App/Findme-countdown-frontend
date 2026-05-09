@@ -19,7 +19,7 @@ export default function Countdown() {
     }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
     const calculateTimeLeft = useCallback(() => {
-        const targetDate = new Date("2026-05-27T15:00:00");
+        const targetDate = new Date(Date.UTC(2026, 4, 30, 14, 0, 0)); // May 30 3PM WAT (UTC+1)
         const now = new Date();
         const difference = targetDate.getTime() - now.getTime();
 
