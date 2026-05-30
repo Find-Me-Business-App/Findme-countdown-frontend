@@ -30,8 +30,8 @@ export interface SocialLink {
 }
 
 export const SOCIALS: SocialLink[] = [
-    { Icon: Facebook, href: "#" },
-    { Icon: Instagram, href: "#" },
-    { Icon: Linkedin, href: "#" },
-    { Icon: Twitter, href: "#" },
+    { Icon: Facebook, href: "https://www.facebook.com/share/1SvdcZJr3B/" },
+    { Icon: Instagram, href: "https://www.instagram.com/officialfindmeapp?igsh=djY1ZGFkb2ZocWVv" },
+    { Icon: Linkedin, href: "https://www.tiktok.com/@findme.app0" },
+    { Icon: Twitter, href: "https://x.com/Findmeapp___" },
 ];
