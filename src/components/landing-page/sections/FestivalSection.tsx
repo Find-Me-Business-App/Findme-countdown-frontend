@@ -188,6 +188,7 @@ export default function FestivalSection({ onOpenWaitlist }: FestivalSectionProps
                             DANCE <span className="text-white/40">•</span> MUSIC <span className="text-white/40">•</span> TECHNOLOGY
                         </p>
                     </div>
+                    <p className="mt-2 text-white/60 text-base md:text-2xl font-light tracking-[0.5em]">1<span className="align-middle">.</span>2<span className="align-middle">.</span>27</p>
                 </motion.div>
             </div>
 
