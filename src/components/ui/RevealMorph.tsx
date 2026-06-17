@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { ReactNode, ElementType } from "react";
 import { motion } from "framer-motion";
 import { SMOOTH_EASE } from "@/data/landing-page";
 
@@ -8,12 +8,14 @@ interface RevealMorphProps {
     children: ReactNode;
     className?: string;
     delay?: number;
-    as?: any;
+    as?: ElementType;
 }
 
 export default function RevealMorph({ children, className = "", delay = 0, as: Component = motion.div }: RevealMorphProps) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const ComponentToRender = Component as any;
     return (
-        <Component
+        <ComponentToRender
             initial="hidden"
             animate="visible"
             exit="hidden"
@@ -51,6 +53,6 @@ export default function RevealMorph({ children, className = "", delay = 0, as: C
                     {children}
                 </motion.span>
             )}
-        </Component>
+        </ComponentToRender>
     );
 }

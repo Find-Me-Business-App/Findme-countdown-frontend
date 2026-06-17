@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { THEME } from "@/config/theme";
-import { motion, AnimatePresence } from "framer-motion";
+
 
 interface AmeTextareaProps {
     value: string;

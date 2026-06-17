@@ -20,7 +20,6 @@ const UserInfoView = lazy(() => import("./UserInfoView"));
 
 interface AmeFlowProps {
     onComplete: (data: AmeCollectedData) => void;
-    onBack: () => void;
 }
 
 /**
@@ -34,7 +33,7 @@ interface AmeFlowProps {
  * - Step transitions happen via the stable `nextStep` callback
  * - Context extraction (locations/businessType) runs once on initial prompt
  */
-export default function AmeFlow({ onComplete, onBack: _onBack }: AmeFlowProps) {
+export default function AmeFlow({ onComplete }: AmeFlowProps) {
     const [step, setStep] = useState<AmeStep>("prompts");
     const [data, setData] = useState<AmeCollectedData>(AME_INITIAL_DATA);
 

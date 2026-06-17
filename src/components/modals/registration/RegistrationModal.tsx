@@ -52,7 +52,6 @@ export default function RegistrationModal() {
     const [userName, setUserName] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
     const [selectedOwnership, setSelectedOwnership] = useState("");
-    const [flowType, setFlowType] = useState<"manual" | "ame">("manual");
 
     // AME registration API hook (handles loading, error, submission)
     const { submit: submitAme, isLoading, error, clearError } = useAmeRegistration();
@@ -176,7 +175,6 @@ export default function RegistrationModal() {
                     setSelectedCategory,
                     selectedOwnership,
                     setSelectedOwnership,
-                    setFlowType,
                     closeModal,
                     handleAmeComplete,
                 })}
@@ -202,7 +200,6 @@ interface ViewRouterProps {
     setSelectedCategory: (c: string) => void;
     selectedOwnership: string;
     setSelectedOwnership: (o: string) => void;
-    setFlowType: (t: "manual" | "ame") => void;
     closeModal: () => void;
     handleAmeComplete: (data: AmeCollectedData) => void;
 }
@@ -214,16 +211,14 @@ function renderView({
     userId, setUserId,
     selectedCategory, setSelectedCategory,
     selectedOwnership, setSelectedOwnership,
-    setFlowType,
     closeModal,
     handleAmeComplete,
 }: ViewRouterProps) {
     switch (view) {
         case "ame":
             return (
-                <AmeFlow 
+                <AmeFlow
                     onComplete={handleAmeComplete}
-                    onBack={() => setView("form")}
                 />
             );
         case "ai":
@@ -334,10 +329,8 @@ function renderView({
                                 if (data?.userId) setUserId(data.userId);
 
                                 if (data?.isAME) {
-                                    setFlowType("ame");
                                     setView("ame");
                                 } else {
-                                    setFlowType("manual");
                                     setView("account_type");
                                 }
                             }
