@@ -72,6 +72,7 @@ export const metadata: Metadata = {
 };
 
 import QueryProvider from "@/components/QueryProvider";
+import SuspendedGate from "@/components/SuspendedGate";
 
 export default function RootLayout({
   children,
@@ -120,9 +121,12 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <QueryProvider>
-          {children}
+          <SuspendedGate>
+            {children}
+          </SuspendedGate>
         </QueryProvider>
       </body>
     </html>
   );
 }
+
