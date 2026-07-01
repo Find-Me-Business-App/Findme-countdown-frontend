@@ -72,7 +72,7 @@ export const metadata: Metadata = {
 };
 
 import QueryProvider from "@/components/QueryProvider";
-import SuspendedGate from "@/components/SuspendedGate";
+import VercelSpeedInsights from "@/components/VercelSpeedInsights";
 
 export default function RootLayout({
   children,
@@ -121,12 +121,13 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <QueryProvider>
-          <SuspendedGate>
+          <VercelSpeedInsights>
             {children}
-          </SuspendedGate>
+          </VercelSpeedInsights>
         </QueryProvider>
       </body>
     </html>
   );
 }
+
 
