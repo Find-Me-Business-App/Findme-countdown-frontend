@@ -72,7 +72,6 @@ export const metadata: Metadata = {
 };
 
 import QueryProvider from "@/components/QueryProvider";
-import VercelSpeedInsights from "@/components/VercelSpeedInsights";
 
 export default function RootLayout({
   children,
@@ -121,9 +120,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <QueryProvider>
-          <VercelSpeedInsights>
-            {children}
-          </VercelSpeedInsights>
+          {children}
         </QueryProvider>
       </body>
     </html>
