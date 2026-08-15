@@ -11,7 +11,7 @@ interface ContactInfoCardProps {
 export default function ContactInfoCard({ config, section }: ContactInfoCardProps) {
     return (
         <div 
-            className={`max-w-[309px] w-full md:w-[300px] h-[402px] md:h-full flex-shrink-0 p-5 md:p-7 rounded-[32px] md:rounded-[36px] border border-white/10 relative overflow-hidden shadow-xl flex flex-col bg-center bg-no-repeat md:bg-[length:115%_115%] ${
+            className={`max-w-[309px] w-full md:w-[300px] min-h-[402px] h-auto md:h-full md:min-h-0 flex-shrink-0 p-5 md:p-7 rounded-[32px] md:rounded-[36px] border border-white/10 relative overflow-hidden shadow-xl flex flex-col bg-center bg-no-repeat md:bg-[length:115%_115%] ${
                 section === "home" 
                     ? "bg-[linear-gradient(135deg,#1f2a44_0%,#121417_50%,#000000_100%)] md:bg-[url('/icons/hero-info.svg')]"
                     : section === "business"
@@ -22,7 +22,7 @@ export default function ContactInfoCard({ config, section }: ContactInfoCardProp
             {/* Inner Glow */}
             <div className="absolute inset-0 bg-black/40 pointer-events-none" />
 
-            <div className="relative z-10 flex flex-col h-full">
+            <div className="relative z-10 flex flex-col h-full min-h-0">
                 <h2 
                     className="text-xl md:text-2xl font-bold mb-1 md:mb-2 w-fit"
                     style={{ color: THEME.colors.text.primary }}
@@ -30,16 +30,16 @@ export default function ContactInfoCard({ config, section }: ContactInfoCardProp
                     {config.title}
                 </h2>
                 <p 
-                    className="text-xs md:text-sm mb-4 md:mb-5 leading-relaxed max-w-[240px]"
+                    className="text-xs md:text-sm mb-3 md:mb-4 leading-relaxed max-w-[240px]"
                     style={{ color: THEME.colors.text.secondary }}
                 >
                     {config.description}
                 </p>
 
                 {/* Subtle Separator Line matching the UI mockup */}
-                <hr className="w-[85%] border-t border-white/10 mb-4 md:mb-6" />
+                <hr className="w-[85%] border-t border-white/10 mb-3 md:mb-4" />
 
-                <div className="space-y-4 md:space-y-3 flex-1 flex flex-col justify-center mb-1 pb-2">
+                <div className="space-y-3 md:space-y-2.5 flex-1 flex flex-col justify-start md:justify-center min-h-0 overflow-y-auto no-scrollbar [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none'] pb-1">
                     {/* Call */}
                     <ContactRow
                         label="Call"
