@@ -21,10 +21,10 @@ jobs:
       - name: Push to production
         if: github.ref == 'refs/heads/main'
         run: |
-          git remote add production ssh://deploy@2.24.130.95:2876/git/countdownbackend.findmeonline.online.git
+          git remote add production ssh://deploy@2.24.130.95:2876/git/countdown.findmeonline.online.git
           GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" git push production HEAD:main --force-with-lease
       - name: Push to staging
         if: github.ref == 'refs/heads/staging'
         run: |-
-          git remote add staging ssh://deploy@2.24.130.95:2876/git/countdownbackend.findmeonline.online.git
+          git remote add staging ssh://deploy@2.24.130.95:2876/git/countdown.findmeonline.online.git
           GIT_SSH_COMMAND="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no" git push staging HEAD:main --force-with-lease
